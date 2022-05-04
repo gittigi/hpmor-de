@@ -1,12 +1,11 @@
 #!/bin/sh
 
-rm *.aux
-rm chapters/*.aux
-rm chapters/-autofix.tex
-rm *.fdb_latexmk
-rm *.fls
-rm *.log
-rm *.out
-rm *.toc
-rm hpmor.synctex.gz
-rm -r ebook/tmp
+rm -f *.aux
+rm -f chapters/*.aux
+rm -f *.fdb_latexmk
+rm -f *.fls
+rm -f *.log
+rm -f *.out
+rm -f *.toc
+rm -f hpmor.synctex.gz
+rm -fr ebook/tmp
