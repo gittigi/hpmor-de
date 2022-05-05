@@ -1,52 +1,51 @@
 \input{hp-title}
 \ifcover%
-    \definecolor{backgroundcover}{HTML}{272c36}
-    \newpagecolor{backgroundcover}\afterpage{\restorepagecolor}
-    \newcommand\BackgroundPic{
-        \put(0,0){%
-            \parbox[b][\paperheight]{\paperwidth}{%
-                \vfill%
-                \centering%
-                \includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio]{cover1.pdf}%
-                \vfill%
-            }}}\AddToShipoutPicture*{\BackgroundPic}%
-    \AddToShipoutPicture*{\put(0,0){%
-            \parbox[b][\paperheight]{\paperwidth}{%
-                \hptitle{\fullvolumetitle{\volumenumber}}%
-            }}}%
-    \ %
-    \cleartorecto
+\definecolor{backgroundcover}{HTML}{272c36}
+\newpagecolor{backgroundcover}\afterpage{\restorepagecolor}
+\newcommand\BackgroundPic{
+\put(0,0){%
+\parbox[b][\paperheight]{\paperwidth}{%
+\vfill%
+\centering%
+\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio]{cover1.pdf}%
+\vfill%
+}}}\AddToShipoutPicture*{\BackgroundPic}%
+\AddToShipoutPicture*{\put(0,0){%
+\parbox[b][\paperheight]{\paperwidth}{%
+\hptitle{\fullvolumetitle{\volumenumber}}%
+}}}%
+\ %
+\cleartorecto
 \fi
 \begin{center}
-    \thispagestyle{empty}
-    {\hpfont
-        \Huge\MakeUppercase{Harry Potter}\vspace*{0.5cm}
+\thispagestyle{empty}
+{\hpfont
+\Huge\MakeUppercase{Harry Potter}\vspace*{0.5cm}
 
-        \Large\MakeUppercase{and the Methods of Rationality} %
+\Large\MakeUppercase{and the Methods of Rationality} %
 
-        \includegraphics[scale=0.5]{bubble.pdf}
+\includegraphics[scale=0.5]{bubble.pdf}
 
-        \Large Fanfiction by \vspace*{.25cm}
+\Large Fanfiction by \vspace*{.25cm}
 
-        \huge \MakeUppercase{Eliezer Yudkowsky}%
+\huge \MakeUppercase{Eliezer Yudkowsky}%
 
-        \normalsize
+\normalsize
 
-        \vspace*{1\baselineskip}
-        \fullvolumetitle{\volumenumber}
-    }
+\vspace*{1\baselineskip}
+\fullvolumetitle{\volumenumber}
+}
 
-    \vspace{0.7cm}
+\vspace{0.7cm}
 
-    Find the book online, with author’s notes, fan art and other info at: \url{http://hpmor.com} \\
-    ~\\
-    Based on the characters of the Harry Potter series by J. K. Rowling
+Find the book online, with author’s notes, fan art and other info at: \url{http://hpmor.com} \\
+~\\
+Based on the characters of the Harry Potter series by J. K. Rowling
 
-    \vspace{0.7cm}
+\vspace{0.7cm}
 
-    %    Übersetzung~: Schneefl0cke\\
-    Maintainer~: Reuben Thomas\\
-    \url{https://github.com/rjl20/hpmor}
+Maintainer~: Reuben Thomas\\
+\url{https://github.com/rjl20/hpmor}
 
 \end{center}
 
