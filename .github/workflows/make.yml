@@ -17,8 +17,7 @@ jobs:
 
 # Initialize
     - name: print start date
-      run: |
-        date +%Y-%m-%d_%H:%M
+      run: date +%Y-%m-%d_%H:%M
 
     - name: Checkout Repository
       uses: actions/checkout@v2
@@ -32,6 +31,11 @@ jobs:
       with:
         python-version: '3.9'
 
+    - name: test ls before
+      run: |
+        pwd
+        ls -l
+
     - name: Install requirements
       run: ./install_requirements.sh
 
@@ -41,7 +45,7 @@ jobs:
     - name: Make eBooks
       run: ./make_ebooks.sh
 
-    - name: test ls 
+    - name: test ls after
       run: |
         pwd
         ls -l
@@ -53,10 +57,9 @@ jobs:
         tag_name: WorkInProgress
         prerelease: true
         files: |
-          ./*.pdf
+          ./hpmor*.pdf
           ebook/output/hpmor.epub
           ebook/output/hpmor.mobi
 
     - name: print end date
-      run: |
-        date +%Y-%m-%d_%H:%M
+      run: date +%Y-%m-%d_%H:%M
