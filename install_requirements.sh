@@ -4,4 +4,5 @@
 sudo apt install texlive-xetex latexmk
 
 # ebook
-sudo apt install calibre
+# TODO
+# sudo apt install calibre
