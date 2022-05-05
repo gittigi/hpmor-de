@@ -1,3 +1,32 @@
+# Deutsche Übersetzung der in LaTeX gesetzten Fassung von HPMOR 
+
+Nach einigen Beiträgen zum Englischen Repo, habe ich nun das Projekt Schriftsatz und Überarbeitung der Deutschen Übersetzung des Buches [Harry Potter and the Methods of Rationality](https://www.hpmor.com/) gestartet. Vielleicht hat ja jemand Lust mitzuwirken.
+
+## Mitarbeiten
+* Ich freue mich über Mitstreiter
+* Erforderliche (Grund-) Kenntnisse: LaTeX, Git, Deutsch und Englisch
+
+## Links
+* [Originalfassung](https://www.hpmor.com/)
+* [DE-Übersetzung von Schneefl0cke](https://www.fanfiktion.de/s/60044849000ccc541aef297e/)
+* [Englisches LaTeX Repo](https://github.com/rrthomas/hpmor)
+* [Französisches LaTeX Repo](https://github.com/yeKcim/hpmor) mit vielen guten Layout Ideen
+
+## Fortschritte
+* Layout vom Französischen Repo übernommen
+* Auto Build via GitHub Actions
+* Erste Kapitel übersetzt
+
+## Festlegungen
+* Absätze und Hervorhebungen sehr eng an der englischen Fassung orientiert
+* Englischen Text im Quelltext (auskommentiert) behalten, um die Übersetzung jederzeit leicht mit dem Original vergleichen zu können
+
+
+
+
+
+Readme des Quell-Repos:
+
 # Harry Potter and the Methods Of Rationality
 
 https://github.com/rjl20/hpmor  
