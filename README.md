@@ -1,6 +1,6 @@
 # Deutsche Übersetzung der in LaTeX gesetzten Fassung von HPMOR 
 
-Nach einigen Beiträgen zum Englischen Repo, habe ich nun das Projekt Schriftsatz und Überarbeitung der Deutschen Übersetzung des Buches [Harry Potter and the Methods of Rationality](https://www.hpmor.com/) gestartet. Vielleicht hat ja jemand Lust mitzuwirken.
+Nach einigen Beiträgen zum Englischen Repo, habe ich nun das Projekt "Schriftsatz und Überarbeitung der Deutschen Übersetzung des Buches [Harry Potter and the Methods of Rationality](https://www.hpmor.com/)" gestartet. 
 
 ## Mitarbeiten
 * Ich freue mich über Mitstreiter
