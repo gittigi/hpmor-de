@@ -2,6 +2,7 @@
 
 rm *.aux
 rm chapters/*.aux
+rm chapters/-autofix.tex
 rm *.fdb_latexmk
 rm *.fls
 rm *.log
