@@ -5,12 +5,16 @@
 # skip all lines starting with '%'
 # if findings, write proposal to *-autofix.tex
 
-from fileinput import filename
+
 import re
 
 # TODO:
-# "   “
-# -   —
+# auto-fix quotations?
+# in EN the quotations “...”
+# in DE the quotations are „...“ so this needs to be removed: “...
+# in DE "..." should be fixed
+
+# - ->  —
 
 
 def process_file(f: str) -> list:
