@@ -9,12 +9,8 @@
 import re
 
 # TODO:
-# auto-fix quotations?
-# in EN the quotations “...”
-# in DE the quotations are „...“ so this needs to be removed: “...
-# in DE "..." should be fixed
 
-# - ->  —
+lang = "DE"
 
 
 def process_file(f: str) -> list:
@@ -48,6 +44,8 @@ def fix_line(s: str) -> str:
     s1 = s
     # multiple spaces
     s = re.sub(r"[ \t][ \t]+", " ", s)
+    # trailing spaces
+    s = re.sub(r" +$", "", s)
     # remove spaces from empty lines
     s = re.sub(r"^\s+$", "", s)
 
@@ -57,6 +55,10 @@ def fix_line(s: str) -> str:
     s = s.replace(" … ", "…")
     # … at end of quotation ' …"' -> '…"'
     s = s.replace(' …"', '…"')
+    # … at end of line
+    s = re.sub(r" …\n", r'…\n"', s)
+    # Word…"Word -> Word…" Word
+    s = re.sub(r"(\w…\")(\w)", r"\1 \2", s, flags=re.DOTALL)
 
     s = s.replace("Mr. H. Potter", "Mr~H.~Potter")
     s = s.replace("Mr. Potter", "Mr~Potter")
@@ -64,8 +66,20 @@ def fix_line(s: str) -> str:
     # Mr / Mrs
     s = re.sub(r"\b(Mrs?)\.~?\s*", r"\1~", s, flags=re.DOTALL)
 
-    # Word…"Word -> Word…" Word
-    s = re.sub(r"(\w…\")(\w)", r"\1 \2", s, flags=re.DOTALL)
+    # auto-fix quotations?
+    # in EN the quotations “...”
+    # in DE the quotations are „...“ so this needs to be removed: “...
+    # in DE "..." should be fixed
+    if lang == "DE":
+        # ' "A..."'
+        # ' "\..."'
+        # händisch:
+        # (\n|\s)"(\\emph|\w.*?)" -> $1„$2“
+        # s = re.sub(r'(\n|\s)"((\\emph|\w).*?)"', r"\1„\2“", s, flags=re.DOTALL)
+        s = re.sub(r'(^|\s)"((\\|\w).*?)"', r"\1„\2“", s, flags=re.DOTALL)
+
+    # TODO
+    # - ->  —
 
     # if s != s1:
     #     print(s1 + "\n" + s)
