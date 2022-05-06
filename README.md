@@ -1,4 +1,4 @@
-<!--
+<!-- test
 skip-checks:true
 in commit body prevents autobuilding!
 -->
