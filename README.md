@@ -19,7 +19,7 @@ Nach einigen Beiträgen zum englischen Repo, habe ich im Mai 2022 das Projekt "S
 
 ## Fortschritte
 * [Englisches Repo](https://github.com/rrthomas/hpmor) als Vorlange verwendet
-* Layout vom [Französischen Repo](https://github.com/yeKcim/hpmor) übernommen
+* Layout vom [französischen Repo](https://github.com/yeKcim/hpmor) übernommen
 * Auto Build via GitHub Actions des [PDFs](https://github.com/entorb/hpmor-de/releases/download/WorkInProgress/hpmor.pdf)
 * Erste [Kapitel](https://github.com/entorb/hpmor-de/tree/master/chapters) übersetzt
 * [Skript zur automatischen Korrektur](https://github.com/entorb/hpmor-de/blob/master/chapters/0autofix.py) häufiger Fehler im Schriftsatz geschrieben
@@ -32,7 +32,7 @@ Nach einigen Beiträgen zum englischen Repo, habe ich im Mai 2022 das Projekt "S
 
 
 
-Readme des EN Quell-Repos:
+# Readme des EN Quell-Repos:
 
 # Harry Potter and the Methods Of Rationality
 
