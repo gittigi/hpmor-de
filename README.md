@@ -1,8 +1,8 @@
 # Deutsche Übersetzung der in LaTeX gesetzten Fassung von HPMOR 
 
-Nach einigen Beiträgen zum Englischen Repo, habe ich im Mai 2022 das Projekt "Schriftsatz und Überarbeitung der deutschen Übersetzung des Buches [Harry Potter and the Methods of Rationality](https://www.hpmor.com/)" von Eliezer Yudkowsky gestartet. Hier ist der aktuelle Stand des resultierenden [PDFs](https://github.com/entorb/hpmor-de/releases/download/WorkInProgress/hpmor.pdf) zu finden. Über Mitarbeit würde ich mich sehr freuen.
+Nach einigen Beiträgen zum englischen Repo, habe ich im Mai 2022 das Projekt "Schriftsatz und Überarbeitung der deutschen Übersetzung des Buches [Harry Potter and the Methods of Rationality](https://www.hpmor.com/)" von Eliezer Yudkowsky gestartet. Hier ist der aktuelle Stand des resultierenden [PDFs](https://github.com/entorb/hpmor-de/releases/download/WorkInProgress/hpmor.pdf) zu finden. Über Mitarbeit würde ich mich sehr freuen.
 
-## Mitarbeiten
+## Mitmachen
 * Ich freue mich über Mitstreiter
 * Grundkenntnisse in LaTeX und Git sollten ausreichen
 * Bei Fragen und Verbesserungsvorschlägen einfach ein [Ticket](https://github.com/entorb/hpmor-de/issues) öffnen oder mich direkt [kontaktieren](https://entorb.net/hpmor/contact.php?origin=HPMOR)
