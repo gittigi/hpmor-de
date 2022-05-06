@@ -1,6 +1,6 @@
-<!-- test
-skip-checks:true
-in commit body prevents autobuilding!
+<!--
+\n\nskip-checks:true
+in commit body prevents autobuilding! (=2 empty lines)
 -->
 
 # Deutsche Übersetzung der in LaTeX gesetzten Fassung von HPMOR 
