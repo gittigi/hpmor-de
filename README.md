@@ -36,7 +36,7 @@ Nach einigen Beiträgen zum englischen Repo, habe ich im Mai 2022 das Projekt "S
 * Layout des [französischen Repos](https://github.com/yeKcim/hpmor) übernommen
 * Auto Build via GitHub Actions des [PDFs](https://github.com/entorb/hpmor-de/releases/download/WorkInProgress/hpmor.pdf)
 * Erste [Kapitel](https://github.com/entorb/hpmor-de/tree/master/chapters) übersetzt
-* [Skript zur automatischen Korrektur](https://github.com/entorb/hpmor-de/blob/master/chapters/0autofix.py) häufiger Fehler im Schriftsatz geschrieben
+* [Skript zur automatischen Korrektur](https://github.com/entorb/hpmor-de/blob/master/check-chapters.py) häufiger Fehler im Schriftsatz geschrieben
 
 ## Festlegungen
 * Absätze und Hervorhebungen sehr eng an der englischen Fassung orientiert
