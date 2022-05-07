@@ -105,7 +105,9 @@ def fix_line(s: str) -> str:
     # simple
     # ... without spaces around
     s = s.replace(" *... *", "…")
-    s = re.sub(r" *… *", r"…", s)
+    s = s.replace(" … ", "…")
+    # NOT for '… ' as in ', no… “I'
+    # s = re.sub(r" *… *", r"…", s)
 
     s = s.replace(" … ", "…")
     # … at end of quotation ' …"' -> '…"'
@@ -122,21 +124,26 @@ def fix_line(s: str) -> str:
     s = re.sub(r"\b(Mrs?)\.~?\s*", r"\1~", s)
 
     # quotations
-    # in EN the quotations “...”
-    # in DE the quotations are „...“
+    if settings["lang"] == "EN":
+        # in EN the quotations “...”
+        # "..." -> “...”
+        s = re.sub(r'"([^"]+)"', r"“\1”", s)
+
     if settings["lang"] == "DE":
+        # in DE the quotations are „...“
+        # "..." -> “...”
+        s = re.sub(r'"([^"]+)"', r"“\1”", s)
         # “ } -> “}
         s = s.replace("“ }", "“}")
 
-        # ' "A..."'
-        # ' "\..."'
+        # fixing ' "A..."' and ' "\..."'
         s = re.sub(r'(^|\s)"((\\|\w).*?)"', r"\1„\2“", s)
 
         # at first word of chapter
         s = re.sub(r"\\(lettrine|lettrinepara)\[ante=“\]", r"\\\1[ante=„]", s)
 
         # migrate EN quotations
-        s = re.sub(r"“(.+?)”", r"„\1“", s)
+        s = re.sub(r"“([^“”]+?)”", r"„\1“", s)
 
         # quotation marks should go outside of \emph{„...“} -> „\emph{...}“
         s = re.sub(r"\\(emph|shout)\{„([^“]+?)“\}", r"„\\\1{\2}“", s)
@@ -148,7 +155,11 @@ def fix_line(s: str) -> str:
     # DE: ‚...‘
 
     # hyphens: (space-hyphen-space) should be "—" (em dash).
+    s = s.replace("---", "—")
     s = s.replace(" — ", "—")
+    # NOT for '— ' as in ', no… “I'
+    # s = re.sub(r" — ", r"—", s)
+
     # TODO: there is a shorter dash as well..
     # - ->  —  and  – ->  —
 
