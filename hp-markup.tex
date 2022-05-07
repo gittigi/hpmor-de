@@ -70,13 +70,20 @@
 
 \newenvironment{chapterOpeningQuote}{%
 \parindent=0pt%
-\rule{\textwidth}{.1pt}%
+% \rule{\textwidth}{.1pt}%
 \itshape}
 {\newline\rule[1ex]{\textwidth}{.1pt}\newline}
 
+% Definition of chapterOpeningAuthorNote when they are desired to be printed
+% FIXME: Make the environment definition switchable with a flag
 \newenvironment{chapterOpeningAuthorNote}{%
 \parindent=0pt%
+E.~Y.:~
 }
+{%
+\newline\rule[1ex]{\textwidth}{.1pt}\newline%
+}
+% \excludecomment{chapterOpeningAuthorNote}
 
 
 % Chapter parts
