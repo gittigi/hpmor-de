@@ -91,7 +91,6 @@ def process_file(fileIn: str) -> bool:
 
 def fix_line(s: str) -> str:
     # TODO:
-    # - ->  —  and  – ->  —
 
     s1 = s
     # multiple spaces
@@ -147,6 +146,11 @@ def fix_line(s: str) -> str:
 
     # TODO: single quotes
     # DE: ‚...‘
+
+    # hyphens: (space-hyphen-space) should be "—" (em dash).
+    s = s.replace(" — ", "—")
+    # TODO: there is a shorter dash as well..
+    # - ->  —  and  – ->  —
 
     return s
 
