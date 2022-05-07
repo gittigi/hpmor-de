@@ -105,7 +105,9 @@ def fix_line(s: str) -> str:
     # simple
     # ... without spaces around
     s = s.replace(" *... *", "…")
-    s = re.sub(r" *… *", r"…", s)
+    s = s.replace(" … ", "…")
+    # NOT for '… ' as in ', no… “I'
+    # s = re.sub(r" *… *", r"…", s)
 
     s = s.replace(" … ", "…")
     # … at end of quotation ' …"' -> '…"'
@@ -155,6 +157,8 @@ def fix_line(s: str) -> str:
     # hyphens: (space-hyphen-space) should be "—" (em dash).
     s = s.replace("---", "—")
     s = s.replace(" — ", "—")
+    # NOT for '— ' as in ', no… “I'
+    # s = re.sub(r" — ", r"—", s)
 
     # TODO: there is a shorter dash as well..
     # - ->  —  and  – ->  —
