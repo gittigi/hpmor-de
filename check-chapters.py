@@ -91,7 +91,6 @@ def process_file(fileIn: str) -> bool:
 
 def fix_line(s: str) -> str:
     # TODO:
-    # - ->  —  and  – ->  —
 
     s1 = s
     # multiple spaces
@@ -123,21 +122,26 @@ def fix_line(s: str) -> str:
     s = re.sub(r"\b(Mrs?)\.~?\s*", r"\1~", s)
 
     # quotations
-    # in EN the quotations “...”
-    # in DE the quotations are „...“
+    if settings["lang"] == "EN":
+        # in EN the quotations “...”
+        # "..." -> “...”
+        s = re.sub(r'"([^"]+)"', r"“\1”", s)
+
     if settings["lang"] == "DE":
+        # in DE the quotations are „...“
+        # "..." -> “...”
+        s = re.sub(r'"([^"]+)"', r"“\1”", s)
         # “ } -> “}
         s = s.replace("“ }", "“}")
 
-        # ' "A..."'
-        # ' "\..."'
+        # fixing ' "A..."' and ' "\..."'
         s = re.sub(r'(^|\s)"((\\|\w).*?)"', r"\1„\2“", s)
 
         # at first word of chapter
         s = re.sub(r"\\(lettrine|lettrinepara)\[ante=“\]", r"\\\1[ante=„]", s)
 
         # migrate EN quotations
-        s = re.sub(r"“(.+?)”", r"„\1“", s)
+        s = re.sub(r"“([^“”]+?)”", r"„\1“", s)
 
         # quotation marks should go outside of \emph{„...“} -> „\emph{...}“
         s = re.sub(r"\\(emph|shout)\{„([^“]+?)“\}", r"„\\\1{\2}“", s)
@@ -147,6 +151,13 @@ def fix_line(s: str) -> str:
 
     # TODO: single quotes
     # DE: ‚...‘
+
+    # hyphens: (space-hyphen-space) should be "—" (em dash).
+    s = s.replace("---", "—")
+    s = s.replace(" — ", "—")
+
+    # TODO: there is a shorter dash as well..
+    # - ->  —  and  – ->  —
 
     return s
 
@@ -158,10 +169,12 @@ if __name__ == "__main__":
 
     list_of_chapter_files = get_list_of_chapter_files()
 
-    issue_found = False
+    any_issue_found = False
     for fileIn in list_of_chapter_files:
         print(fileIn)
         issue_found = process_file(fileIn=fileIn)
+        if issue_found:
+            any_issue_found = True
 
     if settings["raise_error"]:
-        assert issue_found == False, "Issues found, please fix!"
+        assert any_issue_found == False, "Issues found, please fix!"
