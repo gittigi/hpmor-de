@@ -16,11 +16,13 @@ Nach einigen Beiträgen zum englischen Repo, habe ich im Mai 2022 das Projekt "S
 
 ## Links
 * [Originalfassung](https://www.hpmor.com/)
-* die bisher von mir verwendete [DE-Übersetzung von Schneefl0cke](https://www.fanfiktion.de/s/60044849000ccc541aef297e/)
-* eine alternative [DE-Übersetzung von Jost](https://www.fanfiktion.de/s/4cb8beb50000203e067007d0/)
+* [DE-Übersetzung von Schneefl0cke](https://www.fanfiktion.de/s/60044849000ccc541aef297e/) komplett
+* [DE-Übersetzung von Jost](https://www.fanfiktion.de/s/4cb8beb50000203e067007d0/) Kapitel 1-21
+* [DE-Übersetzung von DieFuechsin](https://www.fanfiktion.de/s/5c793dfe000a402030774dc7/) Kapitel 1-46
 * [Englisches LaTeX Repo](https://github.com/rrthomas/hpmor)
 * [Französisches LaTeX Repo](https://github.com/yeKcim/hpmor) mit vielen guten Layout Ideen
 * Ein 2 Jahre altes [DE LaTeX Repo von elkablo](https://github.com/elkablo/hpmor) für Kapitel 1-21, basierend auf der Übersetzung von [Jost](https://www.fanfiktion.de/s/4cb8beb50000203e067007d0/)
+* [DE Höchbuch von Tralex auf Youtube](https://www.youtube.com/channel/UCN2-6FJpLBx4Uh4C_wArhsQ/videos?view=0&sort=dd) Kapitel 1-42
 
 ## Fortschritte
 * [Englisches Repo](https://github.com/rrthomas/hpmor) als Vorlange verwendet
