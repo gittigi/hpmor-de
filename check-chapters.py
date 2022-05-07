@@ -85,8 +85,8 @@ def process_file(fileIn: str) -> bool:
 
 
 def fix_line(s: str) -> str:
-    # TODO: how to handle:
-    # - ->  —
+    # TODO:
+    # - ->  —  and  – ->  —
 
     s1 = s
     # multiple spaces
@@ -105,12 +105,12 @@ def fix_line(s: str) -> str:
     # … at end of line
     s = re.sub(r" …\n", r'…\n"', s)
     # Word…"Word -> Word…" Word
-    s = re.sub(r"(\w…\")(\w)", r"\1 \2", s, flags=re.DOTALL)
+    s = re.sub(r"(\w…\")(\w)", r"\1 \2", s)
 
     # Mr / Mrs
     s = s.replace("Mr. H. Potter", "Mr~H.~Potter")
     s = s.replace("Mr. Potter", "Mr~Potter")
-    s = re.sub(r"\b(Mrs?)\.~?\s*", r"\1~", s, flags=re.DOTALL)
+    s = re.sub(r"\b(Mrs?)\.~?\s*", r"\1~", s)
 
     # quotations
     # in EN the quotations “...”
@@ -118,7 +118,18 @@ def fix_line(s: str) -> str:
     if settings["lang"] == "DE":
         # ' "A..."'
         # ' "\..."'
-        s = re.sub(r'(^|\s)"((\\|\w).*?)"', r"\1„\2“", s, flags=re.DOTALL)
+        s = re.sub(r'(^|\s)"((\\|\w).*?)"', r"\1„\2“", s)
+        # migrate EN quotations
+        s = re.sub(r"“(.+?)”", r"„\1“", s)
+
+        # quotation marks should go outside of \emph{„...“} -> „\emph{...}“
+        s = re.sub(r"\\(emph|shout)\{„(.+?)“\}", r"„\\\1{\2}“", s)
+
+        # “ } -> “}
+        s = s.replace("“ }", "“}")
+
+    # TODO: single quotes
+    # DE: ‚...‘
 
     return s
 
