@@ -12,19 +12,26 @@ Nach einigen Beiträgen zum englischen Repo, habe ich im Mai 2022 das Projekt "S
 * Grundkenntnisse in LaTeX und Git sollten ausreichen
 * Bei Fragen und Verbesserungsvorschlägen einfach ein [Ticket](https://github.com/entorb/hpmor-de/issues) öffnen oder mich direkt [kontaktieren](https://entorb.net/hpmor/contact.php?origin=HPMOR)
 * Hier findet ihr die fertig übersetzten und noch zu übersetzenden [Kapitel](https://github.com/entorb/hpmor-de/tree/master/chapters)
-* Hier das automatisch erstellte [PDFs](https://github.com/entorb/hpmor-de/releases/download/WorkInProgress/hpmor.pdf) des aktuellen Standes
+* Hier das automatisch erstellte [PDF](https://github.com/entorb/hpmor-de/releases/download/WorkInProgress/hpmor.pdf) des aktuellen Standes
 
 ## Links
+### Übersetzungen
 * [Originalfassung](https://www.hpmor.com/)
 * [DE-Übersetzung von Schneefl0cke](https://www.fanfiktion.de/s/60044849000ccc541aef297e/) komplett
 * [DE-Übersetzung von Jost](https://www.fanfiktion.de/s/4cb8beb50000203e067007d0/) Kapitel 1-21
-* [DE-Übersetzung von DieFuechsin](https://www.fanfiktion.de/s/5c793dfe000a402030774dc7/) Kapitel 1-46
-* [Englisches LaTeX Repo](https://github.com/rrthomas/hpmor)
-* [Französisches LaTeX Repo](https://github.com/yeKcim/hpmor) mit vielen guten Layout Ideen
-* Ein 2 Jahre altes [DE LaTeX Repo von elkablo](https://github.com/elkablo/hpmor) für Kapitel 1-21, basierend auf der Übersetzung von [Jost](https://www.fanfiktion.de/s/4cb8beb50000203e067007d0/)
-* [DE Höchbuch von Tralex auf Youtube](https://www.youtube.com/channel/UCN2-6FJpLBx4Uh4C_wArhsQ/videos?view=0&sort=dd) Kapitel 1-42
+* [DE-Übersetzung von DieFuechsin](https://www.fanfiktion.de/s/5c793dfe000a402030774dc7/) Kapitel 47-78
+* [DE-Übersetzung von Patneu](https://www.fanfiktion.de/s/55610c610004dede273a3811/) Kapitel 1-38
+* [DE-Übersetzung von TralexHPMOR](https://www.fanfiktion.de/s/59a29b7f000813c22ec1454b/) Kapitel 22-26
 
-## Fortschritte
+### Latex Repositories
+* [EN LaTeX Repo](https://github.com/rrthomas/hpmor)
+* [FR LaTeX Repo](https://github.com/yeKcim/hpmor) mit vielen guten Layout Ideen
+* [DE LaTeX Repo von elkablo](https://github.com/elkablo/hpmor) für Kapitel 1-21, basierend auf der Übersetzung von [Jost](https://www.fanfiktion.de/s/4cb8beb50000203e067007d0/)
+
+### Weitere
+* [DE Höchbuch von TralexHPMOR auf Youtube](https://www.youtube.com/channel/UCN2-6FJpLBx4Uh4C_wArhsQ/videos?view=0&sort=dd) Kapitel 1-42
+
+## Fortschritte dieses Projekts
 * [Englisches Repo](https://github.com/rrthomas/hpmor) als Vorlange verwendet
 * Layout des [französischen Repos](https://github.com/yeKcim/hpmor) übernommen
 * Auto Build via GitHub Actions des [PDFs](https://github.com/entorb/hpmor-de/releases/download/WorkInProgress/hpmor.pdf)
