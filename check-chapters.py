@@ -71,6 +71,11 @@ def process_file(fileIn: str) -> bool:
     if issue_found:
         print(" issues found!")
         fileOut = fileIn.replace(".tex", "-autofix.tex")
+
+        # inline fixing: use with CAUTION
+        # fileOut = fileIn
+        # issue_found = False
+
         with open(fileOut, mode="w", encoding="utf-8", newline="\n") as fh:
             fh.write("\n".join(l_cont_2))
 
@@ -95,10 +100,14 @@ def fix_line(s: str) -> str:
     s = re.sub(r" +$", "", s)
     # remove spaces from empty lines
     s = re.sub(r"^\s+$", "", s)
+    # ' ' at start of emph
+    s = s.replace("\emph{ ", " \emph{")
 
     # simple
-    # ...
-    s = s.replace("...", "…")
+    # ... without spaces around
+    s = s.replace(" *... *", "…")
+    s = re.sub(r" *… *", r"…", s)
+
     s = s.replace(" … ", "…")
     # … at end of quotation ' …"' -> '…"'
     s = s.replace(' …"', '…"')
@@ -110,23 +119,31 @@ def fix_line(s: str) -> str:
     # Mr / Mrs
     s = s.replace("Mr. H. Potter", "Mr~H.~Potter")
     s = s.replace("Mr. Potter", "Mr~Potter")
+
     s = re.sub(r"\b(Mrs?)\.~?\s*", r"\1~", s)
 
     # quotations
     # in EN the quotations “...”
     # in DE the quotations are „...“
     if settings["lang"] == "DE":
+        # “ } -> “}
+        s = s.replace("“ }", "“}")
+
         # ' "A..."'
         # ' "\..."'
         s = re.sub(r'(^|\s)"((\\|\w).*?)"', r"\1„\2“", s)
+
+        # at first word of chapter
+        s = re.sub(r"\\(lettrine|lettrinepara)\[ante=“\]", r"\\\1[ante=„]", s)
+
         # migrate EN quotations
         s = re.sub(r"“(.+?)”", r"„\1“", s)
 
         # quotation marks should go outside of \emph{„...“} -> „\emph{...}“
-        s = re.sub(r"\\(emph|shout)\{„(.+?)“\}", r"„\\\1{\2}“", s)
+        s = re.sub(r"\\(emph|shout)\{„([^“]+?)“\}", r"„\\\1{\2}“", s)
 
-        # “ } -> “}
-        s = s.replace("“ }", "“}")
+        # lone “ at end of \emph
+        s = re.sub(r"(\\emph\{[^„]+?)“\}", r"\1\}“", s)
 
     # TODO: single quotes
     # DE: ‚...‘
