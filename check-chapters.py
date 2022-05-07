@@ -143,7 +143,7 @@ def fix_line(s: str) -> str:
         s = re.sub(r"\\(emph|shout)\{„([^“]+?)“\}", r"„\\\1{\2}“", s)
 
         # lone “ at end of \emph
-        s = re.sub(r"(\\emph\{[^„]+?)“\}", r"\1\}“", s)
+        s = re.sub(r"(\\emph\{[^„]+?)“\}", r"\1}“", s)
 
     # TODO: single quotes
     # DE: ‚...‘
