@@ -10,6 +10,7 @@ Nach einigen Beiträgen zum englischen Repo, habe ich im Mai 2022 das Projekt "S
 ## Mitmachen
 * Ich freue mich über Mitstreiter
 * Grundkenntnisse in LaTeX und Git sollten ausreichen
+* [Schnellstart-Anleitung](https://github.com/entorb/hpmor-de/wiki/Mitmachen)
 * Bei Fragen und Verbesserungsvorschlägen einfach ein [Ticket](https://github.com/entorb/hpmor-de/issues) öffnen oder mich direkt [kontaktieren](https://entorb.net/hpmor/contact.php?origin=HPMOR)
 * Hier findet ihr die fertig übersetzten und noch zu übersetzenden [Kapitel](https://github.com/entorb/hpmor-de/tree/master/chapters)
 * Hier das automatisch erstellte [PDF](https://github.com/entorb/hpmor-de/releases/download/WorkInProgress/hpmor.pdf) des aktuellen Standes
