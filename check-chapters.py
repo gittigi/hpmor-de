@@ -121,7 +121,7 @@ def fix_line(s: str) -> str:
     s = s.replace("Mr. H. Potter", "Mr~H.~Potter")
     s = s.replace("Mr. Potter", "Mr~Potter")
 
-    s = re.sub(r"\b(Mrs?)\.~?\s*", r"\1~", s)
+    s = re.sub(r"\b(Mrs?)\.?~?\s*", r"\1~", s)
 
     # quotations
     if settings["lang"] == "EN":
