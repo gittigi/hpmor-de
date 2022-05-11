@@ -1,5 +1,7 @@
 <!--
-\n\nskip-checks:true
+
+
+skip-checks:true
 in commit body prevents autobuilding! (=2 empty lines)
 -->
 
@@ -13,6 +15,7 @@ Nach einigen Beiträgen zum englischen Repo, habe ich im Mai 2022 das Projekt "S
 * [Schnellstart-Anleitung](https://github.com/entorb/hpmor-de/wiki/Mitmachen)
 * Bei Fragen und Verbesserungsvorschlägen einfach ein [Ticket](https://github.com/entorb/hpmor-de/issues) öffnen oder mich direkt [kontaktieren](https://entorb.net/hpmor/contact.php?origin=HPMOR)
 * Hier findet ihr die fertig übersetzten und noch zu übersetzenden [Kapitel](https://github.com/entorb/hpmor-de/tree/master/chapters)
+* Hier findet ihr [Kopien der 5 untenstehenden Übersetzungen, in LaTeX-Code konvertiert](https://github.com/entorb/hpmor-de/tree/de-translations/chapters/translations/5-latex-clean)
 * Hier das automatisch erstellte [PDF](https://github.com/entorb/hpmor-de/releases/download/WorkInProgress/hpmor.pdf) des aktuellen Standes
 
 ## Links
@@ -20,9 +23,10 @@ Nach einigen Beiträgen zum englischen Repo, habe ich im Mai 2022 das Projekt "S
 * [Originalfassung](https://www.hpmor.com/)
 * [DE-Übersetzung von Schneefl0cke](https://www.fanfiktion.de/s/60044849000ccc541aef297e/) komplett
 * [DE-Übersetzung von Jost](https://www.fanfiktion.de/s/4cb8beb50000203e067007d0/) Kapitel 1-21
-* [DE-Übersetzung von DieFuechsin](https://www.fanfiktion.de/s/5c793dfe000a402030774dc7/) Kapitel 47-78
+* [DE-Übersetzung von DieFuechsin](https://www.fanfiktion.de/s/5c793dfe000a402030774dc7/) Kapitel 34-78
 * [DE-Übersetzung von Patneu](https://www.fanfiktion.de/s/55610c610004dede273a3811/) Kapitel 1-38
 * [DE-Übersetzung von TralexHPMOR](https://www.fanfiktion.de/s/59a29b7f000813c22ec1454b/) Kapitel 22-26
+* [Kopien der 5 obigen Übersetzungen, in LaTeX-Code konvertiert](https://github.com/entorb/hpmor-de/tree/de-translations/chapters/translations/5-latex-clean)
 
 ### Latex Repositories
 * [EN LaTeX Repo](https://github.com/rrthomas/hpmor)
