@@ -128,6 +128,13 @@ def fix_line(s: str) -> str:
         # in EN the quotations “...”
         # "..." -> “...”
         s = re.sub(r'"([^"]+)"', r"“\1”", s)
+        # ” } -> ”}
+        s = s.replace("” }", "”}")
+        # quotation marks should go outside of \emph{“...”} -> “\emph{...}”
+        s = re.sub(r"\\(emph|shout)\{“([^”]+?)”\}", r"“\\\1{\2}”", s)
+
+        # lone “ at end of \emph
+        s = re.sub(r"(\\emph\{[^„]+?)“\}", r"\1}“", s)
 
     if settings["lang"] == "DE":
         # in DE the quotations are „...“
@@ -162,6 +169,11 @@ def fix_line(s: str) -> str:
 
     # TODO: there is a shorter dash as well..
     # - ->  —  and  – ->  —
+
+    
+    # Note: good, but many false positives
+    # \emph{...} word \emph{...} -> \emph{... \emph{word} ...
+    # s = re.sub(r"(\\emph\{[^\}]+)\} ([^ ]+) \\emph\{", r"\1 \\emph{\2} ", s)
 
     return s
 
