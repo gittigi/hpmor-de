@@ -1,20 +1,19 @@
-import os
 import glob
-import re
+import os
 import subprocess
+import sys
 
-translators = ["Schneefl0cke", "Jost", "DieFuechsin", "Patneu", "TralexHPMOR"]
+# my helper
+import helper
 
+os.chdir(os.path.dirname(sys.argv[0]))
 
-for translator in translators:
-    for dir in (
-        # f"1-download/{translator}/",
-        # f"2-extract/{translator}/",
-        # f"3-clean/{translator}/",
-        f"4-latex/{translator}/",
-        # f"5-latex-clean/{translator}/",
-    ):
-        os.makedirs(dir, exist_ok=True)
+translations = helper.translations
+translators = translations.keys()
+
+# make output dirs
+for translator in translations.keys():
+    os.makedirs(f"4-latex/{translator}/", exist_ok=True)
 
 
 def html2latex():

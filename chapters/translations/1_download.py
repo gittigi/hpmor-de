@@ -1,35 +1,17 @@
 import os
 import requests
+import sys
 
-# import re
-# import glob
-# import requests
-# from bs4 import BeautifulSoup  # pip install beautifulsoup4
+# my helper
+import helper
 
-# # my helper
-# import helper
+os.chdir(os.path.dirname(sys.argv[0]))
 
-translations = {
-    "Schneefl0cke": {"id": "60044849000ccc541aef297e", "chStart": 0, "numFiles": 121},
-    "Jost": {"id": "4cb8beb50000203e067007d0", "chStart": 1, "numFiles": 21},
-    "DieFuechsin": {
-        "id": "5c793dfe000a402030774dc7",
-        "chStart": 34 - 1,
-        "numFiles": 46,
-    },
-    "Patneu": {"id": "55610c610004dede273a3811", "chStart": 1, "numFiles": 38},
-    "TralexHPMOR": {"id": "59a29b7f000813c22ec1454b", "chStart": 22, "numFiles": 6},
-}
+translations = helper.translations
 
 # make output dirs
-os.makedirs("output", exist_ok=True)
 for translator in translations.keys():
-    for dir in (
-        f"1-download/{translator}/",
-        # f"2-extract/{translator}/",
-        # f"3-clean/{translator}/",
-    ):
-        os.makedirs(dir, exist_ok=True)
+    os.makedirs(f"1-download/{translator}/", exist_ok=True)
 
 
 def download_file(url: str, filepath: str):
@@ -44,13 +26,12 @@ def download_file(url: str, filepath: str):
 
 
 def download_all_chapters():
-    """Downloads into chapters-1-download/<lang>/ only if fileOut does not exist"""
+    # downloads only if file does not exist yet
     url_base = "https://www.fanfiktion.de/s/<---id--->/<---fileNum--->/"
     for translator, trans in translations.items():
-        # chapter_last = trans["chStart"] + trans["numFiles"]
         chapter = trans["chStart"]
         for fileNum in range(1, trans["numFiles"] + 1):
-            fileOut = f"chapters-1-download/{translator}/%03d.html" % chapter
+            fileOut = f"1-download/{translator}/%03d.html" % chapter
             if not os.path.exists(fileOut):
                 print(f"downloading chapter %03d" % chapter)
                 url = url_base.replace("<---id--->", trans["id"]).replace(

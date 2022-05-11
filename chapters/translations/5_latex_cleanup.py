@@ -1,19 +1,19 @@
-import os
 import glob
+import os
 import re
+import sys
 
-translators = ["Schneefl0cke", "Jost", "DieFuechsin", "Patneu", "TralexHPMOR"]
+# my helper
+import helper
 
+os.chdir(os.path.dirname(sys.argv[0]))
 
-for translator in translators:
-    for dir in (
-        # f"1-download/{translator}/",
-        # f"2-extract/{translator}/",
-        # f"3-clean/{translator}/",
-        # f"4-latex/{translator}/",
-        f"5-latex-clean/{translator}/",
-    ):
-        os.makedirs(dir, exist_ok=True)
+translations = helper.translations
+translators = translations.keys()
+
+# make output dirs
+for translator in translations.keys():
+    os.makedirs(f"5-latex-clean/{translator}/", exist_ok=True)
 
 
 def loop_files_for_cleanup():
@@ -33,11 +33,24 @@ def cleanup_latex(s):
     s = re.sub(r"\r\n", "\n", s)
     s = re.sub(r"^.*\\begin\{document\}", "", s, flags=re.DOTALL)
     s = re.sub(r"\\end\{document\}.*$", "", s, flags=re.DOTALL)
+
+    # quotations
+    s = s.replace("''", '"')
     s = s.replace("``", "“")
+    # "...“ -> „...“
+    s = re.sub(r"\"([^\"]+)“", r"„\1“", s)
+
+    # latex stuff
     s = s.replace("{}", "")
     s = s.replace("\maketitle", "")
+    s = s.replace("\ldots", "…")
+
     # empty lines
     s = re.sub(r"\n\n\n+", "\n\n", s)
+
+    # 1 line per paragraph
+    s = re.sub(r"(?<!\s)\n(?!\s)", " ", s)
+
     return s
 
 

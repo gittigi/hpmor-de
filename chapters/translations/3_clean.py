@@ -1,30 +1,26 @@
 import os
 import re
 import glob
+import sys
 
 from bs4 import BeautifulSoup  # pip install beautifulsoup4
 
 # my helper
-# import helper
+import helper
 
-translators = ["Schneefl0cke", "Jost", "DieFuechsin", "Patneu", "TralexHPMOR"]
-lang = "de"
+os.chdir(os.path.dirname(sys.argv[0]))
+
+translations = helper.translations
+translators = translations.keys()
 
 # make output dirs
-# os.makedirs("output", exist_ok=True)
-for translator in translators:
-    for dir in (
-        # f"1-download/{translator}/",
-        # f"2-extract/{translator}/",
-        f"3-clean/{translator}/",
-        # "4-join/",
-    ):
-        os.makedirs(dir, exist_ok=True)
+for translator in translations.keys():
+    os.makedirs(f"3-clean/{translator}/", exist_ok=True)
 
 
 def html_modify():
     html_start = """<!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="author" content="Eliezer Yudkowsky" />
@@ -237,12 +233,9 @@ def html_tuning(s: str) -> str:
     # nice looking quotation signs
     # en &ldquo;example&rdquo;
     # de &bdquo;Beispiel&ldquo;
-    if lang == "de":
-        q_left = "&bdquo;"
-        q_right = "&ldquo;"
-    else:
-        q_left = "&ldquo;"
-        q_right = "&rdquo;"
+    q_left = "&bdquo;"
+    q_right = "&ldquo;"
+
     # left
     s = re.sub('([\s\(]+)"', rf"\1{q_left}", s)
     s = re.sub('(\.\.\.)"(\w)', rf"\1{q_left}\2", s)
