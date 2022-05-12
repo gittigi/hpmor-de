@@ -1,4 +1,5 @@
 #!/bin/sh
 
 latexmk -C
-rm -fr ebook/tmp
+rm -rf chapters/*.aux
+rm -rf ebook/tmp
