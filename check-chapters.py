@@ -98,6 +98,9 @@ def fix_line(s: str) -> str:
     s = re.sub(r" +$", "", s)
     # remove spaces from empty lines
     s = re.sub(r"^\s+$", "", s)
+    # Latex: \end{...} at new line
+    s = re.sub(r"([^\s+%])\s*\\end\{", r"\1\n\\end{", s)
+
     # ' ' at start of emph
     s = s.replace("\emph{ ", " \emph{")
 
@@ -119,8 +122,9 @@ def fix_line(s: str) -> str:
     # Mr / Mrs
     s = s.replace("Mr. H. Potter", "Mr~H.~Potter")
     s = s.replace("Mr. Potter", "Mr~Potter")
-
-    s = re.sub(r"\b(Mrs?)\.?~?\s*", r"\1~", s)
+    s = re.sub(r"\b(Mrs?)\b\.?~?\s*", r"\1~", s)
+    # "Dr. " -> "Dr~"
+    s = re.sub(r"\b(Dr)\b\.?~?\s*", r"\1~", s)
 
     # quotations
     if settings["lang"] == "EN":
@@ -177,7 +181,7 @@ def fix_line(s: str) -> str:
     # move punctuation out of 1-word-emph
     # TODO: maybe only for , and .? or not if followed by “ ?
     # ... \emph{WORD.} -> \emph{WORD}.
-    s = re.sub(r"\\emph\{([^ ]+)([,\.!\?])\}", r"\\emph{\1}\2", s)
+    # s = re.sub(r"\\emph\{([^ ]+)([,\.!\?])\}", r"\\emph{\1}\2", s)
     return s
 
 
