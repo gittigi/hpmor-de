@@ -123,7 +123,7 @@ def html_tuning(s: str) -> str:
         s,
         flags=re.DOTALL | re.IGNORECASE,
     )
-    # need to repeat b and em
+    # replace by b and em
     s = re.sub(
         '<span class="user_italic">(.*?)</span>',
         r"<em>\1</em>",
@@ -180,8 +180,10 @@ def html_tuning(s: str) -> str:
     s = re.sub("<br/>\s*<p>", "<p>", s, flags=re.DOTALL | re.IGNORECASE)
     s = re.sub("</p>\s*<br/>", "</p>", s, flags=re.DOTALL | re.IGNORECASE)
 
+    # ... -> …
+    s = s.replace("...", "…")
     # remove space before puctuation
-    s = re.sub(" ([\.,:;])", r"\1", s)
+    s = re.sub(" ([\.,:;](?=\.))", r"\1 ", s)
     # add space after puctuation
     s = re.sub("([a-zA-Z][\.,:;])([a-zA-Z])", r"\1 \2", s)
     # multiple spaces
@@ -230,18 +232,19 @@ def html_tuning(s: str) -> str:
     s = s.replace('Verteidigungsprofessor."Wir', 'Verteidigungsprofessor. "Wir')
     s = s.replace('Glück."Also', 'Glück. "Also')
 
-    # nice looking quotation signs
-    # en &ldquo;example&rdquo;
-    # de &bdquo;Beispiel&ldquo;
-    q_left = "&bdquo;"
-    q_right = "&ldquo;"
+    # # Quotations
+    # # nice looking quotation signs
+    # # en &ldquo;example&rdquo;
+    # # de &bdquo;Beispiel&ldquo;
+    # q_left = "&bdquo;"
+    # q_right = "&ldquo;"
 
-    # left
-    s = re.sub('([\s\(]+)"', rf"\1{q_left}", s)
-    s = re.sub('(\.\.\.)"(\w)', rf"\1{q_left}\2", s)
-    # right
-    s = re.sub('"([\s,\.!\?\)\-]+)', rf"{q_right}\1", s)
-    s = re.sub('([\w])"([;])', rf"\1{q_right}\2", s)
+    # # left
+    # s = re.sub('([\s\(]+)"', rf"\1{q_left}", s)
+    # s = re.sub('(\.\.\.)"(\w)', rf"\1{q_left}\2", s)
+    # # right
+    # s = re.sub('"([\s,\.!\?\)\-]+)', rf"{q_right}\1", s)
+    # s = re.sub('([\w])"([;])', rf"\1{q_right}\2", s)
 
     return s
 
