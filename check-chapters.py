@@ -19,6 +19,13 @@ import json
 import difflib
 
 # TODO:
+# DE: \d Uhr
+
+# shall we modify the source file?
+# USE WITH CAUTION!!!
+inline_fixing = False
+# inline_fixing = True
+
 
 with open("check-chapters.json", mode="r", encoding="utf-8") as fh:
     settings = json.load(fh)
@@ -72,8 +79,9 @@ def process_file(fileIn: str) -> bool:
         fileOut = fileIn.replace(".tex", "-autofix.tex")
 
         # inline fixing: use with CAUTION
-        # fileOut = fileIn
-        # issue_found = False
+        if inline_fixing:
+            fileOut = fileIn
+            issue_found = False
 
         with open(fileOut, mode="w", encoding="utf-8", newline="\n") as fh:
             fh.write("\n".join(l_cont_2))
@@ -122,7 +130,7 @@ def fix_line(s: str) -> str:
     # Mr / Mrs
     s = s.replace("Mr. H. Potter", "Mr~H.~Potter")
     s = s.replace("Mr. Potter", "Mr~Potter")
-    s = re.sub(r"\b(Mrs?)\b\.?~?\s*", r"\1~", s)
+    s = re.sub(r"\b(Mr|Mrs|Miss)\b\.?~?\s*", r"\1~", s)
     # "Dr. " -> "Dr~"
     s = re.sub(r"\b(Dr)\b\.?~?\s*", r"\1~", s)
 
@@ -173,6 +181,10 @@ def fix_line(s: str) -> str:
 
         # lone “ at end of \emph
         s = re.sub(r"(\\emph\{[^„]+?)“\}", r"\1}“", s)
+
+    # numbers
+    if settings["lang"] == "DE":
+        s = re.sub(r"(\d) (Uhr)", r"\1~\2", s)
 
     # TODO: single quotes
     # DE: ‚...‘
