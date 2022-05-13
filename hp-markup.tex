@@ -56,7 +56,11 @@
 % Use with \footnotemark
 % TODO: check if used
 % \newcommand{\authorsnotetext}[1]{\footnotetext{Anmerkung des Authors: #1}}
-% \newcommand{\translatorsnotetext}[1]{\footnotetext{Anmerkung des Übersetzers~: #1}}
+% translator notes
+\newcommand{\translatorsnote}[1]{\footnote{Übersetzerhinweis: #1}}
+% do not print translator notes
+\renewcommand{\translatorsnote}[1]{}
+
 
 % Letters
 \newcommand{\letterAddress}[1]{\pagebreak[1]\noindent{}\fontspec[ExternalLocation]{Graphe_Alpha_alt.ttf}\scriptsize#1\nopagebreak[4]\par}
