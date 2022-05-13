@@ -183,9 +183,9 @@ def html_tuning(s: str) -> str:
     # ... -> …
     s = s.replace("...", "…")
     # remove space before puctuation
-    s = re.sub(" ([\.,:;](?=\.))", r"\1 ", s)
+    # s = re.sub(" ([\.,:;](?=\.))", r"\1 ", s)
     # add space after puctuation
-    s = re.sub("([a-zA-Z][\.,:;])([a-zA-Z])", r"\1 \2", s)
+    # s = re.sub("([a-zA-Z][\.,:;])([a-zA-Z])", r"\1 \2", s)
     # multiple spaces
     s = re.sub("  +", " ", s)
 

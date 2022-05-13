@@ -42,8 +42,10 @@ def cleanup_latex(s):
 
     # latex stuff
     s = s.replace("{}", "")
-    s = s.replace("\n\hfill\break ", "\n")
+    s = re.sub(r"(?<=\n)\\hfill\\break *", r"", s)
+    # s = re.sub(r"(?<=\n)\\hypertarget.*$", r"", s)
     s = s.replace("\maketitle", "")
+    s = s.replace("\ldots", "…")
     s = s.replace("\ldots", "…")
 
     # empty lines
