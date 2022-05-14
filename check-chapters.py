@@ -159,6 +159,7 @@ def fix_line(s: str) -> str:
 
         # "..." -> “...”
         s = re.sub(r'"([^"]+)"', r"“\1”", s)
+        s = re.sub(r"…„", r"… „", s)
 
         # “ } -> “}
         s = s.replace("“ }", "“} ")
@@ -212,6 +213,10 @@ def fix_line(s: str) -> str:
         s = re.sub(r"\\emph\{([^ ]+)([,\.!\?])\}(?!”)", r"\\emph{\1}\2", s)
     if settings["lang"] == "DE":
         s = re.sub(r"\\emph\{([^ ]+)([,\.!\?])\}(?!“)", r"\\emph{\1}\2", s)
+
+    # common typos
+    if settings["lang"] == "DE":
+        s = s.replace("ut mir Leid", "ut mir leid")
 
     return s
 
