@@ -36,7 +36,8 @@ hp-*.pdf
 hpmor-*.pdf
 hpmor.pdf
 hpmor*.zip
-hpmor*.docx
+hpmor.docx
+~$hpmor.docx
 
 .vscode/
 __pycache__/
