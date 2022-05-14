@@ -128,23 +128,36 @@ def fix_line(s: str) -> str:
 
     # quotations
     if settings["lang"] == "EN":
-        # in EN the quotations “...”
+        # in EN the quotations are “...” and ‘...’
         # "..." -> “...”
         s = re.sub(r'"([^"]+)"', r"“\1”", s)
+
         # ” } -> ”}
-        s = s.replace("” }", "”}")
+        s = s.replace("” }", "”} ")
+        s = s.replace(
+            "  ", " "
+        )  # now fix possible new double spaces created by line above
+        s = re.sub(r" +$", r"", s)
+
         # quotation marks should go outside of \emph{“...”} -> “\emph{...}”
         s = re.sub(r"\\(emph|shout)\{“([^”]+?)”\}", r"“\\\1{\2}”", s)
+        # s = s.replace("", "”}")
 
         # lone “ at end of \emph
         s = re.sub(r"(\\emph\{[^„]+?)“\}", r"\1}“", s)
 
     if settings["lang"] == "DE":
         # in DE the quotations are „...“
+
         # "..." -> “...”
         s = re.sub(r'"([^"]+)"', r"“\1”", s)
+
         # “ } -> “}
-        s = s.replace("“ }", "“}")
+        s = s.replace("“ }", "“} ")
+        s = s.replace(
+            "  ", " "
+        )  # now fix possible new double spaces created by line above
+        s = re.sub(r" +$", r"", s)
 
         # fixing ' "A..."' and ' "\..."'
         s = re.sub(r'(^|\s)"((\\|\w).*?)"', r"\1„\2“", s)
@@ -178,10 +191,16 @@ def fix_line(s: str) -> str:
     # s = re.sub(r"(\\emph\{[^\}]+)\} ([^ ]+) \\emph\{", r"\1 \\emph{\2} ", s)
 
     # emph
+    # ' ' at start of emph
+    s = s.replace("\emph{ ", " \emph{")
     # move punctuation out of 1-word-emph
-    # TODO: maybe only for , and .? or not if followed by “ ?
     # ... \emph{WORD.} -> \emph{WORD}.
-    # s = re.sub(r"\\emph\{([^ ]+)([,\.!\?])\}", r"\\emph{\1}\2", s)
+    # TODO: maybe only for , and .? or not if followed by “ ?
+    if settings["lang"] == "EN":
+        s = re.sub(r"\\emph\{([^ ]+)([,\.!\?])\}(?!”)", r"\\emph{\1}\2", s)
+    if settings["lang"] == "DE":
+        s = re.sub(r"\\emph\{([^ ]+)([,\.!\?])\}(?!“)", r"\\emph{\1}\2", s)
+
     return s
 
 
