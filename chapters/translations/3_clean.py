@@ -82,81 +82,19 @@ def html_tuning(s: str) -> str:
     fix "
     TODO: add unit tests!
     """
-    # whitespace at start of line
-    s = re.sub("\n\s+", "\n", s)
-    #
-    # cleanup divs and spans
-    # alternatively define them via
-    # <style>
-    # div.user_center {	text-align: center; }
-    # </style>
-    #
-    # cleanup spans
-    s = re.sub(
-        '<span class="user_normal">(.*?)</span>',
-        r"\1",
-        s,
-        flags=re.DOTALL | re.IGNORECASE,
-    )
-    s = re.sub(
-        '<span class="user_underlined">(.*?)</span>',
-        r"<u>\1</u>",
-        s,
-        flags=re.DOTALL | re.IGNORECASE,
-    )
-    s = re.sub(
-        '<span style="text-decoration:underline;">(.*?)</span>',
-        r"<u>\1</u>",
-        s,
-        flags=re.DOTALL | re.IGNORECASE,
-    )
+    # end of line
+    s = re.sub("\r\n", "\n", s)
 
-    s = re.sub(
-        '<span class="user_italic">(.*?)</span>',
-        r"<em>\1</em>",
-        s,
-        flags=re.DOTALL | re.IGNORECASE,
-    )
-    s = re.sub(
-        '<span class="user_bold">(.*?)</span>',
-        r"<b>\1</b>",
-        s,
-        flags=re.DOTALL | re.IGNORECASE,
-    )
-    # replace by b and em
-    s = re.sub(
-        '<span class="user_italic">(.*?)</span>',
-        r"<em>\1</em>",
-        s,
-        flags=re.DOTALL | re.IGNORECASE,
-    )
-    s = re.sub(
-        '<span class="user_bold">(.*?)</span>',
-        r"<b>\1</b>",
-        s,
-        flags=re.DOTALL | re.IGNORECASE,
-    )
+    # drop empty tags 3x
+    s = re.sub(r"<(\w+)>\s*</\1>", "", s, flags=re.DOTALL | re.IGNORECASE)
+    s = re.sub(r"<(\w+)>\s*</\1>", "", s, flags=re.DOTALL | re.IGNORECASE)
+    s = re.sub(r"<(\w+)>\s*</\1>", "", s, flags=re.DOTALL | re.IGNORECASE)
 
-    # cleanup divs
-    s = re.sub(
-        '<div class="user_center">(.*?)</div>',
-        r"<center>\1</center>",
-        s,
-        flags=re.DOTALL | re.IGNORECASE,
-    )
-    s = re.sub(
-        '<div class="user_right">(.*?)</div>',
-        r"<right>\1</right>",
-        s,
-        flags=re.DOTALL | re.IGNORECASE,
-    )
-    s = re.sub(
-        '<div class="user_left">(.*?)</div>',
-        r"<left>\1</left>",
-        s,
-        flags=re.DOTALL | re.IGNORECASE,
-    )
+    # spans and divs
+    s = cleanup_spans(s)
+    s = cleanup_divs(s)
 
+    # <BR>
     # 4x br -> 2x br
     s = re.sub(
         "<br/>\s*<br/>\s*<br/>\s*<br/>",
@@ -168,31 +106,26 @@ def html_tuning(s: str) -> str:
     s = re.sub(
         "<br/>\s*<br/>\s*<br/>", "<br/><br/>", s, flags=re.DOTALL | re.IGNORECASE
     )
-    # drop empty tags 3x
-    s = re.sub(r"<(\w+)>\s*</\1>", "", s, flags=re.DOTALL | re.IGNORECASE)
-    s = re.sub(r"<(\w+)>\s*</\1>", "", s, flags=re.DOTALL | re.IGNORECASE)
-    s = re.sub(r"<(\w+)>\s*</\1>", "", s, flags=re.DOTALL | re.IGNORECASE)
-
     # double br: remove spaces
     s = re.sub("<br/>\s+<br/>", "<br/><br/>", s, flags=re.DOTALL | re.IGNORECASE)
+
+    # p instead of br
     # if more than 300 char -> use p instead of br
     s = re.sub("<br/>\n(.{200,})\n", r"<p>\n\1\n</p>", s, flags=re.IGNORECASE)
     s = re.sub("<br/>\s*<p>", "<p>", s, flags=re.DOTALL | re.IGNORECASE)
     s = re.sub("</p>\s*<br/>", "</p>", s, flags=re.DOTALL | re.IGNORECASE)
 
+    # char tunings
     # ... -> …
     s = s.replace("...", "…")
+
     # remove space before puctuation
     # s = re.sub(" ([\.,:;](?=\.))", r"\1 ", s)
     # add space after puctuation
     # s = re.sub("([a-zA-Z][\.,:;])([a-zA-Z])", r"\1 \2", s)
-    # multiple spaces
-    s = re.sub("  +", " ", s)
 
     # spaces before " at lineend
     s = re.sub('\s+"\n', '"\n', s, flags=re.DOTALL | re.IGNORECASE)
-    # empty lines
-    s = re.sub("\n\n+", "\n", s)
     # remove linebreaks from sentences containing quotation marks
     # 3x
     s = re.sub(
@@ -217,6 +150,7 @@ def html_tuning(s: str) -> str:
     s = "<p>" + s + "</p>"
     s = re.sub("<br/><br/>", "</p><p>", s, flags=re.DOTALL | re.IGNORECASE)
 
+    # some known text errors
     s = s.replace('."Wie kannst du das', '. "Wie kannst du das')
     s = s.replace('Mannes erstickte."Peter hatte', 'Mannes erstickte. "Peter hatte')
     s = s.replace(
@@ -246,6 +180,161 @@ def html_tuning(s: str) -> str:
     # s = re.sub('"([\s,\.!\?\)\-]+)', rf"{q_right}\1", s)
     # s = re.sub('([\w])"([;])', rf"\1{q_right}\2", s)
 
+    # whitespace at start of line
+    s = re.sub("\n\s+", "\n", s)
+    # multiple spaces
+    s = re.sub("  +", " ", s)
+    # empty lines
+    s = re.sub("\n\s*\n+[\s\n]*", "\n", s)
+
+    return s
+
+
+def cleanup_spans(s: str) -> str:
+    # harmonize
+    s = s.replace(
+        '<span style="text-decoration:underline;">', '<span class="user_underlined">'
+    )
+
+    # empty spans 3x
+    s = re.sub(
+        '<span class="[^"]+">\s*</span>',
+        "",
+        s,
+        flags=re.DOTALL | re.IGNORECASE,
+    )
+    s = re.sub(
+        '<span class="[^"]+">\s*</span>',
+        "",
+        s,
+        flags=re.DOTALL | re.IGNORECASE,
+    )
+    s = re.sub(
+        '<span class="[^"]+">\s*</span>',
+        "",
+        s,
+        flags=re.DOTALL | re.IGNORECASE,
+    )
+
+    assert "€" not in s, "ERROR: could not mask closing </span> by €"
+    # mask closing spans for next re
+    s = re.sub(
+        "</span>",
+        "€",
+        s,
+        flags=re.DOTALL | re.IGNORECASE,
+    )
+
+    #  user_italic + user_italic
+    s = re.sub(
+        '<span class="user_italic">(\s*)<span class="user_italic">([^€]*)€(\s*)€',
+        r"<em>\1\2\3</em>",
+        s,
+        flags=re.DOTALL | re.IGNORECASE,
+    )
+    #  user_italic + user_normal
+    s = re.sub(
+        '<span class="user_italic">(\s*)<span class="user_normal">([^€]*)€(\s*)€',
+        r"\1\2\3",
+        s,
+        flags=re.DOTALL | re.IGNORECASE,
+    )
+
+    s = re.sub(
+        '<span class="user_underlined">([^€]*)€',
+        r"<u>\1</u>",
+        s,
+        flags=re.DOTALL | re.IGNORECASE,
+    )
+
+    s = re.sub(
+        '<span class="user_italic">([^€]*)€',
+        r"<em>\1</em>",
+        s,
+        flags=re.DOTALL | re.IGNORECASE,
+    )
+    s = re.sub(
+        '<span class="user_bold">([^€]*)€',
+        r"<b>\1</b>",
+        s,
+        flags=re.DOTALL | re.IGNORECASE,
+    )
+    # again replace by b and em
+    s = re.sub(
+        '<span class="user_italic">([^€]*)€',
+        r"<em>\1</em>",
+        s,
+        flags=re.DOTALL | re.IGNORECASE,
+    )
+    s = re.sub(
+        '<span class="user_bold">([^€]*)€',
+        r"<b>\1</b>",
+        s,
+        flags=re.DOTALL | re.IGNORECASE,
+    )
+    s = re.sub(
+        '<span class="user_italic">([^€]*)€',
+        r"<em>\1</em>",
+        s,
+        flags=re.DOTALL | re.IGNORECASE,
+    )
+    s = re.sub(
+        '<span class="user_bold">([^€]*)€',
+        r"<b>\1</b>",
+        s,
+        flags=re.DOTALL | re.IGNORECASE,
+    )
+
+    # drop user_normal 2x
+    s = re.sub(
+        '<span class="user_normal">([^€]*)€',
+        r"\1",
+        s,
+        flags=re.DOTALL | re.IGNORECASE,
+    )
+    s = re.sub(
+        '<span class="user_normal">([^€]*)€',
+        r"\1",
+        s,
+        flags=re.DOTALL | re.IGNORECASE,
+    )
+
+    if "<span" in s:
+        with open("0error.html", mode="w", encoding="utf-8", newline="\n") as fh:
+            fh.write(s)
+        assert "<span" not in s, "ERROR: span still in"
+
+    return s
+
+
+def cleanup_divs(s: str) -> str:
+    if "€" in s:
+        with open("0error.html", mode="w", encoding="utf-8", newline="\n") as fh:
+            fh.write(s)
+        assert "€" not in s, "ERROR: could not mask closing </div> by €"
+
+    # mask closing div for next re
+    s = s.replace("</div>", "€")
+
+    s = re.sub(
+        '<div class="user_center">([^€]*)€',
+        r"<center>\1</center>",
+        s,
+        flags=re.DOTALL | re.IGNORECASE,
+    )
+    s = re.sub(
+        '<div class="user_right">([^€]*)€',
+        r"<right>\1</right>",
+        s,
+        flags=re.DOTALL | re.IGNORECASE,
+    )
+    s = re.sub(
+        '<div class="user_left">([^€]*)€',
+        r"<left>\1</left>",
+        s,
+        flags=re.DOTALL | re.IGNORECASE,
+    )
+    assert "<div" not in s, "ERROR: div still in"
     return s
 
 
