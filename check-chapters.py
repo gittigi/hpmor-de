@@ -134,6 +134,8 @@ def fix_line(s: str) -> str:
     # "Dr. " -> "Dr~"
     s = re.sub(r"\b(Dr)\b\.?~?\s*", r"\1~", s)
 
+
+
     # quotations
     if settings["lang"] == "EN":
         # in EN the quotations are “...” and ‘...’
@@ -157,7 +159,7 @@ def fix_line(s: str) -> str:
     if settings["lang"] == "DE":
         # in DE the quotations are „...“
 
-        # "..." -> “...”
+        # "..." -> „...“
         s = re.sub(r'"([^"]+)"', r"“\1”", s)
         s = re.sub(r"…„", r"… „", s)
 
@@ -190,16 +192,22 @@ def fix_line(s: str) -> str:
     # TODO: single quotes
     # DE: ‚...‘
 
+
     # hyphens: (space-hyphen-space) should be "—" (em dash).
+    # TODO: there is a shorter dash as well..
+    # - ->  —  and  – ->  — ?
     s = s.replace("---", "—")
     s = s.replace(" — ", "—")
-    # NOT for '— ' as in ', no… “I'
-    # s = re.sub(r" — ", r"—", s)
+    # NOT for '— ' as in ', no— “I'
+    # s = re.sub(r"— ", r"—", s)
+    # - at start of line
+    s = re.sub(r"^[\-—] *", r"—", s)
+    # - at start of line
+    s = re.sub(r" [\-—]$", r"—", s)
+    # - at end of emph
+    s = re.sub(r"(\s*)\-\}", r"—}\1", s)
 
-    # TODO: there is a shorter dash as well..
-    # - ->  —  and  – ->  —
-
-    # Note: good, but many false positives
+    # Note: good, but MANY false positives
     # \emph{...} word \emph{...} -> \emph{... \emph{word} ...
     # s = re.sub(r"(\\emph\{[^\}]+)\} ([^ ]+) \\emph\{", r"\1 \\emph{\2} ", s)
 
@@ -207,16 +215,23 @@ def fix_line(s: str) -> str:
     # ' ' at start of emph
     s = s.replace("\emph{ ", " \emph{")
     # move punctuation out of 1-word-emph
-    # ... \emph{WORD.} -> \emph{WORD}.
     # TODO: maybe only for , and .? or not if followed by “ ?
+    # ... \emph{WORD.} -> \emph{WORD}.
     if settings["lang"] == "EN":
-        s = re.sub(r"\\emph\{([^ ]+)([,\.!\?])\}(?!”)", r"\\emph{\1}\2", s)
+        # s = re.sub(r"\\emph\{([^ …\}]+)([,\.!\?])\}(?!”)", r"\\emph{\1}\2", s)
+        s = re.sub(r"\\emph\{([^ …\}]+)([,\.])\}(?!”)", r"\\emph{\1}\2", s)
     if settings["lang"] == "DE":
-        s = re.sub(r"\\emph\{([^ ]+)([,\.!\?])\}(?!“)", r"\\emph{\1}\2", s)
+        # s = re.sub(r"\\emph\{([^ …\}]+)([,\.!\?])\}(?!“)", r"\\emph{\1}\2", s)
+        s = re.sub(r"\\emph\{([^ …\}]+)([,\.])\}(?!“)", r"\\emph{\1}\2", s)
+
 
     # common typos
     if settings["lang"] == "DE":
         s = s.replace("ut mir Leid", "ut mir leid")
+
+
+    # trailing spaces, again
+    s = re.sub(r" +$", "", s)
 
     return s
 
