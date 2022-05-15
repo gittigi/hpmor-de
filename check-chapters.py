@@ -19,7 +19,7 @@ import json
 import difflib
 
 # TODO:
-# DE: \d Uhr
+# \latersection must be at newline
 
 # shall we modify the source file?
 # USE WITH CAUTION!!!
@@ -206,6 +206,12 @@ def fix_line(s: str) -> str:
     s = re.sub(r" [\-—]$", r"—", s)
     # - at end of emph
     s = re.sub(r"(\s*)\-\}", r"—}\1", s)
+    # - at end of quote
+    if settings["lang"] == "EN":
+        s = re.sub(r"(\s*)\-”", r"—”\1", s)
+    if settings["lang"] == "DE":
+        s = re.sub(r"(\s*)\-“", r"—“\1", s)
+
 
     # Note: good, but MANY false positives
     # \emph{...} word \emph{...} -> \emph{... \emph{word} ...
