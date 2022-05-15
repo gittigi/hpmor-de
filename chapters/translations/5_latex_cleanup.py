@@ -46,10 +46,13 @@ def cleanup_latex(s):
     # s = re.sub(r"(?<=\n)\\hypertarget.*$", r"", s)
     s = s.replace("\maketitle", "")
     s = s.replace("\ldots", "…")
-    s = s.replace("\ldots", "…")
+    s = s.replace("\\\\", "\n\n")
 
     # empty lines
     s = re.sub(r"\n\n\n+", "\n\n", s)
+
+    # \later
+    s = re.sub(r"\-\-\-\-+", r"\\later", s)
 
     # 1 line per paragraph
     s = re.sub(r"(?<!\s)\n(?!\s)", " ", s)
