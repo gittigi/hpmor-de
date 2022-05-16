@@ -239,6 +239,12 @@ def fix_hyphens(s: str) -> str:
     if settings["lang"] == "DE":
         s = re.sub(r"(\s*)\-“", r"—“\1", s)
 
+    # space-hyphen-quotation end
+    if settings["lang"] == "EN":
+        s = re.sub(r"\s+(—”)", r"\1", s)
+    if settings["lang"] == "DE":
+        s = re.sub(r"\s+(—“)", r"\1", s)
+
     # there is a shorter dash as well:
     # 2-4 -> 2–4 using mid length hyphen
     s = re.sub(r"(\d)\-(?=\d)", r"\1–", s)
