@@ -101,7 +101,7 @@ def fix_line(s: str) -> str:
 
     s1 = s
     # multiple spaces
-    s = re.sub(r"[ \t][ \t]+", " ", s)
+    s = re.sub(r"(?<!^)[ \t][ \t]+", " ", s)
     # trailing spaces
     s = re.sub(r" +$", "", s)
     # remove spaces from empty lines
@@ -133,8 +133,6 @@ def fix_line(s: str) -> str:
     s = re.sub(r"\b(Mr|Mrs|Miss)\b\.?~?\s*", r"\1~", s)
     # "Dr. " -> "Dr~"
     s = re.sub(r"\b(Dr)\b\.?~?\s*", r"\1~", s)
-
-
 
     # quotations
     if settings["lang"] == "EN":
@@ -192,11 +190,14 @@ def fix_line(s: str) -> str:
     # TODO: single quotes
     # DE: ‚...‘
 
-
     # hyphens: (space-hyphen-space) should be "—" (em dash).
     # TODO: there is a shorter dash as well..
     # - ->  —  and  – ->  — ?
     s = s.replace("---", "—")
+    # mid-length dash ->  em dash (caution: false positives!)
+    # s = s.replace("–", "—")
+
+    # trim space around em-dash
     s = s.replace(" — ", "—")
     # NOT for '— ' as in ', no— “I'
     # s = re.sub(r"— ", r"—", s)
@@ -212,7 +213,6 @@ def fix_line(s: str) -> str:
     if settings["lang"] == "DE":
         s = re.sub(r"(\s*)\-“", r"—“\1", s)
 
-
     # Note: good, but MANY false positives
     # \emph{...} word \emph{...} -> \emph{... \emph{word} ...
     # s = re.sub(r"(\\emph\{[^\}]+)\} ([^ ]+) \\emph\{", r"\1 \\emph{\2} ", s)
@@ -225,16 +225,17 @@ def fix_line(s: str) -> str:
     # ... \emph{WORD.} -> \emph{WORD}.
     if settings["lang"] == "EN":
         # s = re.sub(r"\\emph\{([^ …\}]+)([,\.!\?])\}(?!”)", r"\\emph{\1}\2", s)
-        s = re.sub(r"\\emph\{([^ …\}]+)([,\.])\}(?!”)", r"\\emph{\1}\2", s)
+        s = re.sub(r"(?<!^)\\emph\{([^ …\}]+)([,\.])\}(?!”)", r"\\emph{\1}\2", s)
     if settings["lang"] == "DE":
         # s = re.sub(r"\\emph\{([^ …\}]+)([,\.!\?])\}(?!“)", r"\\emph{\1}\2", s)
-        s = re.sub(r"\\emph\{([^ …\}]+)([,\.])\}(?!“)", r"\\emph{\1}\2", s)
-
+        s = re.sub(r"(?<!^)\\emph\{([^ …\}]+)([,\.])\}(?!“)", r"\\emph{\1}\2", s)
 
     # common typos
     if settings["lang"] == "DE":
         s = s.replace("ut mir Leid", "ut mir leid")
 
+    # multiple spaces, again
+    s = re.sub(r"(?<!^)[ \t][ \t]+", " ", s)
 
     # trailing spaces, again
     s = re.sub(r" +$", "", s)
