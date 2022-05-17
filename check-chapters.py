@@ -21,6 +21,9 @@ import difflib
 # TODO:
 # \latersection must be at newline
 
+# TO manually find and replace
+# *, ", '
+
 # shall we modify the source file?
 # USE WITH CAUTION!!!
 inline_fixing = False
@@ -144,7 +147,7 @@ def fix_latex(s: str) -> str:
     # Latex: \begin and \end{...} at new line
     s = re.sub(r"([^\s+%])\s*\\(begin|end)\{", r"\1\n\\\2{", s)
     # Latex: \\ at new line
-    s = re.sub(r"\\\\\s*(?!$)", r"\\\\\n", s)
+    s = re.sub(r"\\\\\s*(?=[^$%])", r"\\\\\n", s)
     return s
 
 
@@ -200,20 +203,32 @@ def fix_numbers(s: str) -> str:
 
 def fix_common_typos(s: str) -> str:
     if settings["lang"] == "DE":
+        s = s.replace("Hermione", "Hermine")
         s = s.replace("ut mir Leid", "ut mir leid")
-        # s = s.replace("Jungen-der-lebte", "Jungen-der-lebt", flags=re.IGNORECASE))        
+        s = s.replace("Diagon Alley", "Winkelgasse")
+        s = s.replace("Muggelforscher", "Muggelwissenschaftler")
+        s = s.replace("Wizengamot", "Zaubergamot")
+        # s = s.replace("das einzige", "das Einzige")
+        # s = s.replace("Jungen-der-lebte", "Jungen-der-lebt", flags=re.IGNORECASE))
     return s
 
 
 def fix_quotations(s: str) -> str:
-    # in EN the quotations are “...” and ‘...’
-    # in DE the quotations are „...“
+    # in EN the quotations are “...” and ‘...’ (for quotations in quotations)
+    # in DE the quotations are „...“ and ‚...‘ (for quotations in quotations)
 
     # "....." -> “.....”
     if settings["lang"] == "EN":
         s = re.sub(r'"([^"]+)"', r"“\1”", s)
     if settings["lang"] == "DE":
         s = re.sub(r'"([^"]+)"', r"„\1“", s)
+
+    if settings["lang"] == "DE":
+        # migrate EN quotations
+        s = re.sub(r"“([^“”]+?)”", r"„\1“", s)
+
+        # migrate EN quotations at first word of chapter
+        s = re.sub(r"\\(lettrine|lettrinepara)\[ante=“\]", r"\\\1[ante=„]", s)
 
     # fixing ' "Word..."' and ' "\command..."'
     if settings["lang"] == "EN":
@@ -262,12 +277,6 @@ def fix_quotations(s: str) -> str:
     if settings["lang"] == "DE":
         s = re.sub(r"(\\emph\{[^„]+?)“\}", r"\1}“", s)
 
-    if settings["lang"] == "DE":
-        # migrate EN quotations
-        s = re.sub(r"“([^“”]+?)”", r"„\1“", s)
-
-        # migrate EN quotations at first word of chapter
-        s = re.sub(r"\\(lettrine|lettrinepara)\[ante=“\]", r"\\\1[ante=„]", s)
     return s
 
 
@@ -305,12 +314,12 @@ def fix_hyphens(s: str) -> str:
     s = re.sub(r" [\-—]$", r"—", s)
     # - at end of emph
     s = re.sub(r"(\s*)\-\}", r"—}\1", s)
-    # - at end of quote
+    # at start of quote
     if settings["lang"] == "EN":
-        s = re.sub(r"(\s*)\-”", r"—”\1", s)
+        s = re.sub(r"—“", r"— “", s)
     if settings["lang"] == "DE":
-        s = re.sub(r"(\s*)\-“", r"—“\1", s)
-
+        s = re.sub(r"—„", r"— „", s)
+    # at end of quote
     if settings["lang"] == "EN":
         s = re.sub(r"(\s*)\-”", r"—”\1", s)
     if settings["lang"] == "DE":
