@@ -43,7 +43,7 @@ jobs:
       run: sh install_requirements.sh
 
     - name: Make PDFs
-      run: sh make_pdfs.sh
+      run: sh make_pdfs.sh > /dev/null
 
     - name: Make eBooks
       run: sh make_ebooks.sh
