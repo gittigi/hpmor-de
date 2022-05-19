@@ -208,8 +208,12 @@ def fix_common_typos(s: str) -> str:
         s = s.replace("Diagon Alley", "Winkelgasse")
         s = s.replace("Muggelforscher", "Muggelwissenschaftler")
         s = s.replace("Wizengamot", "Zaubergamot")
+        s = s.replace("Adoleszenz", "Pubertät")
         # s = s.replace("das einzige", "das Einzige")
-        # s = s.replace("Jungen-der-lebte", "Jungen-der-lebt", flags=re.IGNORECASE))
+        s = re.sub(r"Junge\-der\-(überlebt\-hat|überlebte)\b", r"Junge-der-lebte", s)
+        # s = s.replace("Jungen-der-lebte", "Jungen-der-lebte")
+        # s = s.replace("Junge-der-überlebt-hat", "Jungen-der-lebte")
+        # s = s.replace("Jungen-der-überlebte", "Jungen-der-lebte")
     return s
 
 
@@ -307,6 +311,8 @@ def fix_hyphens(s: str) -> str:
     s = s.replace(" — ", "—")
     # NOT for '— ' as in ', no— “I'
     # s = re.sub(r"— ", r"—", s)
+    # " - " -> "—"
+    s = s.replace(" - ", "—")
 
     # - at start of line
     s = re.sub(r"^[\-—] *", r"—", s)
