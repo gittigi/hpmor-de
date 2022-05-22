@@ -5,20 +5,21 @@ skip-checks:true
 in commit body prevents autobuilding! (=2 empty lines)
 -->
 
-# Deutsche Übersetzung der in LaTeX gesetzten Fassung von HPMOR 
+# Deutsche Übersetzung von “Harry Potter and the Methods of Rationality” (HPMOR)
 
-Nach einigen Beiträgen zum englischen Repo, habe ich im Mai 2022 das Projekt "Schriftsatz und Überarbeitung der deutschen Übersetzung des Buches [Harry Potter and the Methods of Rationality](https://www.hpmor.com/)" von Eliezer Yudkowsky gestartet. Hier ist der aktuelle Stand des resultierenden [PDFs](https://github.com/entorb/hpmor-de/releases/download/WorkInProgress/hpmor.pdf) zu finden. Über Mitarbeit würde ich mich sehr freuen.
+Dies ist ein OpenSource Projekt zum Zusammenfügen und Überarbeiten der deutschen Fan-Übersetzungen des großartigen Buches "[Harry Potter and the Methods of Rationality](https://www.hpmor.com/)" von Eliezer Yudkowsky.
 
 ## Mitmachen
-* Ich freue mich über Mitstreiter
-* Grundkenntnisse in LaTeX und Git sollten ausreichen
-* [Schnellstart-Anleitung](https://github.com/entorb/hpmor-de/wiki/Mitmachen)
+* Über Feedback, Vorschläge und Mirarbeit freue ich mich sehr.
+* Siehe die [Mitmach-Anleitung](https://github.com/entorb/hpmor-de/wiki/Mitmachen)
 * Bei Fragen und Verbesserungsvorschlägen einfach ein [Ticket](https://github.com/entorb/hpmor-de/issues) öffnen oder mich direkt [kontaktieren](https://entorb.net/hpmor/contact.php?origin=HPMOR)
-* Hier findet ihr die fertig übersetzten und noch zu übersetzenden [Kapitel](https://github.com/entorb/hpmor-de/tree/master/chapters)
-* Hier findet ihr [Kopien der 5 untenstehenden Übersetzungen, in LaTeX-Code konvertiert](https://github.com/entorb/hpmor-de/tree/de-translations/chapters/translations/5-latex-clean)
-* Hier das automatisch erstellte [PDF](https://github.com/entorb/hpmor-de/releases/download/WorkInProgress/hpmor.pdf) des aktuellen Standes
 
 ## Links
+### Relevante Dateien dieses Projekts
+* Aktueller Stand der übersetzen Kapitel als [PDF](https://github.com/entorb/hpmor-de/releases/download/WorkInProgress/hpmor.pdf)
+* Quelltext der übersetzten und noch fehlenden [Kapitel](https://github.com/entorb/hpmor-de/tree/master/chapters)
+* [Kopien der 5 untenstehenden Übersetzungen, in LaTeX-Code konvertiert](https://github.com/entorb/hpmor-de/tree/de-translations/chapters/translations/5-latex-clean)
+
 ### Übersetzungen
 * [Originalfassung](https://www.hpmor.com/)
 * [DE-Übersetzung von Schneefl0cke](https://www.fanfiktion.de/s/60044849000ccc541aef297e/) komplett
@@ -43,9 +44,7 @@ Nach einigen Beiträgen zum englischen Repo, habe ich im Mai 2022 das Projekt "S
 * Erste [Kapitel](https://github.com/entorb/hpmor-de/tree/master/chapters) übersetzt
 * [Skript zur automatischen Korrektur](https://github.com/entorb/hpmor-de/blob/master/check-chapters.py) häufiger Fehler im Schriftsatz geschrieben
 
-## Festlegungen
-* Absätze und Hervorhebungen sehr eng an der englischen Fassung orientiert
-* Englischen Text im Quelltext (auskommentiert) behalten, um eine Überarbeitung der Übersetzung jederzeit leicht mit dem Original vergleichen zu können
+
 
 
 
@@ -55,24 +54,23 @@ Nach einigen Beiträgen zum englischen Repo, habe ich im Mai 2022 das Projekt "S
 
 # Harry Potter and the Methods Of Rationality
 
-https://github.com/rjl20/hpmor  
+https://github.com/rrthomas/hpmor  
 Maintainer: Reuben Thomas <rrt@sc3d.org>
 
 A LaTeX version of [the popular didactic fan-fiction](http://www.hpmor.com)
-by Eliezer Yudkowsky, which can make a PDF e-book (one file) or printable
-books (either one or six volumes; the latter option is more practical to
-bind). There are also dust jackets for the printable volumes.
+by Eliezer Yudkowsky, which can make e-books in PDF, ePub and Mobi formats,
+and six PDF volumes that can be printed and bound. There are also dust
+jackets for the printable volumes.
 
 TeXLive 2015 or later and git are required to build the book. (Note: the
 book must be built from a git checkout.)
 
 Note: the Omake Files chapters (11 and 64) have been moved to the end of the
 single-file PDF. Those chapter numbers are omitted in the text, so chapter
-10 is followed by chapter 12, for example. Similarly, the chapter
-disclaimers and epigraphs are removed to an appendix. In the six-volume
-PDFs, all chapters are renumbered to start from 1 at the start of a book,
-and there are no appendices.
-
+10 is followed by chapter 12, for example. In the six-volume PDFs, all
+chapters are renumbered to start from 1 at the start of a book, and there are
+no appendices. Some epigraphs have been omitted but are in the source files
+of the chapters.
 
 ## Files
 
@@ -88,6 +86,7 @@ and there are no appendices.
   them to GitHub. (Mostly of interest to project maintainers.) `make all`
   does the same as `latexmk` (see below), which may be useful for editor
   integration (e.g. Emacs).
+* `ebook/` - e-book generation scripts
 
 
 ## Building the book(s)
@@ -139,7 +138,7 @@ top directory use the command:
 
 ## Contributing
 
-Contributions are most welcome. These fall into three main categories:
+Contributions are most welcome. These fall into the following categories:
 
 1. Textual corrections (where the text differs from the online original
    unintentionally).
@@ -177,7 +176,8 @@ Exclamations (“Eeeehhhh”) and other one-offs should be added to the per-file
 word lists. (There’s obviously something of a grey area in the middle, e.g.
 one-off references to various real and fictional people.)
 
-Emacs users benefit from a `.dir-locals.el` that automatically sets up `spelling-list.txt` as the personal dictionary for all HPMOR files.
+Emacs users benefit from a `.dir-locals.el` that automatically sets up
+`spelling-list.txt` as the personal dictionary for all HPMOR files.
 
 
 ### Chapter headings
@@ -220,11 +220,6 @@ this:
 `\section{Final Aftermath:}`
 
 
-### Disclaimers and Epigraphs
-
-These have been removed to an appendix, `hp-epigraphs.tex`.
-
-
 ### Miscellaneous
 
 There are some other things relating to newspaper headlines and such; check
@@ -252,7 +247,9 @@ It is recommended to use `polyglossia` (not `babel`).
 Note: there are other translations of HPMOR; here are listed only
 translations of this edition.
 
-* [French](https://github.com/yeKcim/hpmor) (in progress)
+* [French](https://github.com/yeKcim/hpmor) (complete)
+* [German](https://github.com/entorb/hpmor-de) (in progress, volumes 1-2
+(chapters 1–38) finished)
 
 
 <!--  LocalWords:  hpmor tex hp txt latexmkrc latexmk GNUMakefile 80gsm '
