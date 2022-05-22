@@ -21,8 +21,8 @@ import difflib
 # TODO:
 # \latersection must be at newline
 
-# TO manually find and replace
-# *, ", '
+# TO chars manually find and replace
+# *, ", ', », «, ”, 
 
 # shall we modify the source file?
 # USE WITH CAUTION!!!
@@ -161,8 +161,10 @@ def fix_dots(s: str) -> str:
 
     # … at end of quotation ' …"' -> '…"'
     s = s.replace(' …"', '…"')
+    # … at start of line
+    s = re.sub(r"^ *… *", r"…", s)
     # … at end of line
-    s = re.sub(r" +…\n", r"…\n", s)
+    s = re.sub(r" *… *$", r"…", s)
     # Word…"Word -> Word…" Word
     s = re.sub(r'(\w…")(\w)', r"\1 \2", s)
     # … after . or ,
@@ -203,17 +205,16 @@ def fix_numbers(s: str) -> str:
 
 def fix_common_typos(s: str) -> str:
     if settings["lang"] == "DE":
-        s = s.replace("Hermione", "Hermine")
-        s = s.replace("ut mir Leid", "ut mir leid")
-        s = s.replace("Diagon Alley", "Winkelgasse")
-        s = s.replace("Muggelforscher", "Muggelwissenschaftler")
-        s = s.replace("Wizengamot", "Zaubergamot")
         s = s.replace("Adoleszenz", "Pubertät")
-        # s = s.replace("das einzige", "das Einzige")
+        s = s.replace("Avadakedavra", "Avada Kedavra")
+        s = s.replace("Diagon Alley", "Winkelgasse")
+        s = s.replace("Hermione", "Hermine")
         s = re.sub(r"Junge\-der\-(überlebt\-hat|überlebte)\b", r"Junge-der-lebte", s)
-        # s = s.replace("Jungen-der-lebte", "Jungen-der-lebte")
-        # s = s.replace("Junge-der-überlebt-hat", "Jungen-der-lebte")
-        # s = s.replace("Jungen-der-überlebte", "Jungen-der-lebte")
+        s = re.sub(r"Junge, der lebte\b", r"Junge-der-lebte", s)
+        s = s.replace("Muggelforscher", "Muggelwissenschaftler")
+        s = s.replace("ut mir Leid", "ut mir leid")
+        s = s.replace("Wizengamot", "Zaubergamot")
+        # s = s.replace("das einzige", "das Einzige")
     return s
 
 
@@ -230,6 +231,8 @@ def fix_quotations(s: str) -> str:
     if settings["lang"] == "DE":
         # migrate EN quotations
         s = re.sub(r"“([^“”]+?)”", r"„\1“", s)
+        # migrate FR quotations »...«
+        s = re.sub(r"»([^»«]+?)«", r"„\1“", s)
 
         # migrate EN quotations at first word of chapter
         s = re.sub(r"\\(lettrine|lettrinepara)\[ante=“\]", r"\\\1[ante=„]", s)
