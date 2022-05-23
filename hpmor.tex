@@ -1,17 +1,17 @@
-\RequirePackage[pdf]{hp-book}
+\RequirePackage[pdf]{layout/hp-book}
 
 \begin{document}
 {
 \pagestyle{empty}
-\input{hpmor-title}
-\input{hp-intro}
+\input{layout/hpmor-title}
+\input{layout/hp-intro}
 
 % TODO: is this required?
 % \input{hp-warning}
 
 \pagenumbering{gobble}
-\input{hp-contents}
-\include{hp-blurbs}
+\input{layout/hp-contents}
+\include{layout/hp-blurbs}
 \cleartorecto
 }
 \pagenumbering{arabic}
@@ -167,10 +167,10 @@
 % \appendix
 % \renewcommand\chaptername{Appendix}
 
-% \include{hp-epigraphs}
+% % \include{chapters/hp-epigraphs}
 % \include{chapters/hpmor-chapter-011}
 % \include{chapters/hpmor-chapter-064}
-% \include{hp-exam}
+% \include{chapters/hp-exam}
 
-\include{hp-colophon}
+\include{layout/hp-colophon}
 \end{document}
