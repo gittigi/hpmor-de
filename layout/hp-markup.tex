@@ -8,14 +8,20 @@
 \newcommand{\shout}[1]{\textsc{#1}}
 \newcommand{\scream}[1]{\MakeUppercase{#1}}
 \newcommand{\prophesy}[1]{\shout{#1}}
+
+% parsel
 \newcommand{\parselify}[1]{%
 \StrSubstitute{#1}{ss}{ß}[\parselstring]%
 \StrSubstitute{\parselstring}{s}{ss}[\parsselstring]%
 \StrSubstitute{\parsselstring}{ß}{sss}[\parssselstring]%
 }
+% old version of parsel
+\newcommand\parsela[1]{\parselify{#1}{\ptsansi\parssselstring}}
+% new fr version of parsel
 % N.B. Other commands, such as \emph, cannot be used inside \parsel
-\newcommand\parsel[1]{{\fontspec[ExternalLocation]{Parseltongue.ttf}#1}{\ptsansi}} % no more \parselify (can’t convert to epub)
-
+\newcommand\parselb[1]{{\fontspec[ExternalLocation]{Parseltongue.ttf}#1}{\ptsansi}} % no more \parselify (can’t convert to epub)
+% select one of above
+\newcommand\parsel[1]{\parsela{#1}}
 
 % McGonagall Whiteboard (chapter15)
 \newcommand\McGonagallWhiteBoard[1]{
