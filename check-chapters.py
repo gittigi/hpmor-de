@@ -18,11 +18,16 @@ import re
 import json
 import difflib
 
+# pos lookahead: (?=...)
+# neg lookahead: (?!...)
+# pos lookbehind (?<=...)
+# neg lookbehind (?<!...)
+
 # TODO:
 # \latersection must be at newline
 
 # TO chars manually find and replace
-# *, ", ', », «, ”, 
+# *, ", ', », «, ”,
 
 # shall we modify the source file?
 # USE WITH CAUTION!!!
@@ -284,7 +289,18 @@ def fix_quotations(s: str) -> str:
     if settings["lang"] == "DE":
         s = re.sub(r"(\\emph\{[^„]+?)“\}", r"\1}“", s)
 
+    # punctuation at end of quotation (and emph)
+    # attention: false positives when quoting a book titles etc.
+    # for EN mostly correct already
+    #    if settings["lang"] == "EN":
+    #        s = re.sub(r"(?<![\.,!\?;])(?<![\.,!\?;]\})”,", r",”", s)
+    if settings["lang"] == "DE":
+        s = re.sub(r"(?<![\.,!\?;])(?<![\.,!\?;]\})“,", r",“", s)
+
     return s
+
+
+# assert fix_quotations("\parsel{Ich sehe nichts}“,")== "\parsel{Ich sehe nichts},“"
 
 
 def fix_emph(s: str) -> str:
@@ -299,10 +315,17 @@ def fix_emph(s: str) -> str:
     if settings["lang"] == "DE":
         s = re.sub(r"(?<!^)\\emph\{([^ …\}]+)([,\.])\}(?!“)", r"\\emph{\1}\2", s)
 
+    #  only after space
+    # " \emph{true!}" -> " \emph{true}!"
+    s = re.sub(r" \\emph\{([^ …\}]+)([,\.;!\?])\}", r" \\emph{\1}\2", s)
+
     # Note: good, but MANY false positives
     # \emph{...} word \emph{...} -> \emph{... \emph{word} ...
     # s = re.sub(r"(\\emph\{[^\}]+)\} ([^ ]+) \\emph\{", r"\1 \\emph{\2} ", s)
     return s
+
+
+assert fix_emph("That’s not \emph{true!}") == "That’s not \emph{true}!"
 
 
 def fix_hyphens(s: str) -> str:
