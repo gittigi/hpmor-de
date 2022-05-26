@@ -9,6 +9,16 @@
 \newcommand{\scream}[1]{\MakeUppercase{#1}}
 \newcommand{\prophesy}[1]{\shout{#1}}
 
+% TODO: spell macro experiments
+% old style:
+% \newcommand{\spell}[1]{„\emph{#1}“}
+% \usepackage{marvosym}
+% \newcommand{\spell}[1]{„{\small\Lightning}\emph{#1}{\small\,\Lightning}“}
+% \newcommand{\spell}[1]{{\small\Lightning\,}\emph{#1}{\small\,\Lightning}}
+\newcommand{\spell}[1]{{\Star}\emph{#1}{\Star}}
+% \spell{Wingardium Leviosa}
+% \Lightning \Emailct \Laserbeam
+
 % parsel
 \newcommand{\parselify}[1]{%
 \StrSubstitute{#1}{ss}{ß}[\parselstring]%
