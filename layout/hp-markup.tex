@@ -24,6 +24,7 @@
 \StrSubstitute{#1}{ss}{ß}[\parselstring]%
 \StrSubstitute{\parselstring}{s}{ss}[\parsselstring]%
 \StrSubstitute{\parsselstring}{ß}{sss}[\parssselstring]%
+\StrSubstitute{\parsselstring}{z}{zz}[\parssselstring]% for DE
 }
 % old version of parsel
 \newcommand\parsela[1]{\parselify{#1}{\ptsansi\parssselstring}}
@@ -41,17 +42,16 @@
 \end{center}
 }
 
-
 % Special types of text
 \newcommand{\abbrev}[1]{\textsc{\MakeLowercase{#1}}\xspace}
-\newcommand{\headline}[1]{\begin{center}\textsc{\fontspec[ExternalLocation]{gabriele-bad.ttf}#1}\end{center}}
 
 % Common abbreviations
 \newcommand{\am}{~a.m.\xspace}
 \renewcommand{\pm}{~p.m.\xspace}
-\newcommand{\SPHEW}{{\abbrev{SPHEW}}}
+\newcommand{\SPHEW}{\abbrev{BELFER}} % EN: SPHEW, DE: BELFER
 
 % Newspaper headlines
+\newcommand{\headline}[1]{\begin{center}\textsc{\fontspec[ExternalLocation]{gabriele-bad.ttf}#1}\end{center}}
 \newcommand{\inlineheadline}[1]{\textsc{\fontspec[ExternalLocation]{gabriele-bad.ttf}#1}}
 
 \newenvironment{headlines}{
