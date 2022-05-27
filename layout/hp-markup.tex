@@ -25,6 +25,8 @@
 \StrSubstitute{\parselstring}{s}{ss}[\parsselstring]%
 \StrSubstitute{\parsselstring}{ß}{sss}[\parssselstring]%
 \StrSubstitute{\parsselstring}{z}{zz}[\parssselstring]% for DE
+\StrSubstitute{\parselstring}{S}{Ss}[\parsselstring]% for DE
+\StrSubstitute{\parsselstring}{Z}{Zz}[\parssselstring]% for DE
 }
 % old version of parsel
 \newcommand\parsela[1]{\parselify{#1}{\ptsansi\parssselstring}}
