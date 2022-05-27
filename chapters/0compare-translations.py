@@ -19,8 +19,13 @@ list_of_latex_commands_to_search_for = [
     "\\later",
     "\\shout",
     "\\scream",
+    "\\prophesy",
     "\\parsel",
     "\\headline",
+    "\\inlineheadline",
+    "\\SPHEW",
+    "\\spell",
+    "\\begin{writtenNote}"
     # "\\emph",
 ]
 
