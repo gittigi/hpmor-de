@@ -1,6 +1,9 @@
 EN,DE
 aftermath,Nachwirkungen -> Nachspiel 
 Ancient House,Uraltes Hause
+Noble and Most Ancient House,Edle und Uralte Haus
+Noble and Most Ancient House,Edlen und Uralten Hauses
+betrayed,hintergangen (Kaptiel 100++)
 broomstick team,Besenteam
 Chaos Legion,Chaoslegion
 Chaos Legionnaires,Chaoslegionäre
@@ -15,41 +18,77 @@ Defence Professor,Verteidigungsprofessor
 Dragon General,Drachengeneral
 England,Britannien
 Floo,Floh?
+foolishness, Torheit
 headmaster,Direktor -> Schulleiter
 Herr Potter,Mr Potter
+life-eater,Lebensfresser
 Mary’s Place, ? Marys Platz
 Most Ancient, Uralt
 Most Ancient Hall,Ältestenhalle
 mum, ? Mum/Mama/Mutter
-Noble and Most Ancient House,Edlen und Uralten Hauses
+N.E.W.T,U.T.Z
+O.W.L.,Z.A.G.
 Patronus Charm,Patronuszauber
 Parseltongue,Parsel
 PC,Spielercharakter
 NPC,Nicht-Spielercharakter
 phœnix,Phönix
 phœnixes,Phönixe
-Polyjuice,Vielsaft
+plaque,Plakette
+pop(s),? (Apperation)
 Potions Master, Zaubertränkemeister
 robe, ? Robe / Umgang
-sense of doom,Gefühl der Verdammnis? Gefühl des Untergangs?
+sense of doom,Unheilsgefühl (nicht: Gefühl der Verdammnis? Gefühl des Untergangs? Gefühl des Unheils)
 Sunshine General,Sonnenschein-Generalin
+Time-Turner,?Zeitumkehrer
+Forbidden Forest,Verbotener Wald
 wand,Zauberstab
-
-Zauber,
+,
+Spells,Zauber
+Cruciatus Curse,Cruciatus-Fluch
+Confundus Charm,Confundus-Zauber
+Diffindo,Diffindo
+Drill Hex,Schildbrecher/Schlagbohrfluch/Brechenden Bohrzauber
+Fiendfyre,verfluchtes Feuer?
+Horcrux,Horkrux
+Imperius,Imperius
 Innervate,Rennervate
+Killing Curse,Tötungsfluch
+Legilimency,Legilimentik
 Luminos,Luminos
+Memory Charm,Gedächtniszauber
+False Memory Charm,Falsche-Erinnerung-Zauber
+Most Ancient Blade, Uralte Klinge
+Charn of the Most Ancient Blade, Zauber der Uralten Klinge
+Prismatis,Prismatis
 Polyfluis Reverso,Polyfluis Reverso
+Polyjuice,Vielsafttrank
+Obliviation/Obliviating,Vergessenszauber
+Obliviate,Oblivieren
+Quieting Charm,Stillezauber
+Severing Charm,Durchtrennungszauber
 Shield Charm, Schildzauber
-Stupefy,Stupor/Stupefy?
+Stupefy,Stupor
+Stunning Hex,Betäubungszauber
 Tonare,Tonare
+Transfiguration,Verwandlung
 Unbreakable Vow,Unbrechbaren Schwur
-
+Veritaserum,Veritaserum
+You-Know-Who had lived,Der-dessen-Name-nicht-genannt-werden-darf
+,
 Translator leftovers,
 *,
 {[},
 Anm. d. Übers,
-
+Anm.d. Übers.,
+sss
+,
+,
 Vereinheitlichen,
-Professor der Verteidigung,Verteidigungsprofessor
+,
+DONE,
+führnehmen,Edlen
 Macmillian,Macmillan
+Professor der Verteidigung,Verteidigungsprofessor
 S.P.H.E.W.,\SPHEW
+Schallplatte, Plakette
