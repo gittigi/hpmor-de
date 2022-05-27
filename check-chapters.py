@@ -217,8 +217,9 @@ def fix_common_typos(s: str) -> str:
         s = re.sub(r"Junge\-der\-(überlebt\-hat|überlebte)\b", r"Junge-der-lebte", s)
         s = re.sub(r"Junge, der lebte\b", r"Junge-der-lebte", s)
         s = s.replace("Muggelforscher", "Muggelwissenschaftler")
-        s = s.replace("ut mir Leid", "ut mir leid")
         s = s.replace("Wizengamot", "Zaubergamot")
+        s = s.replace("S.P.H.E.W.", "\SPHEW")
+        s = s.replace("ut mir Leid", "ut mir leid")
         # s = s.replace("das einzige", "das Einzige")
     return s
 
