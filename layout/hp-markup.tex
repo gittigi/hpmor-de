@@ -133,16 +133,32 @@ E.~Y.:~
 {\newline\rule[1ex]{\textwidth}{.1pt}\newline}
 
 
-% Letters
+% Letters / writtenNote
 %
-\newcommand{\letterAddress}[1]{\pagebreak[1]\noindent{}\fontspec[ExternalLocation]{Graphe_Alpha_alt.ttf}\scriptsize#1\nopagebreak[4]\par}
-\newcommand{\letterClosing}[2][\vskip 1\baselineskip]{\nopagebreak[4]\fontspec[ExternalLocation]{Graphe_Alpha_alt.ttf}\scriptsize#1\par\nopagebreak[5]\noindent#2}
-
 \newenvironment{writtenNote}{\fontspec[ExternalLocation]{Graphe_Alpha_alt.ttf}\scriptsize%
-\vskip .1\baselineskip plus .1\baselineskip minus .1\baselineskip%
+%\vskip .1\baselineskip plus .1\baselineskip minus .1\baselineskip%
 \begin{adjustwidth}{\parindent}{\parindent}%
-\par\noindent\itshape}
-{\end{adjustwidth}\vskip 1\baselineskip plus 1\baselineskip minus 1\baselineskip}
+%\par\noindent%
+\itshape%
+\setlength{\parindent}{0pt}%
+\setlength{\parskip}{.5\baselineskip}%
+}
+{\end{adjustwidth}}
+% \vskip 1\baselineskip plus 1\baselineskip minus 1\baselineskip
+%
+% \letterAddress
+\newcommand{\letterAddress}[1]{%
+\pagebreak[1]\fontspec[ExternalLocation]{Graphe_Alpha_alt.ttf}%
+\scriptsize#1\nopagebreak[4]\par%
+}
+%
+% \letterClosing
+\newcommand{\letterClosing}[2][\vskip 1\baselineskip]{%
+\nopagebreak[4]\fontspec[ExternalLocation]{Graphe_Alpha_alt.ttf}%
+\par\scriptsize#1%
+\par\nopagebreak[5]#2%
+}
+
 
 
 % Stars and breaks
