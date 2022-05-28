@@ -12,7 +12,8 @@ on:
 jobs:
   job1:
     # runs-on: ubuntu-20.04
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
+    # runs-on: ubuntu-latest
     steps:
 
 # Initialize
@@ -53,18 +54,7 @@ jobs:
     - name: Make PDFs
       run: sh make_pdfs.sh > /dev/null
 
-    - name: Make eBooks
-      run: |
-        sh make_html.sh > /dev/null
-        sh make_doc.sh > /dev/null
-        sh make_ebooks.sh > /dev/null
-
-    - name: test ls after
-      run: |
-        pwd
-        ls -l
-
-# Publish to release       
+# Publish PDFs to release       
     - name: Upload to release
       uses: softprops/action-gh-release@v1
       with:
@@ -72,10 +62,27 @@ jobs:
         prerelease: true
         files: |
           ./hpmor*.pdf
+
+    - name: Make eBooks
+      run: |
+        sh make_ebooks.sh > /dev/null
+
+    - name: test ls after
+      run: |
+        pwd
+        ls -l
+
+# Publish eBooks to release       
+    - name: Upload to release
+      uses: softprops/action-gh-release@v1
+      with:
+        tag_name: WorkInProgress
+        prerelease: true
+        files: |
           ./hpmor.docx
           ./hpmor.html
-          ebook/output/hpmor.epub
-          ebook/output/hpmor.mobi
+          ./hpmor.epub
+          ./hpmor.mobi
 
     - name: print end date
       run: date +%Y-%m-%d_%H:%M
