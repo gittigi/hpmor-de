@@ -35,18 +35,29 @@ jobs:
       run: |
         pwd
         ls -l
-
+        
     - name: Quality check of chapters for known issues
       run: python3 check-chapters.py
 
     - name: Install requirements
       run: sh install_requirements.sh
 
+    - name: print versions
+      run: |
+        cat /etc/os-release
+        xelatex -v
+        latexmk -v
+        pandoc -v
+        python3 --version        
+
     - name: Make PDFs
       run: sh make_pdfs.sh > /dev/null
 
     - name: Make eBooks
-      run: sh make_ebooks.sh
+      run: |
+        sh make_html.sh > /dev/null
+        sh make_doc.sh > /dev/null
+        sh make_ebooks.sh > /dev/null
 
     - name: test ls after
       run: |
@@ -61,6 +72,8 @@ jobs:
         prerelease: true
         files: |
           ./hpmor*.pdf
+          ./hpmor.docx
+          ./hpmor.html
           ebook/output/hpmor.epub
           ebook/output/hpmor.mobi
 
