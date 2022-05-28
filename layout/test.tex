@@ -1,0 +1,129 @@
+
+\RequirePackage[pdf]{layout/hp-book}
+
+
+
+
+
+
+
+
+
+
+\begin{document}
+{
+\pagestyle{empty}
+\input{layout/hpmor-title}
+\def\volumenumber{}
+\def\volumetitle{Layout-Test vom \today{}}
+\input{layout/hp-intro}
+% \input{hp-warning}
+\pagenumbering{gobble}
+\input{layout/hp-contents}
+% \include{layout/hp-blurbs}
+\cleartorecto
+}
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+\part{Layout Tests}
+
+
+\chapter{Example Chapter ä-ö-ü-ß-Ä-Ö-Ü-SS}
+
+\begin{chapterOpeningAuthorNote}
+chapterOpeningAuthorNote: Every inch of wall space is covered by a bookcase. Each bookcase has six shelves, going almost to the ceiling.
+\end{chapterOpeningAuthorNote}
+\begin{chapterOpeningQuote}
+chapterOpeningQuote: Other shelves have two layers of paperback science fiction, with the back layer of books propped up on old tissue boxes or lengths of wood, so that you can see the back layer of books above the books in front.
+\end{chapterOpeningQuote}
+
+\lettrine{E}{very} inch of wall space is covered by a bookcase. Each bookcase has six shelves, going almost to the ceiling. Some bookshelves are stacked to the brim with hardback books: science, maths, history, and everything else. Other shelves have two layers of paperback science fiction, with the back layer of books propped up on old tissue boxes or lengths of wood, so that you can see the back layer of books above the books in front. And it still isn’t enough. Books are overflowing onto the tables and the sofas and making little heaps under the windows.
+ä-ö-ü-ß-Ä-Ö-Ü-SS
+
+This is the living-room of the house occupied by the eminent Professor Michael Verres-Evans, and his wife, Mrs~Petunia Evans-Verres, and their adopted son, Harry James Potter-Evans-Verres. There is a letter lying on the living-room table, and an unstamped envelope of yellowish parchment, addressed to \emph{Mr~H.~Potter} in emerald-green ink.
+
+
+\chapter{Font Styles ä-ö-ü-ß-Ä-Ö-Ü-SS}
+
+\section{Basic Font Styles ä-ö-ü-ß-Ä-Ö-Ü-SS}
+
+underline: \underline{underline ä-ö-ü-ß-Ä-Ö-Ü-SS}
+
+textsc: \textsc{textsc ä-ö-ü-ß-Ä-Ö-Ü-SS}
+
+textbf: \textbf{textbf ä-ö-ü-ß-Ä-Ö-Ü-SS}
+
+emph: \emph{emph1 emph1 \emph{emph2 \emph{emph3} emph2} emph1 ä-ö-ü-ß-Ä-Ö-Ü-SS}
+
+MakeUppercase: start \MakeUppercase{MakeUppercase ä-ö-ü-ß-Ä-Ö-Ü-SS} end
+
+\section{tone of voice ä-ö-ü-ß-Ä-Ö-Ü-SS}
+
+shout: \shout{shout shout ä-ö-ü-ß-Ä-Ö-Ü-SS}
+
+scream: \scream{scream scream ä-ö-ü-ß-Ä-Ö-Ü-SS}
+
+prophesy: \prophesy{prophesy prophesy ä-ö-ü-ß-Ä-Ö-Ü-SS}
+
+parsel: \parsel{parsel parsel ä-ö-ü-ß-Ä-Ö-Ü-SS}
+
+spell: \spell{spell spell ä-ö-ü-ß-Ä-Ö-Ü-SS}
+
+abbrev: \abbrev{abbrev ä-ö-ü-ß-Ä-Ö-Ü-SS}
+
+\section{abbreviations}
+SPHEW: Start: \SPHEW.
+
+\section{Newspaper}
+
+1. healine: start \headline{my headline ä-ö-ü-ß-Ä-Ö-Ü-SS} end
+
+2. inlineheadline: start \inlineheadline{my inline headline ä-ö-ü-ß-Ä-Ö-Ü-SS} end
+
+3. healine env:
+\begin{headlines}
+my headline env ä-ö-ü-ß-Ä-Ö-Ü-SS
+\end{headlines}
+end
+
+\section{special}
+start McGonagallWhiteBoard: \McGonagallWhiteBoard{Hallo ä-ö-ü-ß-Ä-Ö-Ü-SS} end
+
+translatorsnote:\translatorsnote{Translator's note is here ä-ö-ü-ß-Ä-Ö-Ü-SS. And it still isn’t enough. Books are overflowing onto the tables and the sofas and making little heaps under the windows.}
+
+\section{writtenNote}
+\begin{writtenNote}
+\letterAddress{Sehr geehrte stellvertretende Schulleiterin ä-ö-ü-ß-Ä-Ö-Ü-SS}
+And it still isn’t enough. Books are overflowing onto the tables and the sofas and making little heaps under the windows.
+
+This is the living-room of the house occupied by the eminent Professor Michael Verres-Evans, and his wife, Mrs~Petunia Evans-Verres, and their adopted son, Harry James Potter-Evans-Verres. There is a letter lying on the living-room table, and an unstamped envelope of yellowish parchment, addressed to \emph{Mr~H.~Potter} in emerald-green ink.
+\letterClosing[Mit freundlichen Grüßen]{Harry James Potter-Evans-Verres.}
+\end{writtenNote}
+
+\part{Doc Structure}
+
+\partchapter{partchapter: The Stanford Prison Experiment}{I}
+Text
+This is the living-room of the house occupied by the eminent Professor Michael Verres-Evans, and his wife, Mrs~Petunia Evans-Verres, and their adopted son, Harry James Potter-Evans-Verres. There is a letter lying on the living-room table, and an unstamped envelope of yellowish parchment, addressed to \emph{Mr~H.~Potter} in emerald-green ink.
+
+This is the living-room of the house occupied by the eminent Professor Michael Verres-Evans, and his wife, Mrs~Petunia Evans-Verres, and their adopted son, Harry James Potter-Evans-Verres. There is a letter lying on the living-room table, and an unstamped envelope of yellowish parchment, addressed to \emph{Mr~H.~Potter} in emerald-green ink.
+
+\namedpartchapter{namedpartchapter: The Stanford Prison Experiment}{TSPE}{VI}{Constrained Optimization}
+Text
+
+later: text \later end later
+
+
+\latersection{latersection ä-ö-ü-ß-Ä-Ö-Ü-SS}
+start latersection
+
+
+
+
+
+
+
+
+
+\end{document}
