@@ -1,6 +1,6 @@
-name: Build HPMOR PDFs and eBooks
+name: build HPMOR PDFs and eBooks
 
-# Controls when the action will run.
+# controls when the action will run.
 # workflow_dispatch: manual triggering
 # push: triggers the workflow on push request events but only for the master branch
 on:  
@@ -8,7 +8,7 @@ on:
   push: 
     branches: [ master ]
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+# a workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   job1:
     # runs-on: ubuntu-20.04
@@ -16,31 +16,35 @@ jobs:
     # runs-on: ubuntu-latest
     steps:
 
-# Initialize
     - name: print start date
       run: date +%Y-%m-%d_%H:%M
 
-    - name: Checkout Repository
+    - name: checkout repository
       uses: actions/checkout@v2
       with:
         ref: master
         persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal token
         fetch-depth: 0 # otherwise, you will failed to push refs to dest repo
 
-    - name: Python setup
+    - name: python setup
       uses: actions/setup-python@v2
       with:
         python-version: '3.9'
+
+    - name: setup environment to DE lang
+      run: |
+        cd /usr/share/locales
+        sudo ./install-language-pack de_DE.UTF-8   
 
     - name: test ls before
       run: |
         pwd
         ls -l
         
-    - name: Quality check of chapters for known issues
+    - name: quality check of chapters for known issues
       run: python3 check-chapters.py
 
-    - name: Install requirements
+    - name: install requirements
       run: sh install_requirements.sh
 
     - name: print versions
@@ -51,11 +55,10 @@ jobs:
         pandoc -v
         python3 --version        
 
-    - name: Make PDFs
+    - name: make PDFs
       run: sh make_pdfs.sh > /dev/null
 
-# Publish PDFs to release       
-    - name: Upload to release
+    - name: publish PDFs to release
       uses: softprops/action-gh-release@v1
       with:
         tag_name: WorkInProgress
@@ -63,7 +66,7 @@ jobs:
         files: |
           ./hpmor*.pdf
 
-    - name: Make eBooks
+    - name: make eBooks
       run: |
         sh make_ebooks.sh > /dev/null
 
@@ -72,8 +75,7 @@ jobs:
         pwd
         ls -l
 
-# Publish eBooks to release       
-    - name: Upload to release
+    - name: publish eBooks to release
       uses: softprops/action-gh-release@v1
       with:
         tag_name: WorkInProgress
