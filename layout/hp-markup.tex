@@ -4,48 +4,6 @@
 % and consistently typeset.
 % Search for them in the source files to see how to use them.
 
-% Tone of voice
-\newcommand{\shout}[1]{\textsc{#1}}
-\newcommand{\scream}[1]{\MakeUppercase{#1}}
-\newcommand{\prophesy}[1]{\shout{#1}}
-
-% TODO: spell macro experiments
-% old style:
-% \newcommand{\spell}[1]{„\emph{#1}“}
-% \usepackage{marvosym}
-% \newcommand{\spell}[1]{„{\small\Lightning}\emph{#1}{\small\,\Lightning}“}
-% \newcommand{\spell}[1]{{\small\Lightning\,}\emph{#1}{\small\,\Lightning}}
-\newcommand{\spell}[1]{{\Star}\emph{#1}{\Star}}
-% \spell{Wingardium Leviosa}
-% \Lightning \Emailct \Laserbeam
-
-% parsel
-\newcommand{\parselify}[1]{%
-\StrSubstitute{#1}{ss}{ß}[\parselstring]%
-\StrSubstitute{\parselstring}{s}{ss}[\parsselstring]%
-\StrSubstitute{\parsselstring}{ß}{sss}[\parssselstring]%
-\StrSubstitute{\parssselstring}{S}{Ss}[\parsssselstring]% for DE
-\StrSubstitute{\parsssselstring}{z}{zz}[\parssssselstring]% for DE
-\StrSubstitute{\parssssselstring}{Z}{Zz}[\parsssssselstring]% for DE
-}
-
-
-% old version of parsel
-\newcommand\parsela[1]{\parselify{#1}{\ptsansi\parsssssselstring}}
-% new fr version of parsel
-% N.B. Other commands, such as \emph, cannot be used inside \parsel
-\newcommand\parselb[1]{{\fontspec[ExternalLocation]{Parseltongue.ttf}#1}{\ptsansi}} % no more \parselify (can’t convert to epub)
-% select one of above
-\newcommand\parsel[1]{\parsela{#1}}
-
-% McGonagall Whiteboard (chapter15)
-\newcommand\McGonagallWhiteBoard[1]{
-\begin{center}
-\fontspec[ExternalLocation,Color=AA0000]{Automobile Contest.ttf}
-\textcolor{blue}{\Huge{\underline{\textcolor{red}{#1}}}}
-\end{center}
-}
-
 % Special types of text
 \newcommand{\abbrev}[1]{\textsc{\MakeLowercase{#1}}\xspace}
 
@@ -54,8 +12,66 @@
 \renewcommand{\pm}{~p.m.\xspace}
 \newcommand{\SPHEW}{\abbrev{BELFER}} % EN: SPHEW, DE: BELFER
 
+% Tone of voice
+\newcommand{\shout}[1]{\textsc{#1}}
+\newcommand{\scream}[1]{\MakeUppercase{#1}}
+\newcommand{\prophesy}[1]{\shout{#1}}
+
+% \parsel
+\newcommand{\parselify}[1]{%
+\StrSubstitute{#1}{ss}{ß}[\parselstring]%
+\StrSubstitute{\parselstring}{s}{ss}[\parsselstring]%
+\StrSubstitute{\parsselstring}{ß}{sss}[\parssselstring]%
+\StrSubstitute{\parssselstring}{S}{Ss}[\parsssselstring]% for DE
+\StrSubstitute{\parsssselstring}{z}{zz}[\parssssselstring]% for DE
+\StrSubstitute{\parssssselstring}{Z}{Zz}[\parsssssselstring]% for DE
+}
+%
+% old version of parsel
+\newcommand\parsela[1]{\parselify{#1}{\ptsansi\parsssssselstring}}
+%
+% new FR version of parsel
+% N.B. Other commands, such as \emph, cannot be used inside \parsel
+\newcommand\parselb[1]{{\fontspec[ExternalLocation]{Parseltongue.ttf}#1}{\ptsansi}} % no more \parselify (can’t convert to epub)
+%
+% select one of above
+\newcommand\parsel[1]{\parsela{#1}}
+
+% \spell macro experiments
+%
+% \newcommand{\spell}[1]{„\emph{#1}“}
+% \usepackage{marvosym}
+% \newcommand{\spell}[1]{„{\small\Lightning}\emph{#1}{\small\,\Lightning}“}
+% \newcommand{\spell}[1]{{\small\Lightning\,}\emph{#1}{\small\,\Lightning}}
+\newcommand{\spell}[1]{{\Star}\emph{#1}{\Star}}
+% \spell{Wingardium Leviosa}
+% \Lightning \Emailct \Laserbeam
+
+
+% Author’s and translators notes
+%
+% Use with \footnotemark
+% \newcommand{\authorsnotetext}[1]{\footnotetext{Anmerkung des Authors: #1}}
+% translator notes
+\newcommand{\translatorsnote}[1]{\footnote{Übersetzerhinweis: #1}}
+% do not print translator notes
+% \renewcommand{\translatorsnote}[1]{}
+
+
+% McGonagall Whiteboard (chapter15)
+%
+\newcommand\McGonagallWhiteBoard[1]{
+\begin{center}
+\fontspec[ExternalLocation,Color=AA0000]{Automobile Contest.ttf}
+\textcolor{blue}{\Huge{\underline{\textcolor{red}{#1}}}}
+\end{center}
+}
+
+
 % Newspaper headlines
+%
 \newcommand{\headline}[1]{\begin{center}\textsc{\fontspec[ExternalLocation]{gabriele-bad.ttf}#1}\end{center}}
+
 \newcommand{\inlineheadline}[1]{\textsc{\fontspec[ExternalLocation]{gabriele-bad.ttf}#1}}
 
 \newenvironment{headlines}{
@@ -72,32 +88,32 @@
 \let\label\hmorSavedLabel
 }
 
-% Author’s notes
-% Use with \footnotemark
-% TODO: check if used
-% \newcommand{\authorsnotetext}[1]{\footnotetext{Anmerkung des Authors: #1}}
-% translator notes
-\newcommand{\translatorsnote}[1]{\footnote{Übersetzerhinweis: #1}}
-% do not print translator notes
-% \renewcommand{\translatorsnote}[1]{}
 
+% PartChapters
+%
+% \partchapter{The Stanford Prison Experiment}{TSPE}{XIII}{Aftermaths}
+% TOC: TSPE part XIII: Aftermaths
+% Page header: The Stanford Prison Experiment XIII: \\? Aftermaths
+% Title: The Stanford Prison Experiment, Part XIII: \\? Aftermaths
+\newcommand{\partchapter}[3][\relax]{%
+\chapter[\texorpdfstring{#2, \abbrev{Teil #3}}{#2, Teil #3}]%
+[#2 #3]{#2, Teil~#3#1}}
 
-% Letters
-\newcommand{\letterAddress}[1]{\pagebreak[1]\noindent{}\fontspec[ExternalLocation]{Graphe_Alpha_alt.ttf}\scriptsize#1\nopagebreak[4]\par}
-\newcommand{\letterClosing}[2][\vskip 1\baselineskip]{\nopagebreak[4]\fontspec[ExternalLocation]{Graphe_Alpha_alt.ttf}\scriptsize#1\par\nopagebreak[5]\noindent#2}
+\newcommand{\namedpartchapter}[5][\relax]{%
+\chapter[%
+\texorpdfstring{%
+\abbrev{#3, Teil #4}: #5}{%
+#3, Teil #4: #5}][%
+\mbox{#2 #4:} \mbox{#5}]{%
+#2, Teil~#4:\protect\linebreak[1] #5#1}%
+}
 
-\newenvironment{writtenNote}{\fontspec[ExternalLocation]{Graphe_Alpha_alt.ttf}\scriptsize%
-\vskip .1\baselineskip plus .1\baselineskip minus .1\baselineskip%
-\begin{adjustwidth}{\parindent}{\parindent}%
-\par\noindent\itshape}
-{\end{adjustwidth}\vskip 1\baselineskip plus 1\baselineskip minus 1\baselineskip}
+% Hanging paras for play scripts (used in Omake IV)
+%
+\newenvironment{playdialog}{\begin{hangparas}{2em}{1}}{\end{hangparas}}
 
-\newenvironment{chapterOpeningQuote}{%
-\parindent=0pt%
-% \rule{\textwidth}{.1pt}%
-\itshape}
-{\newline\rule[1ex]{\textwidth}{.1pt}\newline}
-
+% Chapter openings
+%
 % Definition of chapterOpeningAuthorNote when they are desired to be printed
 % FIXME: Make the environment definition switchable with a flag
 \newenvironment{chapterOpeningAuthorNote}{%
@@ -109,31 +125,28 @@ E.~Y.:~
 }
 % \excludecomment{chapterOpeningAuthorNote}
 
-
-% Chapter parts
-% \partchapter{The Stanford Prison Experiment}{TSPE}{XIII}{Aftermaths}
-% TOC: TSPE part XIII: Aftermaths
-% Page header: The Stanford Prison Experiment XIII: \\? Aftermaths
-% Title: The Stanford Prison Experiment, Part XIII: \\? Aftermaths
-\newcommand{\namedpartchapter}[5][\relax]{%
-\chapter[%
-\texorpdfstring{%
-\abbrev{#3, Teil #4}: #5}{%
-#3, Teil #4: #5}][%
-\mbox{#2 #4:} \mbox{#5}]{%
-#2, Teil~#4:\protect\linebreak[1] #5#1}%
-}
-
-\newcommand{\partchapter}[3][\relax]{%
-\chapter[\texorpdfstring{#2, \abbrev{Teil #3}}{#2, Teil #3}]%
-[#2 #3]{#2, Teil~#3#1}}
-
-% Hanging paras for play scripts (used in Omake IV)
-\newenvironment{playdialog}{\begin{hangparas}{2em}{1}}{\end{hangparas}}
+% chapterOpeningQuote
+\newenvironment{chapterOpeningQuote}{%
+\parindent=0pt%
+% \rule{\textwidth}{.1pt}%
+\itshape}
+{\newline\rule[1ex]{\textwidth}{.1pt}\newline}
 
 
-% Stars
+% Letters
+%
+\newcommand{\letterAddress}[1]{\pagebreak[1]\noindent{}\fontspec[ExternalLocation]{Graphe_Alpha_alt.ttf}\scriptsize#1\nopagebreak[4]\par}
+\newcommand{\letterClosing}[2][\vskip 1\baselineskip]{\nopagebreak[4]\fontspec[ExternalLocation]{Graphe_Alpha_alt.ttf}\scriptsize#1\par\nopagebreak[5]\noindent#2}
 
+\newenvironment{writtenNote}{\fontspec[ExternalLocation]{Graphe_Alpha_alt.ttf}\scriptsize%
+\vskip .1\baselineskip plus .1\baselineskip minus .1\baselineskip%
+\begin{adjustwidth}{\parindent}{\parindent}%
+\par\noindent\itshape}
+{\end{adjustwidth}\vskip 1\baselineskip plus 1\baselineskip minus 1\baselineskip}
+
+
+% Stars and breaks
+%
 % Single “magic star” decoration
 \newcommand{\Star}{{\fontspec[ExternalLocation]{Miscelanea.ttf}*}}
 
