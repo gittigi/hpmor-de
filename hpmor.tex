@@ -4,8 +4,10 @@
 {
 \pagestyle{empty}
 \input{layout/hpmor-title}
+\def\volumenumber{}
+\def\volumetitle{Version vom \today}
 \input{layout/hp-intro}
-% \input{hp-warning} % TODO: is this required?
+% \input{hp-warning}
 \pagenumbering{gobble}
 \input{layout/hp-contents}
 % \include{layout/hp-blurbs}
@@ -14,7 +16,7 @@
 \pagenumbering{arabic}
 \setcounter{page}{1}
 
-% \include{layout/test-layout}
+\include{layout/test-layout}
 
 \include{chapters/hpmor-chapter-000}
 
@@ -154,7 +156,8 @@
 \include{chapters/hpmor-chapter-121}
 \include{chapters/hpmor-chapter-122}
 % 
-\setcounter{chapter}{122}\label{last:chapter}
+
+% \setcounter{chapter}{122}\label{last:chapter}
 
 % TODO
 % % Appendices, etc.
