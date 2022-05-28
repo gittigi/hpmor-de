@@ -43,6 +43,7 @@ hpmor*.epub
 hpmor*.mobi
 hpmor.docx
 ~$hpmor.docx
+testpage.pdf
 
 .vscode/
 __pycache__/
