@@ -1,3 +1,4 @@
 #!/bin/sh
 
-pandoc --standalone --from=latex hpmor.tex -o hpmor.docx
+# --verbose
+pandoc --standalone --from=latex hpmor-pandoc.tex -o hpmor.docx
