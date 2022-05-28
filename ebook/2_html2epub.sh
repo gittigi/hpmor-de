@@ -23,7 +23,7 @@ gs -dSAFER -r600 -sDEVICE=pngalpha -dFirstPage=1 -dLastPage=1 -o tmp/title-en.pn
 convert -density 150 tmp/title-en.png -resize 1186x1186\> -quality 75 tmp/title-en.jpg
 
 echo 2. convert html to epub
-# use calibre instead of pandoc, as pandoc loses the css style
+# use calibre instead of pandoc, as pandoc looses the css style
 # see https://manual.calibre-ebook.com/generated/en/ebook-convert.html
 # linux: sudo apt install calibre
 # windows: obtain from https://calibre-ebook.com/download_windows
