@@ -52,6 +52,8 @@ html_preamble = f"""
 
 
 css = """
+em em { font-style: normal;}
+
 div.letter {
 	font-style: italic;
 	margin-left: 1em;
@@ -382,7 +384,7 @@ def tex2html(s: str) -> str:
     )
     # emph
     s = re.sub(
-        r"\\emph\{([^\}\\]+)\}", r"<i>\1</i>", s, flags=re.DOTALL | re.IGNORECASE
+        r"\\emph\{([^\}\\]+)\}", r"<em>\1</em>", s, flags=re.DOTALL | re.IGNORECASE
     )
     # \sout = strike through
     s = re.sub(
