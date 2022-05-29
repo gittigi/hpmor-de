@@ -69,6 +69,10 @@ def process_file(fileIn: str) -> bool:
     if "\r" in cont:
         issues_found = True
         cont = re.sub(r"\r\n?", r"\n", cont)
+    # invisible strange spaces
+    if " " in cont:
+        issues_found = True
+        cont = re.sub(r" +", r" ", cont)
 
     # more than 1 empty line
     if "\n\n\n" in cont:
@@ -166,6 +170,10 @@ def fix_dots(s: str) -> str:
 
     # … at end of quotation ' …"' -> '…"'
     s = s.replace(' …"', '…"')
+    if settings["lang"] == "EN":
+        s = s.replace(" …”", "…”")
+    if settings["lang"] == "DE":
+        s = s.replace(" …“", "…“")
     # … at start of line
     s = re.sub(r"^ *… *", r"…", s)
     # … at end of line
