@@ -118,10 +118,6 @@ def process_file(fileIn: str) -> bool:
 
 
 def fix_line(s: str) -> str:
-    # TODO:
-    # single quotes
-    # DE: ‚...‘
-
     s1 = s
     # simple and safe
     s = fix_spaces(s)
@@ -229,7 +225,21 @@ def fix_common_typos(s: str) -> str:
         s = s.replace("S.P.H.E.W.", "\SPHEW")
         s = s.replace("ut mir Leid", "ut mir leid")
         # s = s.replace("das einzige", "das Einzige")
+    # Apostroph
+    # "word's"
+    s = re.sub(r"(\w)'(s)\b", r"\1’\2", s)
+    if settings["lang"] == "DE":
+        s = re.sub(r"(\w)'(sche|scher|schen)\b", r"\1’\2", s)
+    if settings["lang"] == "EN":
+        # "wouldn't"
+        s = re.sub(r"(\w)'(t)\b", r"\1’\2", s)
+        # I'm
+        s = re.sub(r"\bI'm\b", r"I’m", s)
+
     return s
+
+
+assert (fix_common_typos("Test Mungo's King's Cross")) == "Test Mungo’s King’s Cross"
 
 
 def fix_quotations(s: str) -> str:
@@ -241,6 +251,13 @@ def fix_quotations(s: str) -> str:
         s = re.sub(r'"([^"]+)"', r"“\1”", s)
     if settings["lang"] == "DE":
         s = re.sub(r'"([^"]+)"', r"„\1“", s)
+
+    # '.....' -> ‘...’
+    if settings["lang"] == "EN":
+        s = re.sub(r"'([^']+)'", r"‘\1’", s)
+
+    if settings["lang"] == "DE":
+        s = re.sub(r"'([^']+)'", r"‚\1‘", s)
 
     if settings["lang"] == "DE":
         # migrate EN quotations
@@ -305,6 +322,15 @@ def fix_quotations(s: str) -> str:
     #        s = re.sub(r"(?<![\.,!\?;])(?<![\.,!\?;]\})”,", r",”", s)
     if settings["lang"] == "DE":
         s = re.sub(r"(?<![\.,!\?;])(?<![\.,!\?;]\})“,", r",“", s)
+
+    # nested single quote + emph
+
+    if settings["lang"] == "EN":
+        s = re.sub(r"‘\\emph{([^}]+)}’", r"‘\1’", s)
+        s = re.sub(r"\\emph{‘([^}]+)’}", r"‘\1’", s)
+    if settings["lang"] == "DE":
+        s = re.sub(r"‚\\emph{([^}]+)}‘", r"‚\1‘", s)
+        s = re.sub(r"\\emph{‚([^}]+)‘}", r"‚\1‘", s)
 
     return s
 
