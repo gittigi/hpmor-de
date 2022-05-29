@@ -1,12 +1,15 @@
 #!/bin/sh
 
+# based on work by yeKcim
+# https://github.com/yeKcim/hpmor/tree/master/ebook
+
+echo === 6. extract cover from PDF to image===
+
 # ensure we are in the hpmor root dir
 script_dir=$(cd `dirname $0` && pwd)
 cd $script_dir/..
 
 mkdir -p ebook/tmp/
-
-echo === 6. extract cover from PDF to image===
 
 source_file="hpmor.pdf"
 target_file="ebook/tmp/title.png"

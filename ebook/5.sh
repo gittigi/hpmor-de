@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# based on work by yeKcim
+# https://github.com/yeKcim/hpmor/tree/master/ebook
+
 echo === 5. HTML modifications ===
 
 # ensure we are in the hpmor root dir
