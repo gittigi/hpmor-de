@@ -61,31 +61,67 @@
 % McGonagall Whiteboard (chapter15)
 %
 \newcommand\McGonagallWhiteBoard[1]{
-\begin{center}
+\begin{center}%
 \fontspec[ExternalLocation,Color=AA0000]{Automobile Contest.ttf}
-\textcolor{blue}{\Huge{\underline{\textcolor{red}{#1}}}}
-\end{center}
+\textcolor{blue}{\Huge{\underline{\textcolor{red}{#1}}}}%
+\end{center}%
 }
 
 
 % Newspaper headlines
 %
-\newcommand{\headline}[1]{\begin{center}\textsc{\fontspec[ExternalLocation]{gabriele-bad.ttf}#1}\end{center}}
+\newcommand{\headline}[1]{%
+\begin{center}%
+\textsc{\fontspec[ExternalLocation]{gabriele-bad.ttf}#1}%
+\end{center}%
+}
 
-\newcommand{\inlineheadline}[1]{\textsc{\fontspec[ExternalLocation]{gabriele-bad.ttf}#1}}
+\newcommand{\inlineheadline}[1]{%
+\textsc{\fontspec[ExternalLocation]{gabriele-bad.ttf}#1}%
+}
 
-\newenvironment{headlines}{
-\newcommand{\header}[1]{\begin{SingleSpace}\upshape ##1\end{SingleSpace}}
-\let\hmorSavedLabel\label
+\newenvironment{headlines}{%
+\newcommand{\header}[1]{\begin{SingleSpace}\upshape ##1\end{SingleSpace}}%
+\let\hmorSavedLabel\label%
 \renewcommand{\label}[1]{{\upshape\itshape\begin{flushleft}##1\end{flushleft}}}%
-\begin{Spacing}{0.75}
-\begin{center}
-\scshape
-\nonzeroparskip
-}{
-\end{center}
-\end{Spacing}
-\let\label\hmorSavedLabel
+\begin{Spacing}{0.75}%
+\begin{center}%
+\scshape%
+\nonzeroparskip%
+}{%
+\end{center}%
+\end{Spacing}%
+\let\label\hmorSavedLabel%
+}
+
+
+% Letters / writtenNote
+%
+\newenvironment{writtenNote}{%
+\fontspec[ExternalLocation]{Graphe_Alpha_alt.ttf}\scriptsize%
+%\vskip .1\baselineskip plus .1\baselineskip minus .1\baselineskip%
+\begin{adjustwidth}{\parindent}{\parindent}%
+%\par\noindent%
+\itshape%
+\setlength{\parindent}{0pt}%
+\setlength{\parskip}{.5\baselineskip}%
+}
+{%
+\end{adjustwidth}%
+% \vskip 1\baselineskip plus 1\baselineskip minus 1\baselineskip
+}
+%
+% \letterAddress
+\newcommand{\letterAddress}[1]{%
+\pagebreak[1]\fontspec[ExternalLocation]{Graphe_Alpha_alt.ttf}%
+\scriptsize#1\nopagebreak[4]\par%
+}
+%
+% \letterClosing
+\newcommand{\letterClosing}[2][\vskip 1\baselineskip]{%
+\nopagebreak[4]\fontspec[ExternalLocation]{Graphe_Alpha_alt.ttf}%
+\par\scriptsize#1%
+\par\nopagebreak[5]#2%
 }
 
 
@@ -133,31 +169,7 @@ E.~Y.:~
 {\newline\rule[1ex]{\textwidth}{.1pt}\newline}
 
 
-% Letters / writtenNote
-%
-\newenvironment{writtenNote}{\fontspec[ExternalLocation]{Graphe_Alpha_alt.ttf}\scriptsize%
-%\vskip .1\baselineskip plus .1\baselineskip minus .1\baselineskip%
-\begin{adjustwidth}{\parindent}{\parindent}%
-%\par\noindent%
-\itshape%
-\setlength{\parindent}{0pt}%
-\setlength{\parskip}{.5\baselineskip}%
-}
-{\end{adjustwidth}}
-% \vskip 1\baselineskip plus 1\baselineskip minus 1\baselineskip
-%
-% \letterAddress
-\newcommand{\letterAddress}[1]{%
-\pagebreak[1]\fontspec[ExternalLocation]{Graphe_Alpha_alt.ttf}%
-\scriptsize#1\nopagebreak[4]\par%
-}
-%
-% \letterClosing
-\newcommand{\letterClosing}[2][\vskip 1\baselineskip]{%
-\nopagebreak[4]\fontspec[ExternalLocation]{Graphe_Alpha_alt.ttf}%
-\par\scriptsize#1%
-\par\nopagebreak[5]#2%
-}
+
 
 
 
