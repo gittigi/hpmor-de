@@ -5,47 +5,34 @@ skip-checks:true
 in commit body prevents autobuilding! (=2 empty lines)
 -->
 
-# Deutsche Übersetzung von “Harry Potter and the Methods of Rationality” (HPMOR)
+# Deutsche Übersetzung / German Translation of “Harry Potter and the Methods of Rationality” (HPMOR)
 
-Dies ist ein OpenSource Projekt zum Zusammenfügen und Überarbeiten der deutschen Fan-Übersetzungen des großartigen Buches "[Harry Potter and the Methods of Rationality](https://www.hpmor.com/)" von Eliezer Yudkowsky.
+Dies ist ein OpenSource Projekt, gestartet von [Torben Menke](https://entorb.net/hpmor/contact.php?origin=HPMOR), zum Zusammenfügen und Überarbeiten der deutschen Fan-Übersetzungen der großartigen Fanfiction "[Harry Potter and the Methods of Rationality](https://www.hpmor.com/)" von Eliezer Yudkowsky, basierend auf der Harry Potter Reihe von J. K. Rowling. 
+
+J. K. Rowling owns Harry Potter, and no one owns the methods of rationality.
+
+[Aktuelle Version von PDFs und eBooks](https://github.com/entorb/hpmor-de/releases/download/WorkInProgress/)
 
 ## Mitmachen
-* Über Feedback, Vorschläge und Mirarbeit freue ich mich sehr.
+* Über Feedback, [Vorschläge](https://github.com/entorb/hpmor-de/issues) und [Mitarbeit](https://github.com/entorb/hpmor-de/wiki/Mitmachen) freue ich mich sehr.
 * Siehe die [Mitmach-Anleitung](https://github.com/entorb/hpmor-de/wiki/Mitmachen)
 * Bei Fragen und Verbesserungsvorschlägen einfach ein [Ticket](https://github.com/entorb/hpmor-de/issues) öffnen oder mich direkt [kontaktieren](https://entorb.net/hpmor/contact.php?origin=HPMOR)
 
-## Links
-### Relevante Dateien dieses Projekts
-* Aktueller Stand der übersetzen Kapitel als [PDF](https://github.com/entorb/hpmor-de/releases/download/WorkInProgress/hpmor.pdf)
-* Quelltext der übersetzten und noch fehlenden [Kapitel](https://github.com/entorb/hpmor-de/tree/master/chapters)
-* [Kopien der 5 untenstehenden Übersetzungen, in LaTeX-Code konvertiert](https://github.com/entorb/hpmor-de/tree/de-translations/chapters/translations/5-latex-clean)
-
-### Übersetzungen
-* [Originalfassung](https://www.hpmor.com/)
-* [DE-Übersetzung von Schneefl0cke](https://www.fanfiktion.de/s/60044849000ccc541aef297e/) komplett
-* [DE-Übersetzung von Jost](https://www.fanfiktion.de/s/4cb8beb50000203e067007d0/) Kapitel 1-21
-* [DE-Übersetzung von DieFuechsin](https://www.fanfiktion.de/s/5c793dfe000a402030774dc7/) Kapitel 34-78
-* [DE-Übersetzung von Patneu](https://www.fanfiktion.de/s/55610c610004dede273a3811/) Kapitel 1-38
-* [DE-Übersetzung von TralexHPMOR](https://www.fanfiktion.de/s/59a29b7f000813c22ec1454b/) Kapitel 22-26
-* [Kopien der 5 obigen Übersetzungen, in LaTeX-Code konvertiert](https://github.com/entorb/hpmor-de/tree/de-translations/chapters/translations/5-latex-clean)
-
-### Latex Repositories
-* [EN LaTeX Repo](https://github.com/rrthomas/hpmor)
-* [FR LaTeX Repo](https://github.com/yeKcim/hpmor) mit vielen guten Layout Ideen
-* [DE LaTeX Repo von elkablo](https://github.com/elkablo/hpmor) für Kapitel 1-21, basierend auf der Übersetzung von [Jost](https://www.fanfiktion.de/s/4cb8beb50000203e067007d0/)
-
-### Weitere
-* [DE Höchbuch von TralexHPMOR auf Youtube](https://www.youtube.com/channel/UCN2-6FJpLBx4Uh4C_wArhsQ/videos?view=0&sort=dd) Kapitel 1-42
+## Links / Navigation
+* [Aktuelle Version von PDFs und eBooks](https://github.com/entorb/hpmor-de/releases/download/WorkInProgress/) (automatisch aktualisiert bei Änderungen)
+* [Mitmach-Anleitung](https://github.com/entorb/hpmor-de/wiki/Mitmachen)
+* [Liste der Issues und Ideen](https://github.com/entorb/hpmor-de/issues)
+* [Quelltext der Kapitel](https://github.com/entorb/hpmor-de/tree/master/chapters)
+* Quellen der [Übersetzungen](https://github.com/entorb/hpmor-de/wiki/Mitmachen#%C3%9Cbersetzungen)
+* Weitere Links und Quellen, siehe [Links](https://github.com/entorb/hpmor-de/wiki/Mitmachen#links) in der [Mitmach-Anleitung](https://github.com/entorb/hpmor-de/wiki/Mitmachen)
 
 ## Fortschritte dieses Projekts
-* [Englisches Repo](https://github.com/rrthomas/hpmor) als Vorlange verwendet
-* Layout des [französischen Repos](https://github.com/yeKcim/hpmor) übernommen
-* Auto Build via GitHub Actions des [PDFs](https://github.com/entorb/hpmor-de/releases/download/WorkInProgress/hpmor.pdf)
-* Erste [Kapitel](https://github.com/entorb/hpmor-de/tree/master/chapters) übersetzt
-* [Skript zur automatischen Korrektur](https://github.com/entorb/hpmor-de/blob/master/check-chapters.py) häufiger Fehler im Schriftsatz geschrieben
-
-
-
+* [x] [englisches Repo](https://github.com/rrthomas/hpmor) als Vorlange verwendet
+* [x] Layout des [französischen Repos](https://github.com/yeKcim/hpmor) adaptiert
+* [x] Auto Build via GitHub Actions
+* [x] Alle [Kapitel](https://github.com/entorb/hpmor-de/tree/master/chapters) aus 4 verschiedenen [Übersetzungen](https://github.com/entorb/hpmor-de/wiki/Mitmachen#%C3%9Cbersetzungen) zusammengetragen
+* [x] Im Quellcode den englischen Originaltext vor jedem Absatz auskommentiert aufgehoben
+* [x] [Skript zum Qualitätssicherung häufiger bekannter Fehler](https://github.com/entorb/hpmor-de/blob/master/check-chapters.py) der Build-Pipeline vorgeschaltet
 
 
 
@@ -249,8 +236,7 @@ Note: there are other translations of HPMOR; here are listed only
 translations of this edition.
 
 * [French](https://github.com/yeKcim/hpmor) (complete)
-* [German](https://github.com/entorb/hpmor-de) (in progress, volumes 1-2
-(chapters 1–38) finished)
+* [German](https://github.com/entorb/hpmor-de) (complete)
 
 
 <!--  LocalWords:  hpmor tex hp txt latexmkrc latexmk GNUMakefile 80gsm '
