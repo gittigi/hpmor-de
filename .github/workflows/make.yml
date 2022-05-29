@@ -1,11 +1,11 @@
-name: build HPMOR PDFs and eBooks
+name: build PDF and eBooks
 
 # controls when the action will run.
 # workflow_dispatch: manual triggering
 # push: triggers the workflow on push request events but only for the master branch
-on:  
-  workflow_dispatch:    
-  push: 
+on:
+  workflow_dispatch:
+  push:
     branches: [ master ]
 
 # a workflow run is made up of one or more jobs that can run sequentially or in parallel
@@ -45,7 +45,7 @@ jobs:
       run: python3 check-chapters.py
 
     - name: install requirements
-      run: sh install_requirements.sh
+      run: sh install_requirements.sh > /dev/null
 
     - name: print versions
       run: |
