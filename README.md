@@ -11,7 +11,12 @@ Dies ist ein OpenSource Projekt, gestartet von [Torben Menke](https://entorb.net
 
 J. K. Rowling owns Harry Potter, and no one owns the methods of rationality.
 
-[Aktuelle Version von PDFs und eBooks](https://github.com/entorb/hpmor-de/releases/download/WorkInProgress/)
+Großer Dank gebührt den initialen Übersetzern: [Jost (Kapitel 1-21)](https://www.fanfiktion.de/s/4cb8beb50000203e067007d0/),
+[Patneu (Kapitel 22-38)](https://www.fanfiktion.de/s/55610c610004dede273a3811/), 
+[DieFuechsin (Kapitel 39-78)](https://www.fanfiktion.de/s/5c793dfe000a402030774dc7/) und
+[Schneefl0cke (Kapitel 79-122)](https://www.fanfiktion.de/s/60044849000ccc541aef297e/)
+
+Hier gibt es die [aktuelle Version von PDFs und eBooks](https://github.com/entorb/hpmor-de/releases/download/WorkInProgress/)
 
 ## Mitmachen
 * Über Feedback, [Vorschläge](https://github.com/entorb/hpmor-de/issues) und [Mitarbeit](https://github.com/entorb/hpmor-de/wiki/Mitmachen) freue ich mich sehr.
@@ -19,12 +24,13 @@ J. K. Rowling owns Harry Potter, and no one owns the methods of rationality.
 * Bei Fragen und Verbesserungsvorschlägen einfach ein [Ticket](https://github.com/entorb/hpmor-de/issues) öffnen oder mich direkt [kontaktieren](https://entorb.net/hpmor/contact.php?origin=HPMOR)
 
 ## Links / Navigation
-* [Aktuelle Version von PDFs und eBooks](https://github.com/entorb/hpmor-de/releases/download/WorkInProgress/) (automatisch aktualisiert bei Änderungen)
+* [Aktuelle Version (PDFs und eBooks)](https://github.com/entorb/hpmor-de/releases/download/WorkInProgress/) (automatisch aktualisiert bei Änderungen)
 * [Mitmach-Anleitung](https://github.com/entorb/hpmor-de/wiki/Mitmachen)
 * [Liste der Issues und Ideen](https://github.com/entorb/hpmor-de/issues)
 * [Quelltext der Kapitel](https://github.com/entorb/hpmor-de/tree/master/chapters)
 * Quellen der [Übersetzungen](https://github.com/entorb/hpmor-de/wiki/Mitmachen#%C3%9Cbersetzungen)
 * Weitere Links und Quellen, siehe [Links](https://github.com/entorb/hpmor-de/wiki/Mitmachen#links) in der [Mitmach-Anleitung](https://github.com/entorb/hpmor-de/wiki/Mitmachen)
+* Weitere Übersetzungen, siehe [hpmor.com](http://www.hpmor.com/info/) und [Wikipeida](https://en.wikipedia.org/wiki/Harry_Potter_and_the_Methods_of_Rationality#Translations)
 
 ## Fortschritte dieses Projekts
 * [x] [englisches Repo](https://github.com/rrthomas/hpmor) als Vorlange verwendet
