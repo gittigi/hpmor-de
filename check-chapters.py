@@ -29,6 +29,9 @@ import difflib
 # TO chars manually find and replace
 # *, ", ', », «, ”,
 
+# continue sentence in lower case
+# (,“[^„]+„)([A-Z]) -> \1\l\2
+
 # shall we modify the source file?
 # USE WITH CAUTION!!!
 inline_fixing = False
