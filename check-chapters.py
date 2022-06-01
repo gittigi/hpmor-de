@@ -377,6 +377,8 @@ def fix_hyphens(s: str) -> str:
     # s = re.sub(r"— ", r"—", s)
     # " - " -> "—"
     s = s.replace(" - ", "—")
+    # remove space before — followed by punctuation
+    s = re.sub(r" —([,\.!\?;])", r"—\1", s)
 
     # - at start of line
     s = re.sub(r"^[\-—] *", r"—", s)
