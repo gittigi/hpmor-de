@@ -13,13 +13,14 @@ source_file="hpmor-epub-4-html-1.html"
 target_file="hpmor-epub-5-html-2.html"
 cp $source_file $target_file
 
-# cleanup of title/header leftovers: # <p>‘ ‘ ‘ ‘ ‘̇ ‘  ‘ ‘ ‘ ‘</p>
+# remove strange leftovers between header and Disclaimer "Dies ist ein OpenSource Projekt..."
 # -z changes the delimiter to null characters (\0)
-sed -i -z 's/<\/header>.*<p>HARRY POTTER<\/p>/<\/header>\n<p>HARRY POTTER<\/p>/' $target_file
+# sed -i -z 's/<\/header>.*<p>HARRY POTTER<\/p>/<\/header>\n<p>HARRY POTTER<\/p>/' $target_file
+# for some strange reason the "<" is lost and needs to be added manually
+sed -i -z 's|\(\<\header>\).*\(\<p>Dies ist ein\)|\1\n<\2|' $target_file
+# sed -i -z -E 's|\<\header>.*|\n123|' $target_file
 
-# TODO: this causes trouble
-# sed -i '/<p>‘ ‘ ‘ ‘ ‘̇ ‘  ‘ ‘ ‘ ‘<\/p>/,/bubble.png/d' hpmor.html
-
+# converting "color-marked" styles back to proper style classes
 sed -i 's/<div style=\"color: YellowBlue\">/<div class=\"writtenNote\">/g' $target_file
 sed -i 's/<span style=\"color: YellowBlue\">/<span class=\"writtenNote\">/g' $target_file
 sed -i 's/<span style=\"color: YellowOrange\">/<span class=\"parsel\">/g' $target_file
