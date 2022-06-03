@@ -169,6 +169,8 @@ def fix_dots(s: str) -> str:
 
     # … at end of quotation ' …"' -> '…"'
     s = s.replace(' …"', '…"')
+    # before comma
+    s = s.replace(" …,", "…,")
     if settings["lang"] == "EN":
         s = s.replace(" …”", "…”")
     if settings["lang"] == "DE":
@@ -373,6 +375,8 @@ def fix_hyphens(s: str) -> str:
     # hyphens: (space-hyphen-space) should be "—" (em dash).
     # trim space around em-dash
     s = s.replace(" — ", "—")
+    # shorter dash as well
+    s = s.replace(" – ", "—")
     # NOT for '— ' as in ', no— “I'
     # s = re.sub(r"— ", r"—", s)
     # " - " -> "—"
