@@ -3,40 +3,17 @@
 # based on work by yeKcim
 # https://github.com/yeKcim/hpmor/tree/master/ebook
 
-echo === 5. HTML modifications ===
+echo === 5. LaTeX -\> HTML via pandoc ===
 
 # ensure we are in the hpmor root dir
 script_dir=$(cd `dirname $0` && pwd)
 cd $script_dir/..
 
-source_file="hpmor-epub-4-html-1.html"
-target_file="hpmor-epub-5-html-2.html"
-cp $source_file $target_file
+source_file="hpmor-epub-4-flatten-mod2.tex"
+target_file="hpmor-epub-5-html-1.html"
 
-# remove strange leftovers between header and Disclaimer "Dies ist ein OpenSource Projekt..."
-# -z changes the delimiter to null characters (\0)
-# sed -i -z 's/<\/header>.*<p>HARRY POTTER<\/p>/<\/header>\n<p>HARRY POTTER<\/p>/' $target_file
-# for some strange reason the "<" is lost and needs to be added manually
-sed -i -z 's|\(\<\header>\).*\(\<p>Dies ist ein\)|\1\n<\2|' $target_file
-# sed -i -z -E 's|\<\header>.*|\n123|' $target_file
+# LaTeX -> HTML
+title=$(grep "pdftitle=" layout/hp-header.tex | awk -F '[{}]' '{print $2}')
+author=$(grep "pdfauthor=" layout/hp-header.tex | awk -F '[{}]' '{print $2}')
 
-# converting "color-marked" styles back to proper style classes
-sed -i 's/<div style=\"color: YellowBlue\">/<div class=\"writtenNote\">/g' $target_file
-sed -i 's/<span style=\"color: YellowBlue\">/<span class=\"writtenNote\">/g' $target_file
-sed -i 's/<span style=\"color: YellowOrange\">/<span class=\"parsel\">/g' $target_file
-sed -i 's/<div style=\"color: YellowOrange\">/<div class=\"parsel\">/g' $target_file
-sed -i 's/<span style=\"color: YellowGreen\">/<span class=\"headline\">/g' $target_file
-sed -i 's/<span style=\"color: YellowRed\">/<span class=\"mcgonagallboard\">/g' $target_file
-
-# add css format for \emph in \emph 
-# alternatively via -c and css file
-
-sed -i -e '/<style/r ebook/epub.css' $target_file
-
-# remove pdf graphics
-grep -v ".pdf" $target_file > "$target_file.tmp"
-cp "$target_file.tmp" $target_file
-rm "$target_file.tmp"
-
-
-cp $target_file hpmor.html
+pandoc --standalone --from=latex+latex_macros $source_file -o $target_file --metadata title="$title" --metadata author="$author"

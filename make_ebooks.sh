@@ -3,12 +3,15 @@
 # TODO:
 # image of last page
 
+sh ebook/0.sh
 sh ebook/1.sh
 sh ebook/2.sh
-sh ebook/3.sh
-sh ebook/4.sh
+# sh ebook/3.sh
+python3 ebook/3.py
+python3 ebook/4.py
 sh ebook/5.sh
-sh ebook/6.sh
+# sh ebook/6.sh
+python3 ebook/6.py
 sh ebook/7.sh
 
 # rm -rf hpmor-epub*.tex

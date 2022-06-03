@@ -3,7 +3,7 @@
 # based on work by yeKcim
 # https://github.com/yeKcim/hpmor/tree/master/ebook
 
-echo === 6. extract cover from PDF to image===
+echo === 0. extract cover from PDF to image===
 
 # ensure we are in the hpmor root dir
 script_dir=$(cd `dirname $0` && pwd)

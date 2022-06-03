@@ -19,23 +19,35 @@
 
 % \parsel
 \newcommand{\parselify}[1]{%
+% ss -> ß
 \StrSubstitute{#1}{ss}{ß}[\parselstring]%
+% s -> ss
 \StrSubstitute{\parselstring}{s}{ss}[\parsselstring]%
+% ß -> sss
 \StrSubstitute{\parsselstring}{ß}{sss}[\parssselstring]%
+% S -> Ss
 \StrSubstitute{\parssselstring}{S}{Ss}[\parsssselstring]% for DE
-\StrSubstitute{\parsssselstring}{z}{zz}[\parssssselstring]% for DE
-\StrSubstitute{\parssssselstring}{Z}{Zz}[\parsssssselstring]% for DE
+% x -> xs
+\StrSubstitute{\parsssselstring}{x}{xs}[\parxelstring]% for DE
+% zz -> ß
+\StrSubstitute{\parxelstring}{zz}{ß}[\parzzelstring]% for DE
+% z -> zz
+\StrSubstitute{\parzzelstring}{z}{zz}[\parzzzelstring]% for DE
+% ß -> zzz
+\StrSubstitute{\parzzzelstring}{ß}{zzz}[\parzzzzelstring]% for DE
+% Z -> Zz
+\StrSubstitute{\parzzzzelstring}{Z}{Zz}[\parzzzzzelstring]% for DE
 }
 %
 % old version of parsel
-\newcommand\parsela[1]{\parselify{#1}{\ptsansi\parsssssselstring}}
+\newcommand{\parsela}[1]{\parselify{#1}{\ptsansi\parzzzzzelstring}}
 %
 % new FR version of parsel
 % N.B. Other commands, such as \emph, cannot be used inside \parsel
-\newcommand\parselb[1]{{\fontspec[ExternalLocation]{Parseltongue.ttf}#1}{\ptsansi}} % no more \parselify (can’t convert to epub)
+\newcommand{\parselb}[1]{{\fontspec[ExternalLocation]{Parseltongue.ttf}#1}{\ptsansi}} % no more \parselify (can’t convert to epub)
 %
 % select one of above
-\newcommand\parsel[1]{\parsela{#1}}
+\newcommand{\parsel}[1]{\parsela{#1}}
 
 % \spell macro experiments
 %
@@ -60,7 +72,7 @@
 
 % McGonagall Whiteboard (chapter15)
 %
-\newcommand\McGonagallWhiteBoard[1]{
+\newcommand{\McGonagallWhiteBoard}[1]{
 \begin{center}%
 \fontspec[ExternalLocation,Color=AA0000]{Automobile Contest.ttf}
 \textcolor{blue}{\Huge{\underline{\textcolor{red}{#1}}}}%
@@ -127,21 +139,30 @@
 
 % PartChapters
 %
+% \partchapter{Das Stanford-Prison-Experiment}{V}
 % \partchapter{The Stanford Prison Experiment}{TSPE}{XIII}{Aftermaths}
 % TOC: TSPE part XIII: Aftermaths
 % Page header: The Stanford Prison Experiment XIII: \\? Aftermaths
 % Title: The Stanford Prison Experiment, Part XIII: \\? Aftermaths
 \newcommand{\partchapter}[3][\relax]{%
-\chapter[\texorpdfstring{#2, \abbrev{Teil #3}}{#2, Teil #3}]%
-[#2 #3]{#2, Teil~#3#1}}
+% \chapter[\texorpdfstring{#2, \abbrev{Teil #3}}{#2, Teil #3}]%
+% [#2 #3]{#2, Teil~#3#1}}
+\chapter[#2~#3]%
+[#2~#3]{#2~#3#1}}
 
+% \namedpartchapter{The Stanford Prison Experiment}{TSPE}{VII}{Constrained Cognition}
 \newcommand{\namedpartchapter}[5][\relax]{%
+% \chapter[%
+% \texorpdfstring{%
+% \abbrev{#3, Teil #4}: #5}{%
+% #3, Teil #4: #5}][%
+% \mbox{#2 #4:} \mbox{#5}]{%
+% #2, Teil~#4:\protect\linebreak[1] #5#1}%
+% }
 \chapter[%
-\texorpdfstring{%
-\abbrev{#3, Teil #4}: #5}{%
-#3, Teil #4: #5}][%
+#3~#4: #5][%
 \mbox{#2 #4:} \mbox{#5}]{%
-#2, Teil~#4:\protect\linebreak[1] #5#1}%
+#2~#4:\protect\linebreak[1] #5#1}%
 }
 
 % Hanging paras for play scripts (used in Omake IV)
@@ -183,7 +204,7 @@ E.~Y.:~
 
 % Text break made of \Stars (only used to define other commands)
 \makeatletter
-\def\sbre@k{\mbox{}\nobreak\hfill\mbox{}\allowbreak\rule{.60\textwidth}{.0pt}\par%
+\def\sbreak{\mbox{}\nobreak\hfill\mbox{}\allowbreak\rule{.60\textwidth}{.0pt}\par%
 \vskip 0pt plus 2\baselineskip\noindent{%
 \parbox[c][0pt][c]{\textwidth}{%
 \hfil \hbox{\lower14pt\hbox{\normalsize\Stars}}%
@@ -191,10 +212,10 @@ E.~Y.:~
 }}
 
 % A standalone break
-\def\later{\sbre@k%
+\def\later{\sbreak%
 \vskip 0pt plus 2\baselineskip%
 \par\rule{.5\textwidth}{.0pt}\vskip1pt\noindent}
 
 % A break followed by a new section
-\newcommand{\latersection}[1]{\sbre@k\section{#1}}
+\newcommand{\latersection}[1]{\sbreak\section{#1}}
 \makeatother
