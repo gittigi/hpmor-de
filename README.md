@@ -23,15 +23,6 @@ Hier gibt es die [aktuelle Version von PDFs und eBooks](https://github.com/entor
 * Siehe die [Mitmach-Anleitung](https://github.com/entorb/hpmor-de/wiki/Mitmachen)
 * Bei Fragen und Verbesserungsvorschlägen einfach ein [Ticket](https://github.com/entorb/hpmor-de/issues) öffnen oder mich direkt [kontaktieren](https://entorb.net/hpmor/contact.php?origin=HPMOR)
 
-## Links / Navigation
-* [Aktuelle Version (PDFs und eBooks)](https://github.com/entorb/hpmor-de/releases/download/WorkInProgress/) (automatisch aktualisiert bei Änderungen)
-* [Mitmach-Anleitung](https://github.com/entorb/hpmor-de/wiki/Mitmachen)
-* [Liste der Issues und Ideen](https://github.com/entorb/hpmor-de/issues)
-* [Quelltext der Kapitel](https://github.com/entorb/hpmor-de/tree/master/chapters)
-* Quellen der [Übersetzungen](https://github.com/entorb/hpmor-de/wiki/Mitmachen#%C3%9Cbersetzungen)
-* Weitere Links und Quellen, siehe [Links](https://github.com/entorb/hpmor-de/wiki/Mitmachen#links) in der [Mitmach-Anleitung](https://github.com/entorb/hpmor-de/wiki/Mitmachen)
-* Weitere Übersetzungen, siehe [hpmor.com](http://www.hpmor.com/info/) und [Wikipeida](https://en.wikipedia.org/wiki/Harry_Potter_and_the_Methods_of_Rationality#Translations)
-
 ## Fortschritte dieses Projekts
 * [x] [englisches Repo](https://github.com/rrthomas/hpmor) als Vorlange verwendet
 * [x] Layout des [französischen Repos](https://github.com/yeKcim/hpmor) adaptiert
@@ -39,8 +30,46 @@ Hier gibt es die [aktuelle Version von PDFs und eBooks](https://github.com/entor
 * [x] Alle [Kapitel](https://github.com/entorb/hpmor-de/tree/master/chapters) aus 4 verschiedenen [Übersetzungen](https://github.com/entorb/hpmor-de/wiki/Mitmachen#%C3%9Cbersetzungen) zusammengetragen
 * [x] Im Quellcode den englischen Originaltext vor jedem Absatz auskommentiert aufgehoben
 * [x] [Skript zum Qualitätssicherung häufiger bekannter Fehler](https://github.com/entorb/hpmor-de/blob/master/check-chapters.py) der Build-Pipeline vorgeschaltet
+* [x] eBook-Erstellskripte komplett neu geschrieben (inspiriert vom [FR Repo](https://github.com/yeKcim/hpmor))
+
+## Links / Navigation
+### Navigation
+* [Aktuelle Version (PDFs und eBooks)](https://github.com/entorb/hpmor-de/releases/download/WorkInProgress/) (automatisch aktualisiert bei Änderungen)
+* [Mitmach-Anleitung](https://github.com/entorb/hpmor-de/wiki/Mitmachen)
+* [Liste der Issues und Ideen](https://github.com/entorb/hpmor-de/issues)
+* [Quelltext der Kapitel](https://github.com/entorb/hpmor-de/tree/master/chapters)
+* Quellen der [Übersetzungen](https://github.com/entorb/hpmor-de/wiki/Mitmachen#%C3%9Cbersetzungen)
+* Weitere Links und Quellen, siehe [Links](https://github.com/entorb/hpmor-de/wiki/Mitmachen#links) in der [Mitmach-Anleitung](https://github.com/entorb/hpmor-de/wiki/Mitmachen)
+
+### Weitere Links
+* [EN Originaltext auf hpmor.com](https://www.hpmor.com/)
+* [Überarbeitetes EN PDF und eBook](https://github.com/rrthomas/hpmor/releases/tag/WorkInProgress)
+* Liste der internationalen Übersetzungen, siehe [hpmor.com](http://www.hpmor.com/info/) und [Wikipeida](https://en.wikipedia.org/wiki/Harry_Potter_and_the_Methods_of_Rationality#Translations)
+* [EN Audiobook / Podcast by Eneasz Brodski)](https://hpmorpodcast.com/) - [at Apple](https://podcasts.apple.com/de/podcast/podcast-the-methods-of-rationality-podcast/id431784580?i=1000473946812) - [at Spotify](https://open.spotify.com/episode/3up7VkwoJUTNMwaM6j6qvs?si=Gx3LsHH9SY-v5TOYJHrUxw&dl_branch=1) (complete)
+* [EN Audiobook by Jack Voraces](https://voraces.podbean.com/) - [at Apple](https://podcasts.apple.com/gb/podcast/harry-potter-and-the-methods-of-rationality-audiobook/id1465181848) - [at Spotify](https://open.spotify.com/show/4MCs8UYpoBlNp4aRfzB3a5) - [at Audible](https://www.amazon.com/Harry-Potter-Methods-Rationality/dp/B08JJSF4B3) (in progress)
+* [DE Audiobook at YouTube](https://www.youtube.com/watch?v=h32Ht-HUbL0&list=PLfgJSXz3-j3aYhWyR3Q5JzcI3h_eibPls) (in progress)
+* [Subreddit r/HPMOR](https://www.reddit.com/r/HPMOR/)
+
+### DE Übersetzungen
+* [Jost](https://www.fanfiktion.de/s/4cb8beb50000203e067007d0/) Kapitel 1-21
+* [Patneu](https://www.fanfiktion.de/s/55610c610004dede273a3811/) Kapitel 1-38
+* [TralexHPMOR](https://www.fanfiktion.de/s/59a29b7f000813c22ec1454b/) Kapitel 22-26
+* [DieFuechsin](https://www.fanfiktion.de/s/5c793dfe000a402030774dc7/) Kapitel 34-78
+* [Schneefl0cke](https://www.fanfiktion.de/s/60044849000ccc541aef297e/) komplett
+
+### Andere HPMOR Latex/PDF Repositories
+* [EN LaTeX/PDF Repo](https://github.com/rrthomas/hpmor) origin dieses Forks
+* [FR LaTeX/PDF Repo](https://github.com/yeKcim/hpmor) mit vielen guten Layout Ideen
+* [DE LaTeX/PDF Repo von elkablo](https://github.com/elkablo/hpmor) für Kapitel 1-21, basierend auf der Übersetzung von [Jost](https://www.fanfiktion.de/s/4cb8beb50000203e067007d0/)
+
+### Follow-up stuff
+Only proceed **after** reading/listening to the story, as these contain spoilers
+* [Epiloque: A Crack Slash Epilogue by Alexander Wales](https://www.fanfiction.net/s/11293489/1/A-Crack-Slash-Epilogue)
+* [Beautiful 10min video summary/fan tribute](https://youtube.com/watch?v=aT_q646lJVo) 
 
 
+
+<hr>
 
 
 # Readme des EN Quell-Repos:
