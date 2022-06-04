@@ -34,14 +34,14 @@ cont = re.sub(
 
 # remove ids from chapters since umlaute cause problem
 cont = re.sub(
-    r'<h(\d) id="[^"]+"',
-    r"<h\1",
+    r'(<h\d) id="[^"]+"',
+    r"\1",
     cont,
     flags=re.DOTALL | re.IGNORECASE,
 )
 cont = re.sub(
-    r'<h(\d) class="unnumbered" id="[^"]+"',
-    r"<h\1",
+    r'(<h\d class="unnumbered") id="[^"]+"',
+    r"\1",
     cont,
     flags=re.DOTALL | re.IGNORECASE,
 )
@@ -74,7 +74,7 @@ cont = cont.replace("<p>E. Y.: </p>\n<p>", "<p>E.Y.: ")
 # converting "color-marked" styles of 1.sh back to proper style classes
 cont = re.sub(
     r'<(div|span) style="color: (parsel|writtenNote|McGonagallWhiteBoard|headline)"',
-    r'<\1 class="\1"',
+    r'<\1 class="\2"',
     cont,
 )
 
