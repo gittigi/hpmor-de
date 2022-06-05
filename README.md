@@ -16,7 +16,7 @@ Großer Dank gebührt den initialen Übersetzern: [Jost (Kapitel 1-21)](https://
 [DieFuechsin (Kapitel 39-78)](https://www.fanfiktion.de/s/5c793dfe000a402030774dc7/) und
 [Schneefl0cke (Kapitel 79-122)](https://www.fanfiktion.de/s/60044849000ccc541aef297e/)
 
-Hier gibt es die [aktuelle Version von PDFs und eBooks](https://github.com/entorb/hpmor-de/releases/download/WorkInProgress/)
+Hier gibt es die [aktuelle Version von PDFs und eBooks](https://github.com/entorb/hpmor-de/releases/tag/WorkInProgress)
 
 ## Mitmachen
 * Über Feedback, [Vorschläge](https://github.com/entorb/hpmor-de/issues) und [Mitarbeit](https://github.com/entorb/hpmor-de/wiki/Mitmachen) freue ich mich sehr.
@@ -34,7 +34,7 @@ Hier gibt es die [aktuelle Version von PDFs und eBooks](https://github.com/entor
 
 ## Links / Navigation
 ### Navigation
-* [Aktuelle Version (PDFs und eBooks)](https://github.com/entorb/hpmor-de/releases/download/WorkInProgress/) (automatisch aktualisiert bei Änderungen)
+* [Aktuelle Version (PDFs und eBooks)](https://github.com/entorb/hpmor-de/releases/tag/WorkInProgress) (automatisch aktualisiert bei Änderungen)
 * [Mitmach-Anleitung](https://github.com/entorb/hpmor-de/wiki/Mitmachen)
 * [Liste der Issues und Ideen](https://github.com/entorb/hpmor-de/issues)
 * [Quelltext der Kapitel](https://github.com/entorb/hpmor-de/tree/master/chapters)
