@@ -47,7 +47,8 @@ Hier gibt es die [aktuelle Version von PDFs und eBooks](https://github.com/entor
 * Liste der internationalen Übersetzungen, siehe [hpmor.com](http://www.hpmor.com/info/) und [Wikipeida](https://en.wikipedia.org/wiki/Harry_Potter_and_the_Methods_of_Rationality#Translations)
 * [EN Audiobook / Podcast by Eneasz Brodski)](https://hpmorpodcast.com/) - [at Apple](https://podcasts.apple.com/de/podcast/podcast-the-methods-of-rationality-podcast/id431784580?i=1000473946812) - [at Spotify](https://open.spotify.com/episode/3up7VkwoJUTNMwaM6j6qvs?si=Gx3LsHH9SY-v5TOYJHrUxw&dl_branch=1) (complete)
 * [EN Audiobook by Jack Voraces](https://voraces.podbean.com/) - [at Apple](https://podcasts.apple.com/gb/podcast/harry-potter-and-the-methods-of-rationality-audiobook/id1465181848) - [at Spotify](https://open.spotify.com/show/4MCs8UYpoBlNp4aRfzB3a5) - [at Audible](https://www.amazon.com/Harry-Potter-Methods-Rationality/dp/B08JJSF4B3) (in progress)
-* [DE Audiobook at YouTube](https://www.youtube.com/watch?v=h32Ht-HUbL0&list=PLfgJSXz3-j3aYhWyR3Q5JzcI3h_eibPls) (in progress)
+* [DE Audiobook/Podcast by hpmoraudio.de](https://hpmoraudio.de) (in progress)
+* [DE Audiobook by Tralex HPMOR at YouTube](https://www.youtube.com/watch?v=h32Ht-HUbL0&list=PLfgJSXz3-j3aYhWyR3Q5JzcI3h_eibPls) (in progress)
 * [Subreddit r/HPMOR](https://www.reddit.com/r/HPMOR/)
 
 ### DE Übersetzungen
@@ -58,8 +59,9 @@ Hier gibt es die [aktuelle Version von PDFs und eBooks](https://github.com/entor
 * [Schneefl0cke](https://www.fanfiktion.de/s/60044849000ccc541aef297e/) komplett
 
 ### Andere HPMOR Latex/PDF Repositories
-* [EN LaTeX/PDF Repo](https://github.com/rrthomas/hpmor) origin dieses Forks
-* [FR LaTeX/PDF Repo](https://github.com/yeKcim/hpmor) mit vielen guten Layout Ideen
+* [EN LaTeX/PDF Repo von rrthomas (Übernommen von rjl20)](https://github.com/rrthomas/hpmor) origin dieses Forks
+* [EN LaTeX/PDF Repo von xenohedron](https://github.com/xenohedron/hpmor-xetex) Fork von rrthomas' Repo, u.a. mit Kapitel 1-4 in der "Daystar" Version
+* [FR LaTeX/PDF Repo von yeKcim](https://github.com/yeKcim/hpmor) mit vielen guten Layout Ideen
 * [DE LaTeX/PDF Repo von elkablo](https://github.com/elkablo/hpmor) für Kapitel 1-21, basierend auf der Übersetzung von [Jost](https://www.fanfiktion.de/s/4cb8beb50000203e067007d0/)
 
 ### Follow-up stuff
