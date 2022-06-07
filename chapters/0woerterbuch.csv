@@ -3,7 +3,7 @@ x,aftermath,Nachwirkungen -> Nachspiel
 ,Ancient House,Altes Geschlecht
 ,Noble and Most Ancient House,Altehrwürdiges Geschlecht
 ,betrayed,hintergangen (Kaptiel 100++)
-,Boy-Who-Lived,Junge-der-überlebte
+x,Boy-Who-Lived,Junge-der-überlebte
 ,broomstick team,Besenteam
 ,Chaos Legion,Chaoslegion
 ,Chaos Legionnaires,Chaoslegionäre
@@ -53,7 +53,8 @@ x,You-Know-Who,Du-weißt-schon-wer
 ,,
 ,DE-alt,DE-neu
 ,Comed-Tea,Seltsaft
-,Junge-der-lebte,Junge-der-überlebte
+x,Junge-der-lebte,Junge-der-überlebte
+x,Jungen-der-lebte,Jungen-der-überlebte
 x,Mama/Mutter,Mum
 ,Oberste(r) Hexenmeister/Großmeister
 x,Papa,Dad

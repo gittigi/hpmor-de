@@ -231,8 +231,10 @@ def fix_common_typos(s: str) -> str:
         s = s.replace("Avadakedavra", "Avada Kedavra")
         s = s.replace("Diagon Alley", "Winkelgasse")
         s = s.replace("Hermione", "Hermine")
-        s = re.sub(r"Junge\-der\-(überlebt\-hat|überlebte)\b", r"Junge-der-lebte", s)
-        s = re.sub(r"Junge, der lebte\b", r"Junge-der-lebte", s)
+        s = re.sub(
+            r"Junge\-der\-(überlebt\-hat|überlebte)\b", r"Junge-der-überlebte", s
+        )
+        s = re.sub(r"Junge, der lebte\b", r"Junge-der-überlebte", s)
         s = s.replace("Muggelforscher", "Muggelwissenschaftler")
         s = s.replace("Wizengamot", "Zaubergamot")
         s = s.replace("S.P.H.E.W.", "\SPHEW")
