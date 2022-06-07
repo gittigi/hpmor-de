@@ -411,6 +411,8 @@ def fix_hyphens(s: str) -> str:
     #     s = re.sub(r"—“", r"— “", s) # rrthomas voted againt it
     if settings["lang"] == "DE":
         s = re.sub(r"—„", r"— „", s)
+        s = re.sub(r"„— ", r"„—", s)
+
     # at end of quote
     if settings["lang"] == "EN":
         s = re.sub(r"(\s*)\-”", r"—”\1", s)
