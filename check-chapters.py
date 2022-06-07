@@ -292,8 +292,8 @@ def fix_quotations(s: str) -> str:
         s = re.sub(r" +“", r"“ ", s)
 
     # space between "…" and "“"
-    if settings["lang"] == "EN":
-        s = re.sub(r"…„", r"… “", s)
+    # if settings["lang"] == "EN":
+    #     s = re.sub(r"…„", r"… “", s)     # rrthomas voted againt it
     if settings["lang"] == "DE":
         s = re.sub(r"…„", r"… „", s)
 
@@ -387,12 +387,15 @@ def fix_hyphens(s: str) -> str:
     # - at start of line
     s = re.sub(r"^[\-—] *", r"—", s)
     # - at start of line
-    s = re.sub(r" [\-—]$", r"—", s)
+    # if settings["lang"] == "EN":
+    #     s = re.sub(r" [\-—]$", r"—", s) # rrthomas voted againt it
+    if settings["lang"] == "DE":
+        s = re.sub(r" [\-—]$", r"—", s)
     # - at end of emph
     s = re.sub(r"(\s*)\-\}", r"—}\1", s)
     # at start of quote
-    if settings["lang"] == "EN":
-        s = re.sub(r"—“", r"— “", s)
+    # if settings["lang"] == "EN":
+    #     s = re.sub(r"—“", r"— “", s) # rrthomas voted againt it
     if settings["lang"] == "DE":
         s = re.sub(r"—„", r"— „", s)
     # at end of quote
