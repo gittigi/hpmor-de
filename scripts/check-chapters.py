@@ -17,6 +17,12 @@ import os
 import re
 import json
 import difflib
+import sys
+
+# ensure we are in hpmor root dir
+dir_root = os.path.dirname(sys.argv[0]) + "/.."
+os.chdir(dir_root)
+
 
 # pos lookahead: (?=...)
 # neg lookahead: (?!...)
@@ -39,7 +45,9 @@ inline_fixing = False
 
 
 # read settings from check-chapters.json
-with open("check-chapters.json", mode="r", encoding="utf-8") as fh:
+with open(
+    os.path.dirname(sys.argv[0]) + "/check-chapters.json", mode="r", encoding="utf-8"
+) as fh:
     settings = json.load(fh)
 
 

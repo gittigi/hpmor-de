@@ -32,7 +32,9 @@ list_of_latex_commands_to_search_for = [
 # set repo language to compare with
 other_lang = "en"
 
-os.chdir(os.path.dirname(sys.argv[0]))
+# ensure we are in chapter dir
+dir_root = os.path.dirname(sys.argv[0]) + "/.."
+os.chdir(dir_root + "/chapters")
 
 translations = {
     "en": {
