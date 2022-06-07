@@ -259,16 +259,15 @@ def fix_quotations(s: str) -> str:
     # in EN the quotations are “...” and ‘...’ (for quotations in quotations)
     # in DE the quotations are „...“ and ‚...‘ (for quotations in quotations)
 
-    # "....." -> “.....”
+    # "..." -> “...”
     if settings["lang"] == "EN":
         s = re.sub(r'"([^"]+)"', r"“\1”", s)
     if settings["lang"] == "DE":
         s = re.sub(r'"([^"]+)"', r"„\1“", s)
 
-    # '.....' -> ‘...’
+    # '...' -> ‘...’
     if settings["lang"] == "EN":
         s = re.sub(r"'([^']+)'", r"‘\1’", s)
-
     if settings["lang"] == "DE":
         s = re.sub(r"'([^']+)'", r"‚\1‘", s)
 
@@ -334,10 +333,11 @@ def fix_quotations(s: str) -> str:
     #    if settings["lang"] == "EN":
     #        s = re.sub(r"(?<![\.,!\?;])(?<![\.,!\?;]\})”,", r",”", s)
     if settings["lang"] == "DE":
-        s = re.sub(r"(?<![\.,!\?;])(?<![\.,!\?;]\})“,", r",“", s)
+        # not, this is wrong, it is correct to have „...“,
+        # s = re.sub(r"(?<![\.,!\?;])(?<![\.,!\?;]\})“,", r",“", s)
+        s = re.sub(r"(?<![\.,!\?;]),“", r"“,", s)
 
     # nested single quote + emph
-
     if settings["lang"] == "EN":
         s = re.sub(r"‘\\emph{([^}]+)}’", r"‘\1’", s)
         s = re.sub(r"\\emph{‘([^}]+)’}", r"‘\1’", s)
