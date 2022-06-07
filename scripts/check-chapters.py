@@ -272,8 +272,13 @@ def fix_quotations(s: str) -> str:
         s = re.sub(r"'([^']+)'", r"‚\1‘", s)
 
     if settings["lang"] == "DE":
+        # fix bad single word quotes
+        # ’Ja‘ -> ‚Ja‘
+        s = re.sub(r"’([^ ]+?)‘", r"‚\1‘", s)
         # migrate EN quotations
         s = re.sub(r"“([^“”]+?)”", r"„\1“", s)
+        # migrate EN single quotations
+        s = re.sub(r"‘([^‘’]+?)’", r"‚\1‘", s)
         # migrate FR quotations »...«
         s = re.sub(r"»([^»«]+?)«", r"„\1“", s)
 
