@@ -25,8 +25,11 @@ list_of_latex_commands_to_search_for = [
     "\\inlineheadline",
     "\\SPHEW",
     "\\spell",
-    "\\begin{writtenNote}"
-    # "\\emph",
+    "\\begin{writtenNote}",
+    "\\begin{em}",
+    "\\emph",
+    "—",
+    "…",
 ]
 
 # set repo language to compare with
