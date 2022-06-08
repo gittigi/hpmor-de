@@ -31,6 +31,7 @@ os.chdir(dir_root)
 
 # TODO:
 # \latersection must be at newline
+# add \spell macro
 
 # TO chars manually find and replace
 # *, ", ', », «, ”,
@@ -163,7 +164,7 @@ def fix_latex(s: str) -> str:
     # Latex: \begin and \end{...} at new line
     s = re.sub(r"([^\s+%])\s*\\(begin|end)\{", r"\1\n\\\2{", s)
     # Latex: \\ at new line
-    s = re.sub(r"\\\\\s*(?=[^$%])", r"\\\\\n", s)
+    s = re.sub(r"\\\\\s*(?=[^$%\[]])", r"\\\\\n", s)
     return s
 
 
