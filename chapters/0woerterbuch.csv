@@ -63,15 +63,19 @@ x,Papa,Dad
 ,Spells,Zauber
 ,Cruciatus Curse,Cruciatus-Fluch
 ,Confundus Charm,Confundus-Zauber
-,Diffindo,Diffindo
+s,Diffindo,Diffindo
 ,Drill Hex,Schildbrecher/Schlagbohrfluch/Brechenden Bohrzauber
+s,Dulak,Dulak
+,Expelliarmus,Expelliarmus
+s,Flipendo,Flipendo
 ,Fiendfyre,verfluchtes Feuer?
 ,Horcrux,Horkrux
 ,Imperius,Imperius
 ,Innervate,Rennervate
 ,Killing Curse,Todesfluch
 ,Legilimency,Legilimentik
-,Luminos,Luminos
+,Lumos,Lumos
+s,Luminos,Luminos
 ,Memory Charm,Gedächtniszauber
 ,False Memory Charm,Falsche-Erinnerung-Zauber
 ,Most Ancient Blade, Uralte Klinge
@@ -81,9 +85,11 @@ x,Papa,Dad
 ,Polyjuice,Vielsafttrank
 ,Obliviation/Obliviating,Vergessenszauber
 ,Obliviate,Obliviieren
+s,Quietus,Quietus
 ,Quieting Charm,Stillezauber
 ,Severing Charm,Trennungszauber
 ,Shield Charm, Schildzauber
+,Somnium,Somnium
 ,Stupefy,Stupor
 ,Stunning Hex,Betäubungszauber
 ,Tonare,Tonare
