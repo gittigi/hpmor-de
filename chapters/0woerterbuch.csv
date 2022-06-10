@@ -61,41 +61,69 @@ x,Papa,Dad
 ,Tagespropheten,Tagesprophet
 ,,
 ,Spells,Zauber
-,Cruciatus Curse,Cruciatus-Fluch
+s,Accio,
+s,Alohomora,
+s,Avada Kedavra,
+s,Cluthe,
+s,Colloportus,
+s,Contego,
 ,Confundus Charm,Confundus-Zauber
-s,Diffindo,Diffindo
+,Cruciatus Curse,Cruciatus-Fluch
+s,Crystferrium,
+s,Diffindo,
+s,Deligitor prodeas,
 ,Drill Hex,Schildbrecher/Schlagbohrfluch/Brechenden Bohrzauber
-s,Dulak,Dulak
-,Expelliarmus,Expelliarmus
-s,Flipendo,Flipendo
+s,Dulak,
+s,Elmekia,
+s,Expelliarmus,
+s,Finite Incantatem,
+s,Flipendo,
 ,Fiendfyre,verfluchtes Feuer?
+s,Frigideiro,
+s,Glisseo,
+s,Gom jabbar,
 ,Horcrux,Horkrux
-,Imperius,Imperius
+s,Impedimenta,
+s,Imperius,
+s,Inflammare,
 ,Innervate,Rennervate
+s,Jellify,
 ,Killing Curse,Todesfluch
+s,Lagann,
 ,Legilimency,Legilimentik
-,Lumos,Lumos
-s,Luminos,Luminos
+s,Lucis Gladius,
+s,Luminos,
+s,Lumos,
+s,Mahasu,
 ,Memory Charm,Gedächtniszauber
 ,False Memory Charm,Falsche-Erinnerung-Zauber
 ,Most Ancient Blade, Uralte Klinge
 ,Charn of the Most Ancient Blade, Zauber der Uralten Klinge
-,Prismatis,Prismatis
-,Polyfluis Reverso,Polyfluis Reverso
+s,Prismatis,
+s,Polyfluis Reverso,
 ,Polyjuice,Vielsafttrank
+s,Protego,
 ,Obliviation/Obliviating,Vergessenszauber
 ,Obliviate,Obliviieren
-s,Quietus,Quietus
+s,Quietus,
 ,Quieting Charm,Stillezauber
+s,Ravum Calvaria,
+Schulleiter,Rennervate,
 ,Severing Charm,Trennungszauber
+s,Scourgify,
 ,Shield Charm, Schildzauber
-,Somnium,Somnium
-,Stupefy,Stupor
+s,Silencio,
+s,Somnium,
+s,Stupefy,Stupor
 ,Stunning Hex,Betäubungszauber
-,Tonare,Tonare
+s,Thermos,
+s,Tonare,
 ,Transfiguration,Verwandlung
 ,Unbreakable Vow,Unbrechbaren Schwur
-,Veritaserum,Veritaserum
+s,Ventriliquo,
+s,Ventus,
+,Veritaserum,
+s,Wingardium Leviosa,
 ,,
 ,Überbleibsel,
 ,*,

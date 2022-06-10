@@ -145,6 +145,9 @@ def fix_line(s: str) -> str:
     s = fix_emph(s)
     s = fix_hyphens(s)
 
+    # add spell macro
+    s = add_spell(s)
+
     # spaces, again
     s = fix_spaces(s)
     return s
@@ -237,6 +240,7 @@ def fix_common_typos(s: str) -> str:
         )
         s = re.sub(r"Junge, der lebte\b", r"Junge-der-überlebte", s)
         s = s.replace("Muggelforscher", "Muggelwissenschaftler")
+        s = s.replace("Stupefy", "Stupor")
         s = s.replace("Wizengamot", "Zaubergamot")
         s = s.replace("S.P.H.E.W.", "\SPHEW")
         s = s.replace("ut mir Leid", "ut mir leid")
@@ -437,6 +441,73 @@ def fix_hyphens(s: str) -> str:
 
 
 assert fix_hyphens("2-3-4") == "2–3–4"
+
+
+def add_spell(s: str) -> str:
+    spells = [
+        "Accio",
+        "Alohomora",
+        "Avada Kedavra",
+        "Cluthe",
+        "Colloportus",
+        "Contego",
+        "Crystferrium",
+        "Diffindo",
+        "Deligitor prodeas",
+        "Dulak",
+        "Elmekia",
+        "Expelliarmus",
+        "Flipendo",
+        "Finite Incantatem",
+        "Frigideiro",
+        "Glisseo",
+        "Gom jabbar",
+        "Impedimenta",
+        "Imperius",
+        "Jellify",
+        "Inflammare",
+        "Luminos",
+        "Mahasu",
+        "Lagann",
+        "Lucis Gladius",
+        "Lumos",
+        "Prismatis",
+        "Protego",
+        "Polyfluis Reverso",
+        "Quietus",
+        "Ravum Calvaria",
+        "Rennervate",
+        "Scourgify",
+        "Silencio",
+        "Somnium",
+        "Stupor",
+        "Thermos",
+        "Tonare",
+        "Ventriliquo",
+        "Ventus",
+        "Wingardium Leviosa",
+    ]
+
+    for spell in spells:
+        s2 = r"„?\\emph{„?(" + spell + ")(!?)\.?“?}“?"
+        s = re.sub(s2, r"\\spell{\1\2}", s)
+
+    # \spell followed by ! -> inline
+    s = re.sub(r"(\\spell{[^}]+)}!", r"\1!}", s)
+    # no „...“ around \spell
+    s = re.sub(r"„?(\\spell{[^}]+)}“?", r"\1}", s)
+
+    return s
+
+
+if settings["lang"] == "DE":
+    assert add_spell("„\emph{Lumos}“") == "\spell{Lumos}"
+    assert add_spell("\emph{„Lumos“}") == "\spell{Lumos}"
+    assert add_spell("\emph{Lumos!}") == "\spell{Lumos!}"
+    assert add_spell("„\spell{Contego}“") == "\spell{Contego}", add_spell(
+        "„\spell{Contego}“"
+    )
+
 
 if __name__ == "__main__":
     # cleanup first
