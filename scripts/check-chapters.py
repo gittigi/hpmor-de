@@ -353,9 +353,17 @@ def fix_quotations(s: str) -> str:
     if settings["lang"] == "EN":
         s = re.sub(r"‘\\emph{([^}]+)}’", r"‘\1’", s)
         s = re.sub(r"\\emph{‘([^}]+)’}", r"‘\1’", s)
-    if settings["lang"] == "DE":
+    if settings["lang"] == "EN":
         s = re.sub(r"‚\\emph{([^}]+)}‘", r"‚\1‘", s)
         s = re.sub(r"\\emph{‚([^}]+)‘}", r"‚\1‘", s)
+
+    # comma at end of emph&quotation
+    if settings["lang"] == "EN":
+        s = s.replace(",}”", "}”,")
+        s = s.replace(",”", "”,")
+    if settings["lang"] == "DE":
+        s = s.replace(",}”", "}”,")
+        s = s.replace(",”", "”,")
 
     return s
 
