@@ -1,13 +1,13 @@
 x/o,EN,DE
 x,aftermath,Nachwirkungen -> Nachspiel 
-,Ancient House,Altes Geschlecht
+x,Ancient House,Altes Geschlecht
 ,Noble and Most Ancient House,Altehrwürdiges Geschlecht
 ,betrayed,hintergangen (Kaptiel 100++)
 x,Boy-Who-Lived,Junge-der-überlebte
 ,broomstick team,Besenteam
 ,Chaos Legion,Chaoslegion
 ,Chaos Legionnaires,Chaoslegionäre
-,Chief Warlock,Großmeister
+x,Chief Warlock,Großmeister
 ,Cloak of Invisibility,Tarnumhang
 ,invisibility cloak,Tarnumhang
 ,comed-tea,Seltsaft
@@ -58,9 +58,13 @@ x,Junge-der-lebte,Junge-der-überlebte
 x,Jungen-der-lebte,Jungen-der-überlebte
 x,Mama/Mutter,Mum
 ,Lehrer,Professor
-,Oberste(r) Hexenmeister/Großmeister
+x,Oberste(r) Hexenmeister/Großmeister
 x,Papa,Dad
 ,Tagespropheten,Tagesprophet
+x,Uralte Haus,Uralte Geschlecht
+x,Uralte Häuser,Uralte Geschlechter
+x,Uralten Hauses,Uralten Geschlechtes
+x,Uraltes Haus,Uraltes Geschlecht
 ,,
 ,Spells,Zauber
 s,Accio,
