@@ -58,7 +58,7 @@ x,Junge-der-lebte,Junge-der-überlebte
 x,Jungen-der-lebte,Jungen-der-überlebte
 x,Mama/Mutter,Mum
 ,Lehrer,Professor
-x,Oberste(r) Hexenmeister/Großmeister
+x,Oberste(r) Hexenmeister,Großmeister
 x,Papa,Dad
 ,Tagespropheten,Tagesprophet
 x,Uralte Haus,Uralte Geschlecht
@@ -111,12 +111,12 @@ s,Polyfluis Reverso,
 s,Protego,
 ,Obliviation/Obliviating,Vergessenszauber
 ,Obliviate,Obliviieren
-s,Quietus,
+s,Quietus,Geräuschdämpfer
 ,Quieting Charm,Stillezauber
 s,Ravum Calvaria,
 Schulleiter,Rennervate,
 ,Severing Charm,Trennungszauber
-s,Scourgify,
+s,Scourgify,Ratzeputz
 ,Shield Charm, Schildzauber
 s,Silencio,
 s,Somnium,
