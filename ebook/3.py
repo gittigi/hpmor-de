@@ -25,7 +25,7 @@ cont = cont.replace("\\today{}", date_str)
 
 # writtenNote env -> \writtenNoteA
 cont = re.sub(
-    r"\\begin\{writtenNote\}\s*(.*?)\s*\\end\{writtenNote\}",
+    r"\s*\\begin\{writtenNote\}\s*(.*?)\s*\\end\{writtenNote\}",
     r"\\writtenNoteA{\1}",
     cont,
     flags=re.DOTALL,
@@ -39,6 +39,9 @@ cont = re.sub(
     "",
     cont,
 )
+
+# fix „ at start of chapter
+cont = cont.replace("\\lettrinepara[ante=„]", "„\\lettrinepara")
 
 # align*
 cont = cont.replace("\\begin{align*}", "")
