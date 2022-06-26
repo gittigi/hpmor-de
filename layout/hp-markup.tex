@@ -50,7 +50,7 @@
 \newcommand{\parsel}[1]{\parsela{#1}}
 
 % \spell macro experiments
-%
+
 % \newcommand{\spell}[1]{„\emph{#1}“}
 % \usepackage{marvosym}
 % \newcommand{\spell}[1]{„{\small\Lightning}\emph{#1}{\small\,\Lightning}“}
@@ -81,7 +81,7 @@
 
 
 % Newspaper headlines
-%
+
 \newcommand{\headline}[1]{%
 \begin{center}%
 \textsc{\fontspec[ExternalLocation]{gabriele-bad.ttf}#1}%
@@ -108,7 +108,7 @@
 
 
 % Letters / writtenNote
-%
+
 \newenvironment{writtenNote}{%
 \fontspec[ExternalLocation]{Graphe_Alpha_alt.ttf}\scriptsize%
 %\vskip .1\baselineskip plus .1\baselineskip minus .1\baselineskip%
@@ -122,13 +122,13 @@
 \end{adjustwidth}%
 % \vskip 1\baselineskip plus 1\baselineskip minus 1\baselineskip
 }
-%
+
 % \letterAddress
 \newcommand{\letterAddress}[1]{%
 \pagebreak[1]\fontspec[ExternalLocation]{Graphe_Alpha_alt.ttf}%
 \scriptsize#1\nopagebreak[4]\par%
 }
-%
+
 % \letterClosing
 \newcommand{\letterClosing}[2][\vskip 1\baselineskip]{%
 \nopagebreak[4]\fontspec[ExternalLocation]{Graphe_Alpha_alt.ttf}%
@@ -138,7 +138,6 @@
 
 
 % PartChapters
-%
 % \partchapter{Das Stanford-Prison-Experiment}{V}
 % \partchapter{The Stanford Prison Experiment}{TSPE}{XIII}{Aftermaths}
 % TOC: TSPE part XIII: Aftermaths
@@ -166,11 +165,9 @@
 }
 
 % Hanging paras for play scripts (used in Omake IV)
-%
 \newenvironment{playdialog}{\begin{hangparas}{2em}{1}}{\end{hangparas}}
 
 % Chapter openings
-%
 % Definition of chapterOpeningAuthorNote when they are desired to be printed
 % FIXME: Make the environment definition switchable with a flag
 \newenvironment{chapterOpeningAuthorNote}{%
@@ -195,7 +192,7 @@ E.~Y.:~
 
 
 % Stars and breaks
-%
+
 % Single “magic star” decoration
 \newcommand{\Star}{{\fontspec[ExternalLocation]{Miscelanea.ttf}*}}
 
