@@ -146,7 +146,8 @@ def fix_line(s: str) -> str:
     s = fix_hyphens(s)
 
     # add spell macro
-    s = add_spell(s)
+    if settings["lang"] == "DE":
+        s = add_spell(s)
 
     # spaces, again
     s = fix_spaces(s)
@@ -273,10 +274,11 @@ def fix_quotations(s: str) -> str:
         s = re.sub(r'"([^"]+)"', r"„\1“", s)
 
     # '...' -> ‘...’
-    if settings["lang"] == "EN":
-        s = re.sub(r"'([^']+)'", r"‘\1’", s)
-    if settings["lang"] == "DE":
-        s = re.sub(r"'([^']+)'", r"‚\1‘", s)
+    if "nglui mglw" not in s:
+        if settings["lang"] == "EN":
+            s = re.sub(r"'([^']+)'", r"‘\1’", s)
+        if settings["lang"] == "DE":
+            s = re.sub(r"'([^']+)'", r"‚\1‘", s)
 
     if settings["lang"] == "DE":
         # fix bad single word quotes
@@ -359,8 +361,10 @@ def fix_quotations(s: str) -> str:
 
     # comma at end of emph&quotation
     if settings["lang"] == "EN":
-        s = s.replace(",}”", "}”,")
-        s = s.replace(",”", "”,")
+        pass
+        # false positives at book titles etc.
+        # s = s.replace("}”,", ",}”")
+        # s = s.replace("”,", ",”")
     if settings["lang"] == "DE":
         s = s.replace(",}”", "}”,")
         s = s.replace(",”", "”,")
@@ -372,20 +376,23 @@ def fix_quotations(s: str) -> str:
 
 
 def fix_emph(s: str) -> str:
-    # space at start of emph
+    # space at start of emph -> move before emph
     s = re.sub(r"(\\emph{) +", " \1", s)
 
-    # move punctuation out of 1-word-emph
+    # move punctuation out of lowercase 1-word-emph
     # ... \emph{WORD.} -> \emph{WORD}.
     # Note: only for , and .
-    if settings["lang"] == "EN":
-        s = re.sub(r"(?<!^)\\emph\{([^ …\}]+)([,\.])\}(?!”)", r"\\emph{\1}\2", s)
+    if (
+        settings["lang"] == "EN" and "lettrinepara" not in s
+    ):  # not \lettrinepara{W}{\emph{hat?}}:
+        # s = re.sub(r"(?<!^)\\emph\{([^\}A-Z]+)([,\.])\}(?!”)", r"\\emph{\1}\2", s)
+        s = re.sub(r"\\emph\{([^\}A-Z]+)([,\.;!\?])\}(?!”)", r"\\emph{\1}\2", s)
     if settings["lang"] == "DE":
         s = re.sub(r"(?<!^)\\emph\{([^ …\}]+)([,\.])\}(?!“)", r"\\emph{\1}\2", s)
 
-    #  only after space
+    #  only after space fix ! and ?
     # " \emph{true!}" -> " \emph{true}!"
-    s = re.sub(r" \\emph\{([^ …\}]+)([,\.;!\?])\}", r" \\emph{\1}\2", s)
+    s = re.sub(r" \\emph\{([^ …\}A-Z]+)([,\.;!\?])\}", r" \\emph{\1}\2", s)
 
     # Note: good, but MANY false positives
     # \emph{...} word \emph{...} -> \emph{... \emph{word} ...
@@ -394,6 +401,18 @@ def fix_emph(s: str) -> str:
 
 
 assert fix_emph("That’s not \emph{true!}") == "That’s not \emph{true}!"
+assert fix_emph("she got \emph{magic,} can you") == "she got \emph{magic}, can you"
+# unchanged:
+if settings["lang"] == "EN":
+    assert (
+        fix_emph("briefly. \emph{Hopeless.} Both") == "briefly. \emph{Hopeless.} Both"
+    )
+if settings["lang"] == "DE":
+    assert (
+        fix_emph("briefly. \emph{Hopeless.} Both") == "briefly. \emph{Hopeless}. Both"
+    )
+
+# if settings["lang"] == "EN":
 
 
 def fix_hyphens(s: str) -> str:
