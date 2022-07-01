@@ -44,12 +44,14 @@ Hier gibt es die [aktuelle Version von PDFs und eBooks](https://github.com/entor
 ### Weitere Links
 * [EN Originaltext auf hpmor.com](https://www.hpmor.com/)
 * [Überarbeitetes EN PDF und eBook](https://github.com/rrthomas/hpmor/releases/tag/WorkInProgress)
+* [Subreddit r/HPMOR](https://www.reddit.com/r/HPMOR/) 
 * Liste der internationalen Übersetzungen, siehe [hpmor.com](http://www.hpmor.com/info/) und [Wikipeida](https://en.wikipedia.org/wiki/Harry_Potter_and_the_Methods_of_Rationality#Translations)
-* [EN Audiobook / Podcast by Eneasz Brodski)](https://hpmorpodcast.com/) - [at Apple](https://podcasts.apple.com/de/podcast/podcast-the-methods-of-rationality-podcast/id431784580?i=1000473946812) - [at Spotify](https://open.spotify.com/episode/3up7VkwoJUTNMwaM6j6qvs?si=Gx3LsHH9SY-v5TOYJHrUxw&dl_branch=1) (complete)
-* [EN Audiobook by Jack Voraces](https://voraces.podbean.com/) - [at Apple](https://podcasts.apple.com/gb/podcast/harry-potter-and-the-methods-of-rationality-audiobook/id1465181848) - [at Spotify](https://open.spotify.com/show/4MCs8UYpoBlNp4aRfzB3a5) - [at Audible](https://www.amazon.com/Harry-Potter-Methods-Rationality/dp/B08JJSF4B3) (in progress)
-* [DE Audiobook/Podcast by hpmoraudio.de](https://hpmoraudio.de) (in progress)
-* [DE Audiobook by Tralex HPMOR at YouTube](https://www.youtube.com/watch?v=h32Ht-HUbL0&list=PLfgJSXz3-j3aYhWyR3Q5JzcI3h_eibPls) (in progress)
-* [Subreddit r/HPMOR](https://www.reddit.com/r/HPMOR/)
+
+### Audio Versionen
+* [EN Audiobook/Podcast by Eneasz Brodski](https://hpmorpodcast.com/) - [at Apple](https://podcasts.apple.com/de/podcast/podcast-the-methods-of-rationality-podcast/id431784580?i=1000473946812) - [at Google](https://podcasts.google.com/feed/aHR0cHM6Ly9mZWVkcy5mZWVkYnVybmVyLmNvbS9IYXJyeVBvdHRlckFuZFRoZU1ldGhvZHNPZlJhdGlvbmFsaXR5VGhlUG9kY2FzdA/episode/aHR0cHM6Ly9ocG1vcnBvZGNhc3QuY29tLz9wPTYw?sa=X&ved=0CAUQkfYCahcKEwjA44jfuO34AhUAAAAAHQAAAAAQAQ) - [at Spotify](https://open.spotify.com/episode/3up7VkwoJUTNMwaM6j6qvs?si=Gx3LsHH9SY-v5TOYJHrUxw&dl_branch=1) (complete)
+* [EN Audiobook by Jack Voraces](https://voraces.podbean.com/) - [at Apple](https://podcasts.apple.com/gb/podcast/harry-potter-and-the-methods-of-rationality-audiobook/id1465181848) - [at Google](https://podcasts.google.com/feed/aHR0cHM6Ly9mZWVkLnBvZGJlYW4uY29tL3ZvcmFjZXMvZmVlZC54bWw) - [at Spotify](https://open.spotify.com/show/4MCs8UYpoBlNp4aRfzB3a5) - [at Audible](https://www.amazon.com/Harry-Potter-Methods-Rationality/dp/B08JJSF4B3) (in progress)
+* [DE Audiobook/Podcast by Tilmann Glücks](https://hpmoraudio.de) - [at Apple](https://podcasts.apple.com/us/podcast/harry-potter-und-die-methoden-des-rationalismus-der-podcast/id1630675041) - [at Google](https://podcasts.google.com/feed/aHR0cHM6Ly9ocG1vcmF1ZGlvLmRlLz9mZWVkPXBvZGNhc3Q) - [at Spotify](https://open.spotify.com/show/4XmiF2dq0DMVxLyVwQJOam)  (in progress)
+* [DE Audiobook by Tralex HPMOR - at YouTube](https://www.youtube.com/watch?v=h32Ht-HUbL0&list=PLfgJSXz3-j3aYhWyR3Q5JzcI3h_eibPls) (in progress)
 
 ### DE Übersetzungen
 * [Jost](https://www.fanfiktion.de/s/4cb8beb50000203e067007d0/) Kapitel 1-21
@@ -66,9 +68,9 @@ Hier gibt es die [aktuelle Version von PDFs und eBooks](https://github.com/entor
 
 ### Follow-up stuff
 Only proceed **after** reading/listening to the story, as these contain spoilers
-* [Epiloque: A Crack Slash Epilogue by Alexander Wales](https://www.fanfiction.net/s/11293489/1/A-Crack-Slash-Epilogue)
 * [Beautiful 10min video summary/fan tribute](https://youtube.com/watch?v=aT_q646lJVo) 
-
+* [Epiloque: A Crack Slash Epilogue by Alexander Wales](https://www.fanfiction.net/s/11293489/1/A-Crack-Slash-Epilogue)
+* [Sequel: Significant Digits by Alexander Davis](http://www.anarchyishyperbole.com/p/significant-digits.html)
 
 
 <hr>
