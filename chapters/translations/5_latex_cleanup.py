@@ -79,6 +79,8 @@ def cleanup_latex(s):
         s = fix_hyphens(s)
         s = fix_spaces(s)
         lines2.append(s)
+        s = re.sub(r"\\textbf\{\\emph\{(.*?)\}\}", r"\\parsel{\1}", s) # not working...
+        s = s.replace("\\textbf{\\emph{", "\parsel{")
     s = "\n".join(lines2)
     return s
 
