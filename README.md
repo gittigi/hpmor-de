@@ -21,7 +21,7 @@ Hier gibt es die [aktuelle Version von PDFs und eBooks](https://github.com/entor
 ## Mitmachen
 * Über Feedback, [Vorschläge](https://github.com/entorb/hpmor-de/issues) und [Mitarbeit](https://github.com/entorb/hpmor-de/wiki/Mitmachen) freue ich mich sehr.
 * Siehe die [Mitmach-Anleitung](https://github.com/entorb/hpmor-de/wiki/Mitmachen)
-* Bei Fragen und Verbesserungsvorschlägen einfach ein [Ticket](https://github.com/entorb/hpmor-de/issues) öffnen oder mich direkt [kontaktieren](https://entorb.net/hpmor/contact.php?origin=HPMOR)
+* Bei Fragen und Verbesserungsvorschlägen einfach ein [Ticket](https://github.com/entorb/hpmor-de/issues) öffnen oder mich direkt [kontaktieren](https://entorb.net/contact.php?origin=HPMOR)
 
 ## Fortschritte dieses Projekts
 * [x] [englisches Repo](https://github.com/rrthomas/hpmor) als Vorlange verwendet
