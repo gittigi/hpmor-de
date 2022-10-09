@@ -43,9 +43,11 @@ x,mum, Mum(Mama/Mutter)
 x,plaque,Plakette(NICHT Schallplatte)
 ,pop(s),Plop (Apperation)
 ,Potions Master, Zaubertränkemeister
-,robe, ? Robe / Umhang
+x,Quibbler,Klitterer
+,robe, ? Robe / Umhang / Zaubererumhang 
 ,sense of doom,Unheilsgefühl (nicht: Gefühl der Verdammnis? Gefühl des Untergangs? Gefühl des Unheils)
 x,S.P.H.E.W.,\SPHEW
+,St. Mungo’s,St.~Mungo’s
 ,Sunshine General,Sonnenschein-General
 ,Time-Turner,Zeitumkehrer
 ,Forbidden Forest,Verbotener Wald
@@ -81,6 +83,7 @@ s,Deligitor prodeas,
 ,Drill Hex,Schildbrecher/Schlagbohrfluch/Brechenden Bohrzauber
 s,Dulak,
 s,Elmekia,
+s,Expecto Patronum,
 s,Expelliarmus,
 s,Finite Incantatem,
 s,Flipendo,
@@ -114,7 +117,6 @@ s,Protego,
 s,Quietus,Geräuschdämpfer
 ,Quieting Charm,Stillezauber
 s,Ravum Calvaria,
-Schulleiter,Rennervate,
 ,Severing Charm,Trennungszauber
 s,Scourgify,Ratzeputz
 ,Shield Charm, Schildzauber
