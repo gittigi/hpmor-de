@@ -369,6 +369,10 @@ def fix_quotations(s: str) -> str:
         s = s.replace(",}”", "}”,")
         s = s.replace(",”", "”,")
 
+    # space after closing “
+    if settings["lang"] == "DE":
+        s = re.sub(r"(“)([\w])", r"\1 \2", s)
+
     return s
 
 
@@ -474,7 +478,7 @@ def add_spell(s: str) -> str:
     spells = [
         "Accio",
         "Alohomora",
-        "Avada Kedavra",
+        # "Avada Kedavra", not here, since sometimes in emph ok.
         "Cluthe",
         "Colloportus",
         "Contego",
@@ -498,6 +502,7 @@ def add_spell(s: str) -> str:
         "Lagann",
         "Lucis Gladius",
         "Lumos",
+        "Obliviate",
         "Prismatis",
         "Protego",
         "Polyfluis Reverso",
@@ -523,6 +528,8 @@ def add_spell(s: str) -> str:
     s = re.sub(r"(\\spell{[^}]+)}!", r"\1!}", s)
     # no „...“ around \spell
     s = re.sub(r"„?(\\spell{[^}]+)}“?", r"\1}", s)
+    # \spell without !
+    s = re.sub(r"(\\spell{[^}]+)!}", r"\1}", s)
 
     return s
 
@@ -530,7 +537,7 @@ def add_spell(s: str) -> str:
 if settings["lang"] == "DE":
     assert add_spell("„\emph{Lumos}“") == "\spell{Lumos}"
     assert add_spell("\emph{„Lumos“}") == "\spell{Lumos}"
-    assert add_spell("\emph{Lumos!}") == "\spell{Lumos!}"
+    assert add_spell("\emph{Lumos!}") == "\spell{Lumos}"
     assert add_spell("„\spell{Contego}“") == "\spell{Contego}", add_spell(
         "„\spell{Contego}“"
     )
