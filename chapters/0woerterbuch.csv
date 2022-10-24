@@ -21,16 +21,16 @@ x,Professor der Verteidigung,Verteidigungsprofessor
 x,Dragon General,Drachen-General
 x,England,Britannien
 ,Floo,Floh
-x,first-aid kit, Erste-Hilfe-Tasche
-x,foolishness, Torheit
+,first-aid kit,Erste-Hilfe-Tasche
+x,foolishness,Torheit
 x,führnehmen,Edlen
 x,He-Who-Must-Not-Be-Named,Er-dessen-Name-nicht-genannt-werden-darf (Du-weißt-schon-wer)
 x,Headmaster,Schulleiter
 ,healer’s kit,Heiler-Set
 x,life-eater,Lebensfresser
-x,Mary’s Place, Marys Stube
+x,Mary’s Place,Marys Stube
 x,Macmillian,Macmillan
-x,Most Ancient, Uralt
+x,Most Ancient,Altehrwürdig
 x,Most Ancient Hall,Ältestenhalle
 x,mum, Mum(Mama/Mutter)
 x,N.E.W.T,U.T.Z.
@@ -43,9 +43,9 @@ x,Parseltongue,Parsel
 ,phœnixes,Phönixe
 x,plaque,Plakette(NICHT Schallplatte)
 ,pop(s),Plop (Apperation)
-x,Potions Master, Meister der Zaubertränke
+x,Potions Master,Meister der Zaubertränke
 x,Quibbler,Klitterer
-x,robe, Umhang / Zaubererumhang
+x,robe,Umhang / Zaubererumhang
 x,sense of doom,Unheilsgefühl
 x,S.P.H.E.W.,\SPHEW
 x,Silvery Slytherins,Silbernen Slytherins
@@ -109,8 +109,8 @@ s,Lumos,
 s,Mahasu,
 ,Memory Charm,Gedächtniszauber
 ,False Memory Charm,Falsche-Erinnerung-Zauber
-,Most Ancient Blade, Uralte Klinge
-,Charn of the Most Ancient Blade, Zauber der Uralten Klinge
+,Most Ancient Blade,Altehrwürdige Klinge
+,Charn of the Most Ancient Blade,Zauber der Alterwürdigen Klinge
 s,Prismatis,
 s,Polyfluis Reverso,
 ,Polyjuice,Vielsafttrank
@@ -121,7 +121,7 @@ s,Protego,
 s,Quietus,Geräuschdämpfer
 ,Quieting Charm,Stillezauber
 s,Ravum Calvaria,
-,Severing Charm,Trennungszauber
+,Severing Charm,Durchtrennungszauber
 s,Scourgify,Ratzeputz
 ,Shield Charm, Schildzauber
 s,Silencio,
