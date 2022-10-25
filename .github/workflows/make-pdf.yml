@@ -1,4 +1,4 @@
-name: build PDF and eBooks
+name: build PDF
 
 # controls when the action will run.
 # workflow_dispatch: manual triggering
@@ -55,36 +55,17 @@ jobs:
         pandoc -v
         python3 --version        
 
-    - name: make PDFs
-      run: sh scripts/make_pdfs.sh > /dev/null
+    - name: make PDF
+#      run: sh scripts/make_pdfs.sh > /dev/null
+      run: latexmk hpmor > /dev/null
 
-    - name: publish PDFs to release
+    - name: publish PDF to release
       uses: softprops/action-gh-release@v1
       with:
         tag_name: WorkInProgress
         prerelease: true
         files: |
           ./hpmor*.pdf
-
-    - name: make eBooks
-      run: |
-        sh scripts/make_ebooks.sh > /dev/null
-
-    - name: test ls after
-      run: |
-        pwd
-        ls -l
-
-    - name: publish eBooks to release
-      uses: softprops/action-gh-release@v1
-      with:
-        tag_name: WorkInProgress
-        prerelease: true
-        files: |
-          ./hpmor.docx
-          ./hpmor.html
-          ./hpmor.epub
-          ./hpmor.mobi
 
     - name: print end date
       run: date +%Y-%m-%d_%H:%M
