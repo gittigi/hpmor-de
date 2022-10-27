@@ -31,10 +31,10 @@ jobs:
       with:
         python-version: '3.9'
 
-    - name: setup environment to DE lang
-      run: |
-        cd /usr/share/locales
-        sudo ./install-language-pack de_DE.UTF-8   
+#    - name: setup environment to DE lang
+#      run: |
+#        cd /usr/share/locales
+#        sudo ./install-language-pack de_DE.UTF-8   
 
     - name: test ls before
       run: |
@@ -45,19 +45,19 @@ jobs:
       run: python3 scripts/check-chapters.py
 
     - name: install requirements
-      run: sh scripts/install_requirements.sh > /dev/null
+      run: sh scripts/install_requirements_pdf.sh > /dev/null
 
     - name: print versions
       run: |
         cat /etc/os-release
         xelatex -v
         latexmk -v
-        pandoc -v
+        # pandoc -v
         python3 --version        
 
     - name: make PDF
-#      run: sh scripts/make_pdfs.sh > /dev/null
-      run: latexmk hpmor > /dev/null
+      run: sh scripts/make_pdf.sh > /dev/null
+#      run: latexmk hpmor > /dev/null
 
     - name: publish PDF to release
       uses: softprops/action-gh-release@v1

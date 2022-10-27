@@ -12,13 +12,13 @@ jobs:
         ref: master
         persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal token
 
-    - name: setup environment to DE lang
-      run: |
-        cd /usr/share/locales
-        sudo ./install-language-pack de_DE.UTF-8   
+#    - name: setup environment to DE lang
+#      run: |
+#        cd /usr/share/locales
+#        sudo ./install-language-pack de_DE.UTF-8   
 
     - name: install requirements
-      run: sudo apt install texlive-xetex latexmk texlive-extra-utils  > /dev/null
+      run: sh scripts/install_requirements_pdf.sh > /dev/null
 
     - name: latexmk
       run: latexmk hpmor-1 > /dev/null
@@ -39,13 +39,13 @@ jobs:
         ref: master
         persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal token
 
-    - name: setup environment to DE lang
-      run: |
-        cd /usr/share/locales
-        sudo ./install-language-pack de_DE.UTF-8   
+#    - name: setup environment to DE lang
+#      run: |
+#        cd /usr/share/locales
+#        sudo ./install-language-pack de_DE.UTF-8   
 
     - name: install requirements
-      run: sudo apt install texlive-xetex latexmk texlive-extra-utils
+      run: sh scripts/install_requirements_pdf.sh > /dev/null
 
     - name: latexmk
       run: latexmk hpmor-2 > /dev/null
@@ -66,13 +66,13 @@ jobs:
         ref: master
         persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal token
 
-    - name: setup environment to DE lang
-      run: |
-        cd /usr/share/locales
-        sudo ./install-language-pack de_DE.UTF-8   
+ #   - name: setup environment to DE lang
+ #     run: |
+ #       cd /usr/share/locales
+ #       sudo ./install-language-pack de_DE.UTF-8   
 
     - name: install requirements
-      run: sudo apt install texlive-xetex latexmk texlive-extra-utils
+      run: sh scripts/install_requirements_pdf.sh > /dev/null
 
     - name: latexmk
       run: latexmk hpmor-3 > /dev/null
@@ -93,13 +93,13 @@ jobs:
         ref: master
         persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal token
 
-    - name: setup environment to DE lang
-      run: |
-        cd /usr/share/locales
-        sudo ./install-language-pack de_DE.UTF-8   
+#    - name: setup environment to DE lang
+#      run: |
+#        cd /usr/share/locales
+#        sudo ./install-language-pack de_DE.UTF-8   
 
     - name: install requirements
-      run: sudo apt install texlive-xetex latexmk texlive-extra-utils
+      run: sh scripts/install_requirements_pdf.sh > /dev/null
 
     - name: latexmk
       run: latexmk hpmor-4 > /dev/null
@@ -120,13 +120,13 @@ jobs:
         ref: master
         persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal token
 
-    - name: setup environment to DE lang
-      run: |
-        cd /usr/share/locales
-        sudo ./install-language-pack de_DE.UTF-8   
+ #   - name: setup environment to DE lang
+ #     run: |
+ #       cd /usr/share/locales
+ #       sudo ./install-language-pack de_DE.UTF-8   
 
     - name: install requirements
-      run: sudo apt install texlive-xetex latexmk texlive-extra-utils
+      run: sh scripts/install_requirements_pdf.sh > /dev/null
 
     - name: latexmk
       run: latexmk hpmor-5 > /dev/null
@@ -147,13 +147,13 @@ jobs:
         ref: master
         persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal token
 
-    - name: setup environment to DE lang
-      run: |
-        cd /usr/share/locales
-        sudo ./install-language-pack de_DE.UTF-8   
+#    - name: setup environment to DE lang
+#      run: |
+#        cd /usr/share/locales
+#        sudo ./install-language-pack de_DE.UTF-8   
 
     - name: install requirements
-      run: sudo apt install texlive-xetex latexmk texlive-extra-utils
+      run: sh scripts/install_requirements_pdf.sh > /dev/null
 
     - name: latexmk
       run: latexmk hpmor-6 > /dev/null
@@ -164,4 +164,3 @@ jobs:
         tag_name: WorkInProgress
         prerelease: true
         files: hpmor-6.pdf
-

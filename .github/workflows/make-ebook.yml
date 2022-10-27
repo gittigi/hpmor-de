@@ -40,14 +40,15 @@ jobs:
       run: python3 scripts/check-chapters.py
 
     - name: install requirements
-      run: sh scripts/install_requirements.sh > /dev/null
+      run: sh scripts/install_requirements_ebook.sh > /dev/null
 
     - name: print versions
       run: |
         cat /etc/os-release
-        xelatex -v
-        latexmk -v
-        pandoc -v
+        # xelatex -v
+        # latexmk -v
+        calibre --version
+        pandoc --version
         python3 --version        
 
     - name: download latest PDF
@@ -57,7 +58,7 @@ jobs:
 
     - name: make eBooks
       run: |
-        sh scripts/make_ebooks.sh > /dev/null
+        sh scripts/make_ebook.sh > /dev/null
 
     - name: test ls after
       run: |
