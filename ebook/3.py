@@ -40,6 +40,24 @@ cont = re.sub(
     cont,
 )
 
+# remove \settowidth
+cont = re.sub(
+    r"\\settowidth\{[^\}]*\}\{([^\}]*)\}",
+    r"\1",
+    cont,
+    flags=re.DOTALL,
+)
+
+# remove \multicolumn
+# \multicolumn{2}{c}{\scshape \uppercase{Schöne Unterwäsche}}\\
+cont = re.sub(
+    r"\\multicolumn\{[^\}]*\}\{[^\}]*\}\{(.*?)\}(\\\\|\n)",
+    r"\1\2",
+    cont,
+    # flags=re.DOTALL,
+)
+
+
 # fix „ at start of chapter
 cont = cont.replace("\\lettrinepara[ante=„]", "„\\lettrinepara")
 
