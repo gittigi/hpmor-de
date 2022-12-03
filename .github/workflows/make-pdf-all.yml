@@ -1,12 +1,12 @@
-name: build eBooks
+name: build PDF 1 complete volume and 6 single volumes
 
 # controls when the action will run.
 # workflow_dispatch: manual triggering
 # push: triggers the workflow on push request events but only for the main branch
 on:
   workflow_dispatch:
-  push:
-    branches: [ main ]
+#  push:
+#    branches: [ main ]
 
 # a workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -30,6 +30,11 @@ jobs:
       with:
         python-version: '3.10'
 
+#    - name: setup environment to DE lang
+#      run: |
+#        cd /usr/share/locales
+#        sudo ./install-language-pack de_DE.UTF-8   
+
     - name: test ls before
       run: |
         pwd
@@ -38,51 +43,41 @@ jobs:
     - name: quality check of chapters for known issues
       run: python3 scripts/check-chapters.py
 
-    # - name: install requirements
-    #   run: |
-    #     sudo apt update > /dev/null
-    #     sh scripts/install_requirements_ebook.sh > /dev/null
-
-    - name: install packages using cache
-      uses: awalsh128/cache-apt-pkgs-action@latest
-      with:
-        packages: texlive-extra-utils pandoc calibre imagemagick ghostscript
-        version: 1.0
-        # execute_install_scripts: true
+    - name: install requirements
+      run: |
+        sudo apt update > /dev/null
+        sh scripts/install_requirements_pdf.sh > /dev/null
 
     - name: print versions
       run: |
         cat /etc/os-release
-        # xelatex -v
-        # latexmk -v
-        calibre --version
-        pandoc --version
+        xelatex -v
+        latexmk -v
+        # pandoc -v
         python3 --version        
 
-    - name: download latest PDF
-      run:
-        wget --quiet https://github.com/entorb/hpmor-de/releases/download/WorkInProgress/hpmor.pdf  -O hpmor.pdf
-    #   run: sh scripts/make_pdfs.sh > /dev/null
+    - name: make PDF complete vol
+      run: latexmk hpmor > /dev/null
+    - name: make PDF vol 1
+      run: latexmk hpmor-1 > /dev/null
+    - name: make PDF vol 2
+      run: latexmk hpmor-2 > /dev/null
+    - name: make PDF vol 3
+      run: latexmk hpmor-3 > /dev/null
+    - name: make PDF vol 4
+      run: latexmk hpmor-4 > /dev/null
+    - name: make PDF vol 5
+      run: latexmk hpmor-5 > /dev/null
+    - name: make PDF vol 6
+      run: latexmk hpmor-6 > /dev/null
 
-    - name: make eBooks
-      run: |
-        sh scripts/make_ebook.sh > /dev/null
-
-    - name: test ls after
-      run: |
-        pwd
-        ls -l
-
-    - name: publish eBooks to release
+    - name: publish PDFs to release
       uses: softprops/action-gh-release@v1
       with:
         tag_name: WorkInProgress
         prerelease: true
         files: |
-          ./hpmor.docx
-          ./hpmor.html
-          ./hpmor.epub
-          ./hpmor.mobi
+          ./hpmor*.pdf
 
     - name: print end date
       run: date +%Y-%m-%d_%H:%M
