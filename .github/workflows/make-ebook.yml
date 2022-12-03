@@ -2,11 +2,11 @@ name: build eBooks
 
 # controls when the action will run.
 # workflow_dispatch: manual triggering
-# push: triggers the workflow on push request events but only for the main branch
+# push: triggers the workflow on push request events but only for the master branch
 on:
   workflow_dispatch:
   push:
-    branches: [ main ]
+    branches: [ master ]
 
 # a workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -21,7 +21,6 @@ jobs:
     - name: checkout repository
       uses: actions/checkout@v3
       with:
-        ref: main
         persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal token
         fetch-depth: 1 # 0 if you want to push to repo
 

@@ -9,7 +9,6 @@ jobs:
     - name: checkout repository
       uses: actions/checkout@v3
       with:
-        ref: main
         persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal token
 
 #    - name: setup environment to DE lang
@@ -38,7 +37,6 @@ jobs:
     - name: checkout repository
       uses: actions/checkout@v3
       with:
-        ref: main
         persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal token
 
 #    - name: setup environment to DE lang
@@ -65,7 +63,6 @@ jobs:
     - name: checkout repository
       uses: actions/checkout@v3
       with:
-        ref: main
         persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal token
 
  #   - name: setup environment to DE lang
@@ -92,7 +89,6 @@ jobs:
     - name: checkout repository
       uses: actions/checkout@v3
       with:
-        ref: main
         persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal token
 
 #    - name: setup environment to DE lang
@@ -119,7 +115,6 @@ jobs:
     - name: checkout repository
       uses: actions/checkout@v3
       with:
-        ref: main
         persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal token
 
  #   - name: setup environment to DE lang
@@ -146,7 +141,6 @@ jobs:
     - name: checkout repository
       uses: actions/checkout@v3
       with:
-        ref: main
         persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal token
 
 #    - name: setup environment to DE lang
