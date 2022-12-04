@@ -1,13 +1,16 @@
 #!/usr/bin/env python3
 # by Torben Menke https://entorb.net
-# checks chapter .tex files for known issues and propose fixes
-# reads hpmor.tex for list of uncommented/relevant/e.g. translated) chapter files
-# ignores all lines starting with '%'
-# improvements are proposed via chapters/*-autofix.tex files
-# configuration in check-chapters.json
-# lang: EN, DE, FR, ...
-# raise_error: true -> script exits with error, used for autobuild of releases
-# print_diff: true : print line of issues
+"""
+Check chapter .tex files for known issues and propose fixes.
+
+reads hpmor.tex for list of uncommented/relevant/e.g. translated) chapter files
+ignores all lines starting with '%'
+improvements are proposed via chapters/*-autofix.tex files
+configuration in check-chapters.json
+lang: EN, DE, FR, ...
+raise_error: true -> script exits with error, used for autobuild of releases
+print_diff: true : print line of issues
+"""
 import difflib
 import glob
 import json
@@ -51,7 +54,8 @@ with open(
 
 def get_list_of_chapter_files() -> list:
     """
-    reads hpmor.tex, extract list of (not-commented out) chapter files
+    Read hpmor.tex, extract list of (not-commented out) chapter files.
+
     returns list of filesnames
     """
     list_of_chapter_files = []
@@ -66,7 +70,8 @@ def get_list_of_chapter_files() -> list:
 
 def process_file(fileIn: str) -> bool:
     """
-    checks a file for know issues
+    Check file for know issues.
+
     returns issues_found = True if we have a finding
     the proposal is written to chapters/*-autofix.tex
     """
@@ -101,7 +106,7 @@ def process_file(fileIn: str) -> bool:
             # check not commented-out lines
             line = fix_line(s=line)
             l_cont_2.append(line)
-            if issues_found == False and lineOrig != line:
+            if issues_found is False and lineOrig != line:
                 issues_found = True
     if issues_found:
         # with proposal to *-autofix.tex
@@ -117,8 +122,8 @@ def process_file(fileIn: str) -> bool:
             fh.write("\n".join(l_cont_2))
 
         if settings["print_diff"]:
-            file1 = open(fileIn, encoding="utf-8")
-            file2 = open(fileOut, encoding="utf-8")
+            file1 = open(fileIn, encoding="utf-8")  # noqa: SIM115
+            file2 = open(fileOut, encoding="utf-8")  # noqa: SIM115
             diff = difflib.ndiff(file1.readlines(), file2.readlines())
             delta = "".join(l for l in diff if l.startswith("+ ") or l.startswith("- "))
             print(delta)
@@ -127,7 +132,6 @@ def process_file(fileIn: str) -> bool:
 
 
 def fix_line(s: str) -> str:
-    s1 = s
     # simple and safe
     s = fix_spaces(s)
     s = fix_latex(s)
@@ -557,4 +561,4 @@ if __name__ == "__main__":
             any_issue_found = True
 
     if settings["raise_error"]:
-        assert any_issue_found == False, "Issues found, please fix!"
+        assert any_issue_found is False, "Issues found, please fix!"

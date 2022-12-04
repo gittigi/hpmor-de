@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
 # by Torben Menke https://entorb.net
+"""
+HTML modifications.
+"""
 import os
 import re
 import sys

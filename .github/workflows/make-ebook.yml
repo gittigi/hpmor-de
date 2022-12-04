@@ -20,9 +20,6 @@ jobs:
 
     - name: checkout repository
       uses: actions/checkout@v3
-      with:
-        persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal token
-        fetch-depth: 1 # 0 if you want to push to repo
 
     - name: python setup
       uses: actions/setup-python@v4
@@ -57,6 +54,9 @@ jobs:
         calibre --version
         pandoc --version
         python3 --version
+
+    # - name: Run pre-commit tests
+    #   uses: pre-commit/action@v3.0.0
 
     - name: download latest PDF
       run:

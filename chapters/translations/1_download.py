@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+"""
+Download chapter files from the web.
+"""
 import os
 import sys
 
@@ -17,7 +20,9 @@ for translator in translations.keys():
 
 
 def download_file(url: str, filepath: str):
-    """download file from url to filepath"""
+    """
+    Download file from url to filepath.
+    """
     headers = {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:75.0) Gecko/20100101 Firefox/75.0 ",
     }
@@ -28,14 +33,18 @@ def download_file(url: str, filepath: str):
 
 
 def download_all_chapters():
-    # downloads only if file does not exist yet
+    """
+    Download all chapters.
+
+    downloads only if file does not exist yet
+    """
     url_base = "https://www.fanfiktion.de/s/<---id--->/<---fileNum--->/"
     for translator, trans in translations.items():
         chapter = trans["chStart"]
         for fileNum in range(1, trans["numFiles"] + 1):
             fileOut = f"1-download/{translator}/%03d.html" % chapter
             if not os.path.exists(fileOut):
-                print(f"downloading chapter %03d" % chapter)
+                print("downloading chapter %03d" % chapter)
                 url = url_base.replace("<---id--->", trans["id"]).replace(
                     "<---fileNum--->",
                     str(fileNum),

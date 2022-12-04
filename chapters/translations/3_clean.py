@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+"""
+Clean text.
+"""
 import glob
 import os
 import re
@@ -20,6 +23,7 @@ for translator in translations.keys():
 
 
 def html_modify():
+    """Modify the HTML."""
     html_start = """<!DOCTYPE html>
 <html lang="de">
 <head>
@@ -78,7 +82,8 @@ def html_modify():
 
 def html_tuning(s: str) -> str:
     """
-    cleanup spans and divs
+    Cleanup spans and divs.
+
     fix small typos
     fix "
     TODO: add unit tests!
@@ -198,6 +203,9 @@ def html_tuning(s: str) -> str:
 
 
 def cleanup_spans(s: str) -> str:
+    """
+    Clean the span tags.
+    """
     # harmonize
     s = s.replace(
         '<span style="text-decoration:underline;">',
@@ -316,6 +324,9 @@ def cleanup_spans(s: str) -> str:
 
 
 def cleanup_divs(s: str) -> str:
+    """
+    Clean the DIV tags.
+    """
     if "€" in s:
         with open("0error.html", mode="w", encoding="utf-8", newline="\n") as fh:
             fh.write(s)

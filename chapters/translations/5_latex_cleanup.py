@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+"""
+Cleanup LaTeX Code.
+"""
 import glob
 import os
 import re
@@ -21,6 +24,11 @@ for translator in translations.keys():
 
 
 def loop_files_for_cleanup():
+    """
+    Loop over all files.
+
+    Call cleanup_latex()
+    """
     for translator in translators:
         print("===" + translator + "===")
         for fileIn in sorted(glob.glob(f"4-latex/{translator}/*.tex")):
@@ -33,6 +41,9 @@ def loop_files_for_cleanup():
 
 
 def cleanup_latex(s):
+    """
+    Clean LaTeX Code.
+    """
     # end of line
     s = re.sub(r"\r\n", "\n", s)
     s = re.sub(r"^.*\\begin\{document\}", "", s, flags=re.DOTALL)
@@ -88,6 +99,9 @@ def cleanup_latex(s):
 
 
 def fix_spaces(s: str) -> str:
+    """
+    Fix spaces.
+    """
     # trailing spaces
     s = re.sub(r" +$", "", s)
     # remove spaces from empty lines

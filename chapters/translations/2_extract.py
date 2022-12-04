@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+"""
+Extract text from downloaded HTML files.
+"""
 import glob
 import os
 import re
@@ -21,7 +24,8 @@ for translator in translations.keys():
 
 def extract_chapter_text():
     """
-    extract chapter text from html and writes result into 2-extracted/
+    Extract chapter text from html and writes result into 2-extracted/ .
+
     2 modifications are done: removal of comments and removal of javascript
     """
     for translator in translators:

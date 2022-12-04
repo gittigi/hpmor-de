@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
 # by Torben Menke https://entorb.net
+"""
+Modify flattened .tex file.
+"""
 import datetime as dt
 import os
 import re

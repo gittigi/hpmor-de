@@ -1,8 +1,12 @@
 #!/usr/bin/env python3
 # by Torben Menke https://entorb.net
-# downloads other translation chapter files
-# chapter-wise comparison of my version to other language
-#   by counting the use of LaTeX commands like \parsel etc.s
+"""
+Compare chapters between translations.
+
+downloads other translation chapter files
+chapter-wise comparison of my version to other language
+by counting the use of LaTeX commands like parsel etc.s
+"""
 import os
 import re
 import sys
@@ -51,7 +55,9 @@ translations = {
 
 
 def download_file(url: str, filepath: str):
-    """download file from url to filepath"""
+    """
+    Download file from url to filepath.
+    """
     headers = {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:75.0) Gecko/20100101 Firefox/75.0 ",
     }
@@ -82,7 +88,8 @@ def download_all_chapters():
 
 def get_list_of_my_chapter_files() -> list:
     """
-    reads hpmor.tex, extract list of (not-commented out) chapter files
+    Read hpmor.tex, extract list of (not-commented out) chapter files.
+
     returns list of filesnames
     """
     list_of_chapter_files = []
@@ -97,7 +104,7 @@ def get_list_of_my_chapter_files() -> list:
 
 def remove_comments(cont: str) -> str:
     """
-    removes Latex comments from file contents
+    Remove Latex comments from file contents.
     """
     # fix end of line
     cont = re.sub(r"\r\n?", r"\n", cont)
@@ -143,7 +150,7 @@ def compare_to_lang(myFiles: list, lang="en"):
             c_myFile = res_myFile[command]
             c_otherFile = res_otherFile[command]
             if c_myFile != c_otherFile:
-                if has_finding == False:
+                if has_finding is False:
                     has_finding = True
                     print(myFile)
                 print(f" {command}: {c_myFile} vs. {c_otherFile}")
