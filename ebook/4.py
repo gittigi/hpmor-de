@@ -1,8 +1,5 @@
 #!/usr/bin/env python3
-
 # by Torben Menke https://entorb.net
-
-
 import os
 import re
 import sys
@@ -29,7 +26,7 @@ def convert_parsel(s: str) -> str:
     return s
 
 
-with open(source_file, mode="r", encoding="utf-8", newline="\n") as fhIn:
+with open(source_file, encoding="utf-8", newline="\n") as fhIn:
     cont = fhIn.read()
 
 

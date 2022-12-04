@@ -28,5 +28,3 @@ gs -dSAFER -r600 -sDEVICE=pngalpha -dFirstPage=1 -dLastPage=1 -o $target_file $s
 source_file="ebook/tmp/title.png"
 target_file="ebook/tmp/title.jpg"
 convert -density 150 $source_file -resize 1186x1186\> -quality 75 $target_file
-
-

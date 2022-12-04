@@ -1,8 +1,5 @@
 #!/usr/bin/env python3
-
 # by Torben Menke https://entorb.net
-
-
 import os
 import re
 import sys
@@ -15,7 +12,7 @@ target_file = "hpmor-epub-6-html-2.html"
 print("=== 6. HTML modifications ===")
 
 
-with open(source_file, mode="r", encoding="utf-8", newline="\n") as fhIn:
+with open(source_file, encoding="utf-8", newline="\n") as fhIn:
     cont = fhIn.read()
 
 # remove strange leftovers between header and Disclaimer
@@ -79,7 +76,7 @@ cont = re.sub(
 )
 
 # add css style file format for \emph in \emph
-with open("ebook/html.css", mode="r", encoding="utf-8", newline="\n") as fhIn:
+with open("ebook/html.css", encoding="utf-8", newline="\n") as fhIn:
     css = fhIn.read()
 cont = cont.replace("</style>\n", css + "\n</style>\n")
 

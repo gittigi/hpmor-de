@@ -1,10 +1,12 @@
+#!/usr/bin/env python3
 import glob
 import os
 import subprocess
 import sys
 
-# my helper
 import helper
+
+# my helper
 
 os.chdir(os.path.dirname(sys.argv[0]))
 
@@ -24,7 +26,9 @@ def html2latex():
             fileOut = fileIn.replace("3-clean/", "4-latex/").replace(".html", ".tex")
             # pandoc -s fileIn -o fileOut
             process = subprocess.run(
-                ["pandoc", "-s", fileIn, "-o", fileOut], capture_output=True, text=True
+                ["pandoc", "-s", fileIn, "-o", fileOut],
+                capture_output=True,
+                text=True,
             )
             print(process.stdout)
 

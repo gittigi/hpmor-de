@@ -1,12 +1,13 @@
+#!/usr/bin/env python3
 import glob
 import os
 import re
 import sys
 
+import helper
 from bs4 import BeautifulSoup  # pip install beautifulsoup4
 
 # my helper
-import helper
 
 os.chdir(os.path.dirname(sys.argv[0]))
 
@@ -28,13 +29,16 @@ def extract_chapter_text():
         for fileIn in sorted(glob.glob(f"1-download/{translator}/*.html")):
             (filePath, fileName) = os.path.split(fileIn)
             fileOut = f"2-extract/{translator}/{fileName}"
-            with open(fileIn, mode="r", encoding="utf-8", newline="\n") as fh:
+            with open(fileIn, encoding="utf-8", newline="\n") as fh:
                 cont = fh.read()
 
             # cleanup comments and scripts
             cont = re.sub("<!--.*?-->", "", cont, flags=re.DOTALL)
             cont = re.sub(
-                "<script.*?</script>", "", cont, flags=re.DOTALL | re.IGNORECASE
+                "<script.*?</script>",
+                "",
+                cont,
+                flags=re.DOTALL | re.IGNORECASE,
             )
 
             soup = BeautifulSoup(cont, features="html.parser")
@@ -55,7 +59,7 @@ def extract_chapter_text():
             del myElement
 
             # remove linebreaks and multiple spaces
-            myTitle = re.sub("\s+", " ", myTitle, flags=re.DOTALL | re.IGNORECASE)
+            myTitle = re.sub(r"\s+", " ", myTitle, flags=re.DOTALL | re.IGNORECASE)
             print(myTitle)
             # remove outer encapsolating div start and end
             myBody = re.sub("^<div[^>]*>", "", myBody, flags=re.DOTALL | re.IGNORECASE)

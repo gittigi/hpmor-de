@@ -1,15 +1,13 @@
 #!/usr/bin/env python3
-
 # by Torben Menke https://entorb.net
-
 # downloads other translation chapter files
 # chapter-wise comparison of my version to other language
 #   by counting the use of LaTeX commands like \parsel etc.s
-
 import os
 import re
-import requests
 import sys
+
+import requests
 
 list_of_latex_commands_to_search_for = [
     "\\chapter",
@@ -88,11 +86,11 @@ def get_list_of_my_chapter_files() -> list:
     returns list of filesnames
     """
     list_of_chapter_files = []
-    with open("../hpmor.tex", mode="r", encoding="utf-8") as fh:
+    with open("../hpmor.tex", encoding="utf-8") as fh:
         lines = fh.readlines()
-    lines = [elem for elem in lines if elem.startswith("\include{chapters/")]
+    lines = [elem for elem in lines if elem.startswith(r"\include{chapters/")]
     for line in lines:
-        fileName = re.search("^.*include\{chapters/(.+?)\}.*$", line).group(1)
+        fileName = re.search(r"^.*include\{chapters/(.+?)\}.*$", line).group(1)
         list_of_chapter_files.append(fileName + ".tex")
     return list_of_chapter_files
 
@@ -107,7 +105,7 @@ def remove_comments(cont: str) -> str:
     l_cont_clean = []
     # remove comments
     for line in l_cont:
-        if re.match("^\s*%", line):
+        if re.match(r"^\s*%", line):
             continue
         line = re.sub(r"(?<!\\)%.+", "", line)
         l_cont_clean.append(line)
@@ -130,12 +128,12 @@ def compare_to_lang(myFiles: list, lang="en"):
         # in DE I added a prefix to the files, so this would not work for lang == "de"
         otherFile = f"translation-{lang}/hpmor-chapter-{ch_no}.tex"
 
-        with open(myFile, mode="r", encoding="utf-8") as fh:
+        with open(myFile, encoding="utf-8") as fh:
             cont = fh.read()
         cont = remove_comments(cont)
         res_myFile = count_latex_commands(cont)
 
-        with open(otherFile, mode="r", encoding="utf-8") as fh:
+        with open(otherFile, encoding="utf-8") as fh:
             cont = fh.read()
         cont = remove_comments(cont)
         res_otherFile = count_latex_commands(cont)

@@ -1,9 +1,11 @@
+#!/usr/bin/env python3
 import os
-import requests
 import sys
 
-# my helper
 import helper
+import requests
+
+# my helper
 
 os.chdir(os.path.dirname(sys.argv[0]))
 
@@ -35,7 +37,8 @@ def download_all_chapters():
             if not os.path.exists(fileOut):
                 print(f"downloading chapter %03d" % chapter)
                 url = url_base.replace("<---id--->", trans["id"]).replace(
-                    "<---fileNum--->", str(fileNum)
+                    "<---fileNum--->",
+                    str(fileNum),
                 )
                 download_file(url=url, filepath=fileOut)
             chapter += 1

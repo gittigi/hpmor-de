@@ -7,12 +7,12 @@ in commit body prevents autobuilding! (=2 empty lines)
 
 # Deutsche Übersetzung / German Translation of “Harry Potter and the Methods of Rationality” (HPMOR)
 
-Dies ist ein OpenSource Projekt, gestartet von [Torben Menke](https://entorb.net/hpmor/contact.php?origin=HPMOR), zum Zusammenfügen und Überarbeiten der deutschen Fan-Übersetzungen der großartigen Fanfiction "[Harry Potter and the Methods of Rationality](https://www.hpmor.com/)" von Eliezer Yudkowsky, basierend auf der Harry Potter Reihe von J. K. Rowling. 
+Dies ist ein OpenSource Projekt, gestartet von [Torben Menke](https://entorb.net/hpmor/contact.php?origin=HPMOR), zum Zusammenfügen und Überarbeiten der deutschen Fan-Übersetzungen der großartigen Fanfiction "[Harry Potter and the Methods of Rationality](https://www.hpmor.com/)" von Eliezer Yudkowsky, basierend auf der Harry Potter Reihe von J. K. Rowling.
 
 J. K. Rowling owns Harry Potter, and no one owns the methods of rationality.
 
 Großer Dank gebührt den initialen Übersetzern: [Jost (Kapitel 1-21)](https://www.fanfiktion.de/s/4cb8beb50000203e067007d0/),
-[Patneu (Kapitel 22-38)](https://www.fanfiktion.de/s/55610c610004dede273a3811/), 
+[Patneu (Kapitel 22-38)](https://www.fanfiktion.de/s/55610c610004dede273a3811/),
 [DieFuechsin (Kapitel 39-78)](https://www.fanfiktion.de/s/5c793dfe000a402030774dc7/) und
 [Schneefl0cke (Kapitel 79-122)](https://www.fanfiktion.de/s/60044849000ccc541aef297e/)
 
@@ -44,7 +44,7 @@ Hier gibt es die [aktuelle Version von PDFs und eBooks](https://github.com/entor
 ### Weitere Links
 * [EN Originaltext auf hpmor.com](https://www.hpmor.com/)
 * [Überarbeitetes EN PDF und eBook](https://github.com/rrthomas/hpmor/releases/tag/WorkInProgress)
-* [Subreddit r/HPMOR](https://www.reddit.com/r/HPMOR/) 
+* [Subreddit r/HPMOR](https://www.reddit.com/r/HPMOR/)
 * Liste der internationalen Übersetzungen, siehe [hpmor.com](http://www.hpmor.com/info/) und [Wikipeida](https://en.wikipedia.org/wiki/Harry_Potter_and_the_Methods_of_Rationality#Translations)
 
 ### Audio Versionen
@@ -68,7 +68,7 @@ Hier gibt es die [aktuelle Version von PDFs und eBooks](https://github.com/entor
 
 ### Follow-up stuff
 Only proceed **after** reading/listening to the story, as these contain spoilers
-* [Beautiful 10min video summary/fan tribute](https://youtube.com/watch?v=aT_q646lJVo) 
+* [Beautiful 10min video summary/fan tribute](https://youtube.com/watch?v=aT_q646lJVo)
 * [Epiloque: A Crack Slash Epilogue by Alexander Wales](https://www.fanfiction.net/s/11293489/1/A-Crack-Slash-Epilogue)
 * [Sequel: Significant Digits by Alexander Davis](http://www.anarchyishyperbole.com/p/significant-digits.html)
 
@@ -80,7 +80,7 @@ Only proceed **after** reading/listening to the story, as these contain spoilers
 
 # Harry Potter and the Methods Of Rationality
 
-https://github.com/rrthomas/hpmor  
+https://github.com/rrthomas/hpmor
 Maintainer: Reuben Thomas <rrt@sc3d.org>
 
 A LaTeX version of [the popular didactic fan-fiction](http://www.hpmor.com)
@@ -256,7 +256,7 @@ the chapters they appear in for the appropriate markup.
 ### Markup
 
 These are macros defined in `layout/hp-markup.tex`. You should glance
-through that file to see what commands are available, and use them instead 
+through that file to see what commands are available, and use them instead
 of direct markup; for example `\shout` rather than `\textsc`.
 
 

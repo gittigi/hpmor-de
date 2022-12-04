@@ -1,22 +1,18 @@
 #!/usr/bin/env python3
-
 # by Torben Menke https://entorb.net
-
 # checks chapter .tex files for known issues and propose fixes
 # reads hpmor.tex for list of uncommented/relevant/e.g. translated) chapter files
 # ignores all lines starting with '%'
 # improvements are proposed via chapters/*-autofix.tex files
-
 # configuration in check-chapters.json
 # lang: EN, DE, FR, ...
 # raise_error: true -> script exits with error, used for autobuild of releases
 # print_diff: true : print line of issues
-
+import difflib
 import glob
+import json
 import os
 import re
-import json
-import difflib
 import sys
 
 # ensure we are in hpmor root dir
@@ -47,7 +43,8 @@ inline_fixing = False
 
 # read settings from check-chapters.json
 with open(
-    os.path.dirname(sys.argv[0]) + "/check-chapters.json", mode="r", encoding="utf-8"
+    os.path.dirname(sys.argv[0]) + "/check-chapters.json",
+    encoding="utf-8",
 ) as fh:
     settings = json.load(fh)
 
@@ -58,11 +55,11 @@ def get_list_of_chapter_files() -> list:
     returns list of filesnames
     """
     list_of_chapter_files = []
-    with open("hpmor.tex", mode="r", encoding="utf-8") as fh:
+    with open("hpmor.tex", encoding="utf-8") as fh:
         lines = fh.readlines()
-    lines = [elem for elem in lines if elem.startswith("\include{chapters/")]
+    lines = [elem for elem in lines if elem.startswith(r"\include{chapters/")]
     for line in lines:
-        fileName = re.search("^.*include\{(chapters/.+?)\}.*$", line).group(1)
+        fileName = re.search(r"^.*include\{(chapters/.+?)\}.*$", line).group(1)
         list_of_chapter_files.append(fileName + ".tex")
     return list_of_chapter_files
 
@@ -74,7 +71,7 @@ def process_file(fileIn: str) -> bool:
     the proposal is written to chapters/*-autofix.tex
     """
     issues_found = False
-    with open(fileIn, mode="r", encoding="utf-8") as fh:
+    with open(fileIn, encoding="utf-8") as fh:
         cont = fh.read()
 
     # end of line: LF only
@@ -98,7 +95,7 @@ def process_file(fileIn: str) -> bool:
     for line in l_cont:
         lineOrig = line
         # keep commented-out lines as they are
-        if re.match("^\s*%", line):
+        if re.match(r"^\s*%", line):
             l_cont_2.append(line)
         else:
             # check not commented-out lines
@@ -120,8 +117,8 @@ def process_file(fileIn: str) -> bool:
             fh.write("\n".join(l_cont_2))
 
         if settings["print_diff"]:
-            file1 = open(fileIn, "r", encoding="utf-8")
-            file2 = open(fileOut, "r", encoding="utf-8")
+            file1 = open(fileIn, encoding="utf-8")
+            file2 = open(fileOut, encoding="utf-8")
             diff = difflib.ndiff(file1.readlines(), file2.readlines())
             delta = "".join(l for l in diff if l.startswith("+ ") or l.startswith("- "))
             print(delta)
@@ -237,13 +234,15 @@ def fix_common_typos(s: str) -> str:
         s = s.replace("Diagon Alley", "Winkelgasse")
         s = s.replace("Hermione", "Hermine")
         s = re.sub(
-            r"Junge\-der\-(überlebt\-hat|überlebte)\b", r"Junge-der-überlebte", s
+            r"Junge\-der\-(überlebt\-hat|überlebte)\b",
+            r"Junge-der-überlebte",
+            s,
         )
         s = re.sub(r"Junge, der lebte\b", r"Junge-der-überlebte", s)
         s = s.replace("Muggelforscher", "Muggelwissenschaftler")
         s = s.replace("Stupefy", "Stupor")
         s = s.replace("Wizengamot", "Zaubergamot")
-        s = s.replace("S.P.H.E.W.", "\SPHEW")
+        s = s.replace("S.P.H.E.W.", r"\SPHEW")
         s = s.replace("ut mir Leid", "ut mir leid")
         # s = s.replace("das einzige", "das Einzige")
     # Apostroph
@@ -404,16 +403,16 @@ def fix_emph(s: str) -> str:
     return s
 
 
-assert fix_emph("That’s not \emph{true!}") == "That’s not \emph{true}!"
-assert fix_emph("she got \emph{magic,} can you") == "she got \emph{magic}, can you"
+assert fix_emph(r"That’s not \emph{true!}") == r"That’s not \emph{true}!"
+assert fix_emph(r"she got \emph{magic,} can you") == r"she got \emph{magic}, can you"
 # unchanged:
 if settings["lang"] == "EN":
     assert (
-        fix_emph("briefly. \emph{Hopeless.} Both") == "briefly. \emph{Hopeless.} Both"
+        fix_emph(r"briefly. \emph{Hopeless.} Both") == r"briefly. \emph{Hopeless.} Both"
     )
 if settings["lang"] == "DE":
     assert (
-        fix_emph("briefly. \emph{Hopeless.} Both") == "briefly. \emph{Hopeless}. Both"
+        fix_emph(r"briefly. \emph{Hopeless.} Both") == r"briefly. \emph{Hopeless}. Both"
     )
 
 # if settings["lang"] == "EN":
@@ -521,7 +520,7 @@ def add_spell(s: str) -> str:
     ]
 
     for spell in spells:
-        s2 = r"„?\\emph{„?(" + spell + ")(!?)\.?“?}“?"
+        s2 = r"„?\\emph{„?(" + spell + r")(!?)\.?“?}“?"
         s = re.sub(s2, r"\\spell{\1\2}", s)
 
     # \spell followed by ! -> inline
@@ -535,11 +534,11 @@ def add_spell(s: str) -> str:
 
 
 if settings["lang"] == "DE":
-    assert add_spell("„\emph{Lumos}“") == "\spell{Lumos}"
-    assert add_spell("\emph{„Lumos“}") == "\spell{Lumos}"
-    assert add_spell("\emph{Lumos!}") == "\spell{Lumos}"
-    assert add_spell("„\spell{Contego}“") == "\spell{Contego}", add_spell(
-        "„\spell{Contego}“"
+    assert add_spell(r"„\emph{Lumos}“") == r"\spell{Lumos}"
+    assert add_spell(r"\emph{„Lumos“}") == r"\spell{Lumos}"
+    assert add_spell(r"\emph{Lumos!}") == r"\spell{Lumos}"
+    assert add_spell(r"„\spell{Contego}“") == r"\spell{Contego}", add_spell(
+        r"„\spell{Contego}“",
     )
 
 

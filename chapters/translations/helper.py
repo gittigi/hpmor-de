@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 translations = {
     "Schneefl0cke": {"id": "60044849000ccc541aef297e", "chStart": 0, "numFiles": 121},
     "Jost": {"id": "4cb8beb50000203e067007d0", "chStart": 1, "numFiles": 21},

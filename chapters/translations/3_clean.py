@@ -1,12 +1,13 @@
+#!/usr/bin/env python3
+import glob
 import os
 import re
-import glob
 import sys
 
+import helper
 from bs4 import BeautifulSoup  # pip install beautifulsoup4
 
 # my helper
-import helper
 
 os.chdir(os.path.dirname(sys.argv[0]))
 
@@ -40,7 +41,7 @@ def html_modify():
         for fileIn in sorted(glob.glob(f"2-extract/{translator}/*.html")):
             (filePath, fileName) = os.path.split(fileIn)
             fileOut = f"3-clean/{translator}/{fileName}"
-            with open(fileIn, mode="r", encoding="utf-8", newline="\n") as fh:
+            with open(fileIn, encoding="utf-8", newline="\n") as fh:
                 cont = fh.read()
             soup = BeautifulSoup(cont, features="html.parser")
 
@@ -97,23 +98,26 @@ def html_tuning(s: str) -> str:
     # <BR>
     # 4x br -> 2x br
     s = re.sub(
-        "<br/>\s*<br/>\s*<br/>\s*<br/>",
+        r"<br/>\s*<br/>\s*<br/>\s*<br/>",
         "<br/><br/>",
         s,
         flags=re.DOTALL | re.IGNORECASE,
     )
     # 3x br -> 2x br
     s = re.sub(
-        "<br/>\s*<br/>\s*<br/>", "<br/><br/>", s, flags=re.DOTALL | re.IGNORECASE
+        r"<br/>\s*<br/>\s*<br/>",
+        "<br/><br/>",
+        s,
+        flags=re.DOTALL | re.IGNORECASE,
     )
     # double br: remove spaces
-    s = re.sub("<br/>\s+<br/>", "<br/><br/>", s, flags=re.DOTALL | re.IGNORECASE)
+    s = re.sub(r"<br/>\s+<br/>", "<br/><br/>", s, flags=re.DOTALL | re.IGNORECASE)
 
     # p instead of br
     # if more than 300 char -> use p instead of br
     s = re.sub("<br/>\n(.{200,})\n", r"<p>\n\1\n</p>", s, flags=re.IGNORECASE)
-    s = re.sub("<br/>\s*<p>", "<p>", s, flags=re.DOTALL | re.IGNORECASE)
-    s = re.sub("</p>\s*<br/>", "</p>", s, flags=re.DOTALL | re.IGNORECASE)
+    s = re.sub(r"<br/>\s*<p>", "<p>", s, flags=re.DOTALL | re.IGNORECASE)
+    s = re.sub(r"</p>\s*<br/>", "</p>", s, flags=re.DOTALL | re.IGNORECASE)
 
     # char tunings
     # ... -> …
@@ -125,7 +129,7 @@ def html_tuning(s: str) -> str:
     # s = re.sub("([a-zA-Z][\.,:;])([a-zA-Z])", r"\1 \2", s)
 
     # spaces before " at lineend
-    s = re.sub('\s+"\n', '"\n', s, flags=re.DOTALL | re.IGNORECASE)
+    s = re.sub('\\s+"\n', '"\n', s, flags=re.DOTALL | re.IGNORECASE)
     # remove linebreaks from sentences containing quotation marks
     # 3x
     s = re.sub(
@@ -143,7 +147,10 @@ def html_tuning(s: str) -> str:
     )
     # 1x
     s = re.sub(
-        r'("\w[^"]+)\s+<br/>\s+([^"]+")', r"\1 \2", s, flags=re.DOTALL | re.IGNORECASE
+        r'("\w[^"]+)\s+<br/>\s+([^"]+")',
+        r"\1 \2",
+        s,
+        flags=re.DOTALL | re.IGNORECASE,
     )
 
     # br -> p
@@ -181,11 +188,11 @@ def html_tuning(s: str) -> str:
     # s = re.sub('([\w])"([;])', rf"\1{q_right}\2", s)
 
     # whitespace at start of line
-    s = re.sub("\n\s+", "\n", s)
+    s = re.sub("\n\\s+", "\n", s)
     # multiple spaces
     s = re.sub("  +", " ", s)
     # empty lines
-    s = re.sub("\n\s*\n+[\s\n]*", "\n", s)
+    s = re.sub("\n\\s*\n+[\\s\n]*", "\n", s)
 
     return s
 
@@ -193,24 +200,25 @@ def html_tuning(s: str) -> str:
 def cleanup_spans(s: str) -> str:
     # harmonize
     s = s.replace(
-        '<span style="text-decoration:underline;">', '<span class="user_underlined">'
+        '<span style="text-decoration:underline;">',
+        '<span class="user_underlined">',
     )
 
     # empty spans 3x
     s = re.sub(
-        '<span class="[^"]+">\s*</span>',
+        r'<span class="[^"]+">\s*</span>',
         "",
         s,
         flags=re.DOTALL | re.IGNORECASE,
     )
     s = re.sub(
-        '<span class="[^"]+">\s*</span>',
+        r'<span class="[^"]+">\s*</span>',
         "",
         s,
         flags=re.DOTALL | re.IGNORECASE,
     )
     s = re.sub(
-        '<span class="[^"]+">\s*</span>',
+        r'<span class="[^"]+">\s*</span>',
         "",
         s,
         flags=re.DOTALL | re.IGNORECASE,
@@ -227,14 +235,14 @@ def cleanup_spans(s: str) -> str:
 
     #  user_italic + user_italic
     s = re.sub(
-        '<span class="user_italic">(\s*)<span class="user_italic">([^€]*)€(\s*)€',
+        r'<span class="user_italic">(\s*)<span class="user_italic">([^€]*)€(\s*)€',
         r"<em>\1\2\3</em>",
         s,
         flags=re.DOTALL | re.IGNORECASE,
     )
     #  user_italic + user_normal
     s = re.sub(
-        '<span class="user_italic">(\s*)<span class="user_normal">([^€]*)€(\s*)€',
+        r'<span class="user_italic">(\s*)<span class="user_normal">([^€]*)€(\s*)€',
         r"\1\2\3",
         s,
         flags=re.DOTALL | re.IGNORECASE,

@@ -46,7 +46,7 @@ sed -i 's/<div style=\"color: ColorParsel\">/<div class=\"parsel\">/g' $target_f
 sed -i 's/<span style=\"color: ColorHeadline\">/<span class=\"headline\">/g' $target_file
 sed -i 's/<span style=\"color: ColorMcGonagallWhiteBoard\">/<span class=\"McGonagallWhiteBoard\">/g' $target_file
 
-# add css style file format for \emph in \emph 
+# add css style file format for \emph in \emph
 sed -i -e '/<style/r ebook/html.css' $target_file
 
 # remove pdf graphics

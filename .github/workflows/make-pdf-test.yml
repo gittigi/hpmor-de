@@ -32,16 +32,16 @@ jobs:
 #    - name: setup environment to DE lang
 #      run: |
 #        cd /usr/share/locales
-#        sudo ./install-language-pack de_DE.UTF-8   
+#        sudo ./install-language-pack de_DE.UTF-8
 
     - name: test ls before
       run: |
         pwd
         ls -al
-        
+
 #    - name: cat githeadinfo
 #      run: cat .git/gitHeadInfo.gin
-      
+
     - name: install requirements
       run: |
         sudo apt update > /dev/null
@@ -61,7 +61,7 @@ jobs:
         xelatex -v
         latexmk -v
         # pandoc -v
-        python3 --version        
+        python3 --version
 
     - name: make PDF
 #      run: sh scripts/make_pdf.sh > /dev/null

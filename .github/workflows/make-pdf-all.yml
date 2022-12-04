@@ -32,13 +32,13 @@ jobs:
 #    - name: setup environment to DE lang
 #      run: |
 #        cd /usr/share/locales
-#        sudo ./install-language-pack de_DE.UTF-8   
+#        sudo ./install-language-pack de_DE.UTF-8
 
     - name: test ls before
       run: |
         pwd
         ls -l
-        
+
     - name: quality check of chapters for known issues
       run: python3 scripts/check-chapters.py
 
@@ -53,7 +53,7 @@ jobs:
         xelatex -v
         latexmk -v
         # pandoc -v
-        python3 --version        
+        python3 --version
 
     - name: make PDF complete vol
       run: latexmk hpmor > /dev/null

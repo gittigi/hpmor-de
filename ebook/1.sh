@@ -35,5 +35,3 @@ sed -i '13i\\\renewcommand\{\\parsel}[1]{\\textcolor{parsel}{#1}}' $target_file
 sed -i '13i\\\renewcommand\{\\McGonagallWhiteBoard}[1]{\\begin{center}\\textcolor{McGonagallWhiteBoard}{#1}\\end{center}}' $target_file
 sed -i '13i\\\renewcommand\{\\headline}[1]{\\begin{center}\\textcolor{headline}{#1}\\end{center}}' $target_file
 sed -i '13i\\\renewcommand\{\\inlineheadline}[1]{\\textcolor{headline}{#1}}' $target_file
-
-

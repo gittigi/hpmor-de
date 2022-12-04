@@ -1,12 +1,9 @@
 #!/usr/bin/env python3
-
 # by Torben Menke https://entorb.net
-
-
+import datetime as dt
 import os
 import re
 import sys
-import datetime as dt
 
 os.chdir(os.path.dirname(sys.argv[0]) + "/..")
 
@@ -16,7 +13,7 @@ target_file = "hpmor-epub-3-flatten-mod1.tex"
 print("=== 3. modify flattened file ===")
 
 
-with open(source_file, mode="r", encoding="utf-8", newline="\n") as fhIn:
+with open(source_file, encoding="utf-8", newline="\n") as fhIn:
     cont = fhIn.read()
 
 # \today

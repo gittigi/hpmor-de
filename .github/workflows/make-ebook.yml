@@ -33,7 +33,7 @@ jobs:
       run: |
         pwd
         ls -l
-        
+
     - name: quality check of chapters for known issues
       run: python3 scripts/check-chapters.py
 
@@ -56,7 +56,7 @@ jobs:
         # latexmk -v
         calibre --version
         pandoc --version
-        python3 --version        
+        python3 --version
 
     - name: download latest PDF
       run:

@@ -1,4 +1,4 @@
-/* 
+/*
 start epub.css
 written for pandoc: html -> epub
 no longer in use, since now using calibri instead, which uses html.css
@@ -17,7 +17,7 @@ em em em {
 }
 
 /*
-pandoc copies the fonts to ../fonts/*.ttf inside the .epub file 
+pandoc copies the fonts to ../fonts/*.ttf inside the .epub file
 */
 @font-face {
 	font-family: "Automobile Contest";
