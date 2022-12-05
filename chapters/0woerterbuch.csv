@@ -1,4 +1,4 @@
-x/o,EN,DE
+done,EN,DE
 x,aftermath,Nachwirkungen -> Nachspiel
 x,Ancient House,Altes Geschlecht
 x,Noble and Most Ancient House,Altehrwürdiges Geschlecht
@@ -58,19 +58,19 @@ x,Forbidden Forest,Verbotener Wald
 x,wand,Zauberstab
 x,You-Know-Who,Du-weißt-schon-wer
 ,,
-,DE-alt,DE-neu
-,Seltsaft,Comed-Tea
+done,DE-alt,DE-neu
 x,Junge-der-lebte,Junge-der-überlebte
 x,Jungen-der-lebte,Jungen-der-überlebte
 x,Mama/Mutter,Mum
-,Lehrer,Professor
 x,Oberste(r) Hexenmeister,Großmeister
 x,Papa,Dad
-,Tagespropheten,Tagesprophet
+x,Seltsaft,Comed-Tea
+x,Tagespropheten,Tagesprophet
 x,Uralte Haus,Uralte Geschlecht
 x,Uralte Häuser,Uralte Geschlechter
 x,Uralten Hauses,Uralten Geschlechtes
 x,Uraltes Haus,Uraltes Geschlecht
+x,Verschwörung von Bayes,Bayes’sche Verschwörung
 ,,
 ,Spells,Zauber
 s,Accio,
@@ -99,7 +99,7 @@ s,Gom jabbar,
 s,Impedimenta,
 s,Imperius,
 s,Inflammare,
-,Innervate,Rennervate
+x,Innervate,Rennervate
 s,Jellify,
 ,Killing Curse,Todesfluch
 s,Lagann,
@@ -112,13 +112,14 @@ s,Mahasu,
 ,False Memory Charm,Falsche-Erinnerung-Zauber
 ,Most Ancient Blade,Altehrwürdige Klinge
 ,Charn of the Most Ancient Blade,Zauber der Alterwürdigen Klinge
+,Obliviation/Obliviating,Vergessenszauber
+,Obliviate,Obliviate
+s,Oogely boogely,
 s,Prismatis,
 s,Polyfluis Reverso,
 ,Polyjuice,Vielsafttrank
-s,Protego Maximus,
 s,Protego,
-,Obliviation/Obliviating,Vergessenszauber
-,Obliviate,Obliviate
+s,Protego Maximus,
 s,Quietus,Geräuschdämpfer
 ,Quieting Charm,Stillezauber
 s,Ravum Calvaria,
