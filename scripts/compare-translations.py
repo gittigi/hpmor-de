@@ -66,7 +66,7 @@ def download_file(url: str, filepath: str):
     with open(filepath, mode="bw") as fh:
         fh.write(cont)
 
-
+# TODO: master -> main in case the others migrate
 def download_all_chapters():
     baseurl = "https://raw.githubusercontent.com/<<repo>>/master/chapters/hpmor-chapter-<<chapter-no>>.tex"
 

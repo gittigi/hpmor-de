@@ -27,17 +27,17 @@ Hier gibt es die [aktuelle Version von PDFs und eBooks](https://github.com/entor
 * [x] [englisches Repo](https://github.com/rrthomas/hpmor) als Vorlange verwendet
 * [x] Layout des [französischen Repos](https://github.com/yeKcim/hpmor) adaptiert
 * [x] Auto Build via GitHub Actions
-* [x] Alle [Kapitel](https://github.com/entorb/hpmor-de/tree/master/chapters) aus 4 verschiedenen [Übersetzungen](https://github.com/entorb/hpmor-de/wiki/Mitmachen#%C3%9Cbersetzungen) zusammengetragen
+* [x] Alle [Kapitel](https://github.com/entorb/hpmor-de/tree/main/chapters) aus 4 verschiedenen [Übersetzungen](https://github.com/entorb/hpmor-de/wiki/Mitmachen#%C3%9Cbersetzungen) zusammengetragen
 * [x] Im Quellcode den englischen Originaltext vor jedem Absatz auskommentiert aufgehoben
-* [x] [Skript zum Qualitätssicherung häufiger bekannter Fehler](https://github.com/entorb/hpmor-de/blob/master/check-chapters.py) der Build-Pipeline vorgeschaltet
-* [x] eBook-Erstellskripte komplett neu geschrieben (inspiriert vom [FR Repo](https://github.com/yeKcim/hpmor))
+* [x] [Skript zum Qualitätssicherung häufiger bekannter Fehler](https://github.com/entorb/hpmor-de/blob/main/scripts/check-chapters.py) der Build-Pipeline vorgeschaltet
+* [x] [eBook-Erstellskripte](https://github.com/entorb/hpmor-de/blob/main/ebook/) komplett neu geschrieben (inspiriert vom [FR Repo](https://github.com/yeKcim/hpmor))
 
 ## Links / Navigation
 ### Navigation
 * [Aktuelle Version (PDFs und eBooks)](https://github.com/entorb/hpmor-de/releases/tag/WorkInProgress) (automatisch aktualisiert bei Änderungen)
 * [Mitmach-Anleitung](https://github.com/entorb/hpmor-de/wiki/Mitmachen)
 * [Liste der Issues und Ideen](https://github.com/entorb/hpmor-de/issues)
-* [Quelltext der Kapitel](https://github.com/entorb/hpmor-de/tree/master/chapters)
+* [Quelltext der Kapitel](https://github.com/entorb/hpmor-de/tree/main/chapters)
 * Quellen der [Übersetzungen](https://github.com/entorb/hpmor-de/wiki/Mitmachen#%C3%9Cbersetzungen)
 * Weitere Links und Quellen, siehe [Links](https://github.com/entorb/hpmor-de/wiki/Mitmachen#links) in der [Mitmach-Anleitung](https://github.com/entorb/hpmor-de/wiki/Mitmachen)
 
@@ -45,7 +45,7 @@ Hier gibt es die [aktuelle Version von PDFs und eBooks](https://github.com/entor
 * [EN Originaltext auf hpmor.com](https://www.hpmor.com/)
 * [Überarbeitetes EN PDF und eBook](https://github.com/rrthomas/hpmor/releases/tag/WorkInProgress)
 * [Subreddit r/HPMOR](https://www.reddit.com/r/HPMOR/)
-* Liste der internationalen Übersetzungen, siehe [hpmor.com](http://www.hpmor.com/info/) und [Wikipeida](https://en.wikipedia.org/wiki/Harry_Potter_and_the_Methods_of_Rationality#Translations)
+* Liste der internationalen Übersetzungen, siehe [hpmor.com](http://www.hpmor.com/info/) und [Wikipedia](https://en.wikipedia.org/wiki/Harry_Potter_and_the_Methods_of_Rationality#Translations)
 
 ### Audio Versionen
 * [EN Audiobook/Podcast by Eneasz Brodski](https://hpmorpodcast.com/) - [at Apple](https://podcasts.apple.com/de/podcast/podcast-the-methods-of-rationality-podcast/id431784580?i=1000473946812) - [at Google](https://podcasts.google.com/feed/aHR0cHM6Ly9mZWVkcy5mZWVkYnVybmVyLmNvbS9IYXJyeVBvdHRlckFuZFRoZU1ldGhvZHNPZlJhdGlvbmFsaXR5VGhlUG9kY2FzdA/episode/aHR0cHM6Ly9ocG1vcnBvZGNhc3QuY29tLz9wPTYw?sa=X&ved=0CAUQkfYCahcKEwjA44jfuO34AhUAAAAAHQAAAAAQAQ) - [at Spotify](https://open.spotify.com/episode/3up7VkwoJUTNMwaM6j6qvs?si=Gx3LsHH9SY-v5TOYJHrUxw&dl_branch=1) (complete)
