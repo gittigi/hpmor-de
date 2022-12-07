@@ -48,8 +48,8 @@ inline_fixing = False
 with open(
     os.path.dirname(sys.argv[0]) + "/check-chapters.json",
     encoding="utf-8",
-) as fh:
-    settings = json.load(fh)
+) as fh_settings:
+    settings = json.load(fh_settings)
 
 
 def get_list_of_chapter_files() -> list:
@@ -58,17 +58,17 @@ def get_list_of_chapter_files() -> list:
 
     returns list of filesnames
     """
-    list_of_chapter_files = []
+    list_of_files = []
     with open("hpmor.tex", encoding="utf-8") as fh:
         lines = fh.readlines()
     lines = [elem for elem in lines if elem.startswith(r"\include{chapters/")]
     for line in lines:
-        fileName = re.search(r"^.*include\{(chapters/.+?)\}.*$", line).group(1)
-        list_of_chapter_files.append(fileName + ".tex")
-    return list_of_chapter_files
+        file_name = re.search(r"^.*include\{(chapters/.+?)\}.*$", line).group(1)  # type: ignore
+        list_of_files.append(file_name + ".tex")
+    return list_of_files
 
 
-def process_file(fileIn: str) -> bool:
+def process_file(file_in: str) -> bool:
     """
     Check file for know issues.
 
@@ -76,7 +76,7 @@ def process_file(fileIn: str) -> bool:
     the proposal is written to chapters/*-autofix.tex
     """
     issues_found = False
-    with open(fileIn, encoding="utf-8") as fh:
+    with open(file_in, encoding="utf-8") as fh:
         cont = fh.read()
 
     # end of line: LF only
@@ -111,19 +111,19 @@ def process_file(fileIn: str) -> bool:
     if issues_found:
         # with proposal to *-autofix.tex
         print(" issues found!")
-        fileOut = fileIn.replace(".tex", "-autofix.tex")
+        file_out = file_in.replace(".tex", "-autofix.tex")
 
         # USE WITH CAUTION!!!
         if inline_fixing:
-            fileOut = fileIn
+            file_out = file_in
             issues_found = False
 
-        with open(fileOut, mode="w", encoding="utf-8", newline="\n") as fh:
+        with open(file_out, mode="w", encoding="utf-8", newline="\n") as fh:
             fh.write("\n".join(l_cont_2))
 
         if settings["print_diff"]:
-            file1 = open(fileIn, encoding="utf-8")  # noqa: SIM115
-            file2 = open(fileOut, encoding="utf-8")  # noqa: SIM115
+            file1 = open(file_in, encoding="utf-8")  # noqa: SIM115
+            file2 = open(file_out, encoding="utf-8")  # noqa: SIM115
             diff = difflib.ndiff(file1.readlines(), file2.readlines())
             delta = "".join(l for l in diff if l.startswith("+ ") or l.startswith("- "))
             print(delta)
@@ -526,6 +526,10 @@ def add_spell(s: str) -> str:
     for spell in spells:
         s2 = r"„?\\emph{„?(" + spell + r")(!?)\.?“?}“?"
         s = re.sub(s2, r"\\spell{\1\2}", s)
+        if settings["lang"] == "EN":
+            s = s.replace("‘" + spell + "’", "\\spell{" + spell + "}")
+        if settings["lang"] == "DE":
+            s = s.replace("‚" + spell + "‘", "\\spell{" + spell + "}")
 
     # \spell followed by ! -> inline
     s = re.sub(r"(\\spell{[^}]+)}!", r"\1!}", s)
@@ -556,7 +560,7 @@ if __name__ == "__main__":
     any_issue_found = False
     for fileIn in list_of_chapter_files:
         print(fileIn)
-        issue_found = process_file(fileIn=fileIn)
+        issue_found = process_file(file_in=fileIn)
         if issue_found:
             any_issue_found = True
 

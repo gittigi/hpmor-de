@@ -61,10 +61,11 @@ def download_file(url: str, filepath: str):
     headers = {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:75.0) Gecko/20100101 Firefox/75.0 ",
     }
-    cont = requests.get(url, headers=headers, verify=True).content
+    cont = requests.get(url, headers=headers, verify=True, timeout=3).content
     # verify=False -> skip SSL cert verification: CERTIFICATE_VERIFY_FAILED
     with open(filepath, mode="bw") as fh:
         fh.write(cont)
+
 
 # TODO: master -> main in case the others migrate
 def download_all_chapters():
@@ -129,8 +130,8 @@ def count_latex_commands(cont: str) -> dict:
     return res
 
 
-def compare_to_lang(myFiles: list, lang="en"):
-    for myFile in myFiles:
+def compare_to_lang(my_files: list, lang="en"):
+    for myFile in my_files:
         ch_no = myFile[14:17]
         # in DE I added a prefix to the files, so this would not work for lang == "de"
         otherFile = f"translation-{lang}/hpmor-chapter-{ch_no}.tex"
@@ -138,17 +139,17 @@ def compare_to_lang(myFiles: list, lang="en"):
         with open(myFile, encoding="utf-8") as fh:
             cont = fh.read()
         cont = remove_comments(cont)
-        res_myFile = count_latex_commands(cont)
+        res_my_file = count_latex_commands(cont)
 
         with open(otherFile, encoding="utf-8") as fh:
             cont = fh.read()
         cont = remove_comments(cont)
-        res_otherFile = count_latex_commands(cont)
+        res_other_file = count_latex_commands(cont)
 
         has_finding = False
         for command in list_of_latex_commands_to_search_for:
-            c_myFile = res_myFile[command]
-            c_otherFile = res_otherFile[command]
+            c_myFile = res_my_file[command]
+            c_otherFile = res_other_file[command]
             if c_myFile != c_otherFile:
                 if has_finding is False:
                     has_finding = True
@@ -160,4 +161,4 @@ def compare_to_lang(myFiles: list, lang="en"):
 if __name__ == "__main__":
     download_all_chapters()
     myFiles = get_list_of_my_chapter_files()
-    compare_to_lang(myFiles=myFiles, lang=other_lang)
+    compare_to_lang(my_files=myFiles, lang=other_lang)
