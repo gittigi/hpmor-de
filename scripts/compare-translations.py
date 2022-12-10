@@ -98,7 +98,9 @@ def get_list_of_my_chapter_files() -> list:
         lines = fh.readlines()
     lines = [elem for elem in lines if elem.startswith(r"\include{chapters/")]
     for line in lines:
-        fileName = re.search(r"^.*include\{chapters/(.+?)\}.*$", line).group(1)
+        my_match = re.search(r"^.*include\{chapters/(.+?)\}.*$", line)
+        assert my_match
+        fileName = my_match.group(1)
         list_of_chapter_files.append(fileName + ".tex")
     return list_of_chapter_files
 
