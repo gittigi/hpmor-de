@@ -6,7 +6,7 @@
 echo === 1. prepare .tex file, based on hpmor.tex===
 
 # ensure we are in the hpmor root dir
-script_dir=$(cd `dirname $0` && pwd)
+script_dir=$(cd $(dirname $0) && pwd)
 cd $script_dir/..
 
 source_file="hpmor.tex"
