@@ -8,7 +8,7 @@ cd $script_dir/..
 # image on last page
 
 sh ebook/0.sh
-sh ebook/1.sh
+# sh ebook/1.sh
 sh ebook/2.sh
 python3 ebook/3.py
 python3 ebook/4.py

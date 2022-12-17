@@ -42,12 +42,11 @@ hpmor-*.pdf
 hpmor.pdf
 hpmor*.zip
 chapters/*-autofix.tex
-hpmor_flatten.tex
-hpmor_epub.tex
 hpmor-epub*
 hpmor*.html
 hpmor*.epub
 hpmor*.mobi
-hpmor.docx
+hpmor*.fb2
+hpmor*.docx
 ~$hpmor.docx
 test*.pdf

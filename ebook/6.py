@@ -9,8 +9,8 @@ import sys
 
 os.chdir(os.path.dirname(sys.argv[0]) + "/..")
 
-source_file = "hpmor-epub-5-html-1.html"
-target_file = "hpmor-epub-6-html-2.html"
+source_file = "hpmor-epub-5-html-unmod.html"
+target_file = "hpmor.html"
 
 print("=== 6. HTML modifications ===")
 
@@ -18,14 +18,13 @@ print("=== 6. HTML modifications ===")
 with open(source_file, encoding="utf-8", newline="\n") as fhIn:
     cont = fhIn.read()
 
-# remove strange leftovers between header and Disclaimer
+# remove strange leftovers from tex -> html conversion
 cont = re.sub(
-    r"(</header>).*?<p>Basierend",
-    r"\1<p>Fanfiction basierend",
+    r"(</header>).*?(<p>Author’s disclaimer)",
+    r"\1\n\2",
     cont,
-    flags=re.DOTALL | re.IGNORECASE,
+    flags=re.DOTALL,
 )
-
 
 # doc structure (not needed any more, using calibi --level1-toc flag instead)
 # sed -i 's/<h1 /<h1 class="part"/g' $target_file
@@ -85,7 +84,4 @@ cont = cont.replace("</style>\n", css + "\n</style>\n")
 
 
 with open(target_file, mode="w", encoding="utf-8", newline="\n") as fhOut:
-    fhOut.write(cont)
-
-with open("hpmor.html", mode="w", encoding="utf-8", newline="\n") as fhOut:
     fhOut.write(cont)

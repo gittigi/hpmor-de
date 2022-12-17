@@ -9,8 +9,8 @@ echo === 5. LaTeX -\> HTML via pandoc ===
 script_dir=$(cd $(dirname $0) && pwd)
 cd $script_dir/..
 
-source_file="hpmor-epub-4-flatten-mod2.tex"
-target_file="hpmor-epub-5-html-1.html"
+source_file="hpmor-epub-4-flatten-parsel.tex"
+target_file="hpmor-epub-5-html-unmod.html"
 
 # LaTeX -> HTML
 title=$(grep "pdftitle=" layout/hp-header.tex | awk -F '[{}]' '{print $2}')

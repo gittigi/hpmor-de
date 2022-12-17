@@ -11,7 +11,7 @@ import sys
 os.chdir(os.path.dirname(sys.argv[0]) + "/..")
 
 source_file = "hpmor-epub-2-flatten.tex"
-target_file = "hpmor-epub-3-flatten-mod1.tex"
+target_file = "hpmor-epub-3-flatten-mod.tex"
 
 print("=== 3. modify flattened file ===")
 
@@ -33,13 +33,19 @@ cont = re.sub(
 
 # some cleanup
 cont = cont.replace("\\hplettrineextrapara", "")
+
+# manual pagebreaks
+cont = re.sub(r"\\clearpage(\{\}|)\n?", "", cont)
+
 # \vskip 1\baselineskip plus .5\textheight minus 1\baselineskip
+cont = re.sub(r"\\vskip .*\\baselineskip", "", cont)
+
+# remove \settowidth{\versewidth}... \begin{verse}[\versewidth]
 cont = re.sub(
-    r"\\vskip .*\\baselineskip",
-    "",
+    r"\n[^\n]*?\\settowidth\{\\versewidth\}[^\n]*?\n(\\begin\{verse\}\[\\versewidth\])",
+    r"\n\\begin{verse}",
     cont,
 )
-
 # remove \settowidth
 cont = re.sub(
     r"\\settowidth\{[^\}]*\}\{([^\}]*)\}",
@@ -57,9 +63,14 @@ cont = re.sub(
     # flags=re.DOTALL,
 )
 
-
 # fix „ at start of chapter
-cont = cont.replace("\\lettrinepara[ante=„]", "„\\lettrinepara")
+# \lettrine[ante=„] -> „\lettrine
+# \lettrinepara[ante=„] -> „\lettrine
+cont = re.sub(
+    r"\\(lettrine|lettrinepara)\[ante=(.)\]",
+    r"\2\\lettrine",
+    cont,
+)
 
 # align*
 cont = cont.replace("\\begin{align*}", "")

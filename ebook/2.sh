@@ -9,7 +9,7 @@ echo === 2. flatten .tex files ===
 script_dir=$(cd $(dirname $0) && pwd)
 cd $script_dir/..
 
-source_file="hpmor-epub-1.tex"
+source_file="ebook/hpmor-ebook.tex"
 target_file="hpmor-epub-2-flatten.tex"
 
 # flatten the .tex files to one file

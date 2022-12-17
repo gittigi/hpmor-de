@@ -9,8 +9,8 @@ import sys
 
 os.chdir(os.path.dirname(sys.argv[0]) + "/..")
 
-source_file = "hpmor-epub-3-flatten-mod1.tex"
-target_file = "hpmor-epub-4-flatten-mod2.tex"
+source_file = "hpmor-epub-3-flatten-mod.tex"
+target_file = "hpmor-epub-4-flatten-parsel.tex"
 
 print("=== 4. parselify flattened file in python ===")
 
