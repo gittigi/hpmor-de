@@ -1,6 +1,6 @@
 #!/bin/sh
 
 sudo apt install texlive-extra-utils pandoc calibre imagemagick ghostscript
-# ebook generation: pandoc calibre
-# ebook generation: texlive-extra-utils for latexpand
-# image modifications: imagemagick ghostscript
+# pandoc calibre : for ebook converting
+# texlive-extra-utils : for latexpand
+# imagemagick ghostscript : for pdf title page to image conversion

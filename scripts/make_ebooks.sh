@@ -7,14 +7,13 @@ cd $script_dir/..
 # TODO:
 # image on last page
 
-sh ebook/0.sh
-# sh ebook/1.sh
-sh ebook/2.sh
-python3 ebook/3.py
-python3 ebook/4.py
-sh ebook/5.sh
-python3 ebook/6.py
-sh ebook/7.sh
+sh scripts/ebook/1.sh
+sh scripts/ebook/2.sh
+python3 scripts/ebook/3.py
+python3 scripts/ebook/4.py
+sh scripts/ebook/5.sh
+python3 scripts/ebook/6.py
+sh scripts/ebook/7.sh
 
 # rm -rf hpmor-epub*.tex
 # rm -rf hpmor-epub*.html

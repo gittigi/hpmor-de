@@ -3,16 +3,16 @@
 # based on work by yeKcim
 # https://github.com/yeKcim/hpmor/tree/master/ebook
 
-echo === 0. extract cover from PDF to image===
+echo === 1. extract cover from PDF to image===
 
 # ensure we are in the hpmor root dir
 script_dir=$(cd $(dirname $0) && pwd)
-cd $script_dir/..
+cd $script_dir/../..
 
-mkdir -p ebook/tmp/
+mkdir -p tmp/
 
 source_file="hpmor.pdf"
-target_file="ebook/tmp/title.png"
+target_file="tmp/title.png"
 
 # extract title page from PDF and convert to jpeg
 # V1 via imagemagick
@@ -25,6 +25,6 @@ target_file="ebook/tmp/title.png"
 gs -dSAFER -r600 -sDEVICE=pngalpha -dFirstPage=1 -dLastPage=1 -o $target_file $source_file
 
 # now imagemagick can be used for converting to the proper size
-source_file="ebook/tmp/title.png"
-target_file="ebook/tmp/title.jpg"
+source_file="tmp/title.png"
+target_file="tmp/title.jpg"
 convert -density 150 $source_file -resize 1186x1186\> -quality 75 $target_file

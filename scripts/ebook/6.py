@@ -7,9 +7,9 @@ import os
 import re
 import sys
 
-os.chdir(os.path.dirname(sys.argv[0]) + "/..")
+os.chdir(os.path.dirname(sys.argv[0]) + "/../..")
 
-source_file = "hpmor-epub-5-html-unmod.html"
+source_file = "tmp/hpmor-epub-5-html-unmod.html"
 target_file = "hpmor.html"
 
 print("=== 6. HTML modifications ===")
@@ -20,10 +20,18 @@ with open(source_file, encoding="utf-8", newline="\n") as fhIn:
 
 # remove strange leftovers from tex -> html conversion
 cont = re.sub(
-    r"(</header>).*?(<p>Author’s disclaimer)",
+    r"(</header>).*?(<p>Fanfiction von)",
     r"\1\n\2",
     cont,
-    flags=re.DOTALL,
+    flags=re.DOTALL | re.IGNORECASE,
+)
+
+# remove duplication of author name
+cont = re.sub(
+    r"""<p>Fanfiction.*?<p>Basierend auf der Harry Potter Reihe von J. K. Rowling.*?</p>""",
+    "<p>Fanfiction basierend auf der Harry Potter Reihe von J. K. Rowling</p>",
+    cont,
+    flags=re.DOTALL | re.IGNORECASE,
 )
 
 # doc structure (not needed any more, using calibi --level1-toc flag instead)
@@ -78,7 +86,7 @@ cont = re.sub(
 )
 
 # add css style file format for \emph in \emph
-with open("ebook/html.css", encoding="utf-8", newline="\n") as fhIn:
+with open("scripts/ebook/html.css", encoding="utf-8", newline="\n") as fhIn:
     css = fhIn.read()
 cont = cont.replace("</style>\n", css + "\n</style>\n")
 

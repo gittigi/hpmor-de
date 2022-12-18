@@ -65,7 +65,7 @@ jobs:
 
     - name: make eBooks
       run: |
-        sh scripts/make_ebook.sh > /dev/null
+        sh scripts/make_ebooks.sh > /dev/null
 
     - name: test ls after
       run: |

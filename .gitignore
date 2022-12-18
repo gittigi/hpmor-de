@@ -42,7 +42,7 @@ hpmor-*.pdf
 hpmor.pdf
 hpmor*.zip
 chapters/*-autofix.tex
-hpmor-epub*
+tmp/
 hpmor*.html
 hpmor*.epub
 hpmor*.mobi

@@ -8,10 +8,10 @@ import os
 import re
 import sys
 
-os.chdir(os.path.dirname(sys.argv[0]) + "/..")
+os.chdir(os.path.dirname(sys.argv[0]) + "/../..")
 
-source_file = "hpmor-epub-2-flatten.tex"
-target_file = "hpmor-epub-3-flatten-mod.tex"
+source_file = "tmp/hpmor-epub-2-flatten.tex"
+target_file = "tmp/hpmor-epub-3-flatten-mod.tex"
 
 print("=== 3. modify flattened file ===")
 
@@ -33,6 +33,9 @@ cont = re.sub(
 
 # some cleanup
 cont = cont.replace("\\hplettrineextrapara", "")
+
+# additional linebreaks in verses of chapter 64
+cont = cont.replace("\\\\\n\n", "\n\n")
 
 # manual pagebreaks
 cont = re.sub(r"\\clearpage(\{\}|)\n?", "", cont)

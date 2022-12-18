@@ -7,12 +7,12 @@ echo === 5. LaTeX -\> HTML via pandoc ===
 
 # ensure we are in the hpmor root dir
 script_dir=$(cd $(dirname $0) && pwd)
-cd $script_dir/..
+cd $script_dir/../..
 
-source_file="hpmor-epub-4-flatten-parsel.tex"
-target_file="hpmor-epub-5-html-unmod.html"
+source_file="tmp/hpmor-epub-4-flatten-parsel.tex"
+target_file="tmp/hpmor-epub-5-html-unmod.html"
 
-# LaTeX -> HTML
+# extract title and author from hp-header.tex
 title=$(grep "pdftitle=" layout/hp-header.tex | awk -F '[{}]' '{print $2}')
 author=$(grep "pdfauthor=" layout/hp-header.tex | awk -F '[{}]' '{print $2}')
 
