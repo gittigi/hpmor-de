@@ -499,6 +499,7 @@ def add_spell(s: str) -> str:
         "Gom jabbar",
         "Impedimenta",
         "Imperius",
+        "Incendium",
         "Inflammare",
         "Innervate",
         "Rennervate",
@@ -532,11 +533,11 @@ def add_spell(s: str) -> str:
     ]
 
     for spell in spells:
-        s2 = r"„?\\emph{„?(" + spell + r")(!?)\.?“?}“?"
-        s = re.sub(s2, r"\\spell{\1\2}", s)
         if settings["lang"] == "EN":
             s = s.replace("‘" + spell + "’", "\\spell{" + spell + "}")
         if settings["lang"] == "DE":
+            s2 = r"„?\\emph{„?(" + spell + r")(!?)\.?“?}“?"
+            s = re.sub(s2, r"\\spell{\1\2}", s)
             s = s.replace("‚" + spell + "‘", "\\spell{" + spell + "}")
 
     # \spell followed by ! -> inline
@@ -545,6 +546,13 @@ def add_spell(s: str) -> str:
     s = re.sub(r"„?(\\spell{[^}]+)}“?", r"\1}", s)
     # \spell without !
     s = re.sub(r"(\\spell{[^}]+)!}", r"\1}", s)
+
+    # # some false positives
+    # " Alohomora "
+    # for spell in spells:
+    #     s = re.sub(
+    #         r"( |—)" + spell + r"( |—|,|\.|!)", r"\1\\spell{" + spell + r"}\2", s
+    #     )
 
     return s
 
