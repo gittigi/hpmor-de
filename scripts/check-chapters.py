@@ -70,7 +70,7 @@ def get_list_of_chapter_files() -> list:
 
 def process_file(file_in: str) -> bool:
     """
-    Check file for know issues.
+    Check file for known issues.
 
     returns issues_found = True if we have a finding
     the proposal is written to chapters/*-autofix.tex
@@ -122,9 +122,11 @@ def process_file(file_in: str) -> bool:
             fh.write("\n".join(l_cont_2))
 
         if settings["print_diff"]:
-            file1 = open(file_in, encoding="utf-8")  # noqa: SIM115
-            file2 = open(file_out, encoding="utf-8")  # noqa: SIM115
-            diff = difflib.ndiff(file1.readlines(), file2.readlines())
+            with open(file_in, encoding="utf-8") as file1, open(
+                file_out,
+                encoding="utf-8",
+            ) as file2:
+                diff = difflib.ndiff(file1.readlines(), file2.readlines())
             delta = "".join(l for l in diff if l.startswith("+ ") or l.startswith("- "))
             print(delta)
 
@@ -204,7 +206,8 @@ def fix_MrMrs(s: str) -> str:
     # Mr / Mrs
     s = s.replace("Mr. H. Potter", "Mr~H.~Potter")
     # s = s.replace("Mr. Potter", "Mr~Potter")
-    s = re.sub(r"\b(Mr|Mrs|Miss|Dr)\b\.?\s+(?!”)", r"\1~", s)
+    if settings["lang"] == "DE":
+        s = re.sub(r"\b(Mr|Mrs|Miss|Dr)\b\.?\s+(?!”)", r"\1~", s)
     # Dr.~ -> Dr~Potter
     s = re.sub(r"\b(Mr|Mrs|Miss|Dr)\b\.~", r"\1~", s)
     # "Dr. " -> "Dr~"
@@ -214,14 +217,15 @@ def fix_MrMrs(s: str) -> str:
 
 
 assert fix_MrMrs("Mr. H. Potter") == "Mr~H.~Potter"
-assert fix_MrMrs("Mr. Potter") == "Mr~Potter"
-assert fix_MrMrs("Mrs. Potter") == "Mrs~Potter"
-assert fix_MrMrs("Miss. Potter") == "Miss~Potter"
-assert fix_MrMrs("Dr. Potter") == "Dr~Potter"
-assert fix_MrMrs("Dr Potter") == "Dr~Potter"
-assert fix_MrMrs("Mr Potter") == "Mr~Potter"
-# assert fix_MrMrs("Mr. and Mrs. Davis") == "Mr and Mrs~Davis"
-assert fix_MrMrs("Mr. and Mrs. Davis") == "Mr~and Mrs~Davis"
+if settings["lang"] == "DE":
+    assert fix_MrMrs("Mr. Potter") == "Mr~Potter"
+    assert fix_MrMrs("Mrs. Potter") == "Mrs~Potter"
+    assert fix_MrMrs("Miss. Potter") == "Miss~Potter"
+    assert fix_MrMrs("Dr. Potter") == "Dr~Potter"
+    assert fix_MrMrs("Dr Potter") == "Dr~Potter"
+    assert fix_MrMrs("Mr Potter") == "Mr~Potter"
+    # assert fix_MrMrs("Mr. and Mrs. Davis") == "Mr and Mrs~Davis"
+    assert fix_MrMrs("Mr. and Mrs. Davis") == "Mr~and Mrs~Davis"
 assert fix_MrMrs("it’s Doctor now, not Miss.”") == "it’s Doctor now, not Miss.”"
 
 
@@ -304,8 +308,8 @@ def fix_quotations(s: str) -> str:
         s = re.sub(r'(^|\s)"((\\|\w).*?)"', r"\1„\2“", s)
 
     # add space between … and “
-    if settings["lang"] == "EN":
-        s = re.sub(r"…“", r"… “", s)
+    # if settings["lang"] == "EN":
+    #     s = re.sub(r"…“", r"… “", s)
     if settings["lang"] == "DE":
         s = re.sub(r"…„", r"… „", s)
 
@@ -540,12 +544,12 @@ def add_spell(s: str) -> str:
             s = re.sub(s2, r"\\spell{\1\2}", s)
             s = s.replace("‚" + spell + "‘", "\\spell{" + spell + "}")
 
-    # \spell followed by ! -> inline
-    s = re.sub(r"(\\spell{[^}]+)}!", r"\1!}", s)
-    # no „...“ around \spell
-    s = re.sub(r"„?(\\spell{[^}]+)}“?", r"\1}", s)
     # \spell without !
     s = re.sub(r"(\\spell{[^}]+)!}", r"\1}", s)
+    # \spell followed by ! -> remove !
+    s = re.sub(r"(\\spell{[^}]+)}!", r"\1}", s)
+    # no „...“ around \spell
+    s = re.sub(r"„?(\\spell{[^}]+)}“?", r"\1}", s)
 
     # # some false positives
     # " Alohomora "
