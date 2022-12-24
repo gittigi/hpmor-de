@@ -31,50 +31,51 @@
 \input{layout/hp-title}
 
 \begin{document}
-{
-\definecolor{backgroundcover}{HTML}{272c36}
-\setbookcover{bgcolor}{whole}{color=backgroundcover}
-\setbookcover{fgfirst}{remark}{
-\bfseries\color{blue}DUST JACKET}
-\setbookcover{bgpic}{front}{images/cover1.pdf}
-\setbookcover{fgfirst}{front}{\hptitle[\coverwidth]{\fullvolumetitle{\volumenumber}}}
+\begin{bookcover}
+\bookcovercomponent{color}{bg whole}{black}
+\bookcovercomponent{center}{above front}{\bfseries\color{blue}DUST JACKET}
+\bookcovercomponent{picture}{front}{images/cover1.pdf}
+\bookcovercomponent{normal}{front}{\hptitle[\coverwidth]{\fullvolumetitle{\volumenumber}}}
 
 % Spine
-\setbookcover{fgfirst}{spine}{
+\begin{bookcoverelement}{normal}{spine}
 \centering
 \color{white}\scshape
 \vspace{0.5cm}\huge \volumenumber\\[2ex]\Large
 \vfill
 \rotatebox[origin=c]{90}{\contour[120]{black}{\volumetitle}}
-\vfill}
+\vfill
+\end{bookcoverelement}
 
 % Back cover
-\setbookcover{fgfirst}{back}{
-\centering
-\vspace{20mm}
-\parbox{110mm}{\color{white}\Large\raggedright
+\begin{bookcoverelement}{normal}{back}
+  \centering
+  \vspace{20mm}
+  \parbox{110mm}{\color{white}\Large\raggedright
 % Petunia married a biochemist, and Harry grew up reading science and science fiction. Then came the Hogwarts letter, and a world of intriguing new possibilities to exploit. And new friends, like Hermione Granger, and Professor McGonagall, and Professor Quirrell…
 Petunia heiratete einen Biochemiker, und Harry wuchs mit wissenschaftlichen Büchern und Science-Fiction auf. Dann kam der Hogwarts-Brief und eine Welt voller faszinierender neuer Möglichkeiten, die es zu nutzen galt. Und neue Freunde, wie Hermine Granger, Professor McGonagall und Professor Quirrell…
-}}
+}
+\end{bookcoverelement}
 
 % Text on the front flap
-\setbookcover{fgfirst}{front flap}{
+\begin{bookcoverelement}{normal}{front flap}
 \centering
 \vspace{20mm}
 \parbox{40mm}{\color{white}\raggedright\small
 % HPMOR comes from the world of fan-fiction. With J.~K.~Rowling’s approval, it tells the story of an alternate Harry, an auto-didact rationalist who brings all his powers to bear on the strange new vistas of the world of magic.
 HPMOR stammt aus der Welt der Fan-Fiction. Mit der Zustimmung von J.~K.~Rowling erzählt es die Geschichte eines alternativen Harry, eines rationalen Autodidakten, der all seine Kräfte einsetzt, um die seltsamen neuen Möglichkeiten der Welt der Magie zu erkunden.
 
-\bigskip Die Bücher führen den Leser in die Denkweisen ein, die Yudkowsky in seinem Blog vorstellt, \url{lesswrong.com}.}}
+\bigskip Die Bücher führen den Leser in die Denkweisen ein, die Yudkowsky in seinem Blog vorstellt, \url{lesswrong.com}.}
+\end{bookcoverelement}
 
 % Text on the back flap
-\setbookcover{fgfirst}{back flap}{
+\begin{bookcoverelement}{normal}{back flap}
 \centering
 \vspace{20mm}
 \parbox{40mm}{\color{white}\small\raggedright
-% PUT YOUR BACK DUST-FLAP TEXT HERE!
-}}
-
-\makebookcover
+  % PUT YOUR BACK DUST-FLAP TEXT HERE!
 }
+\end{bookcoverelement}
+
+\end{bookcover}
 \end{document}
