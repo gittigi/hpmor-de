@@ -501,6 +501,7 @@ def add_spell(s: str) -> str:
         "Frigideiro",
         "Glisseo",
         "Gom jabbar",
+        "Hyakuju montauk",
         "Impedimenta",
         "Imperius",
         "Incendium",
