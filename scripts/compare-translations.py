@@ -26,12 +26,12 @@ list_of_latex_commands_to_search_for = [
     "\\headline",
     "\\inlineheadline",
     "\\SPHEW",
-    "\\spell",
     "\\begin{writtenNote}",
     "\\begin{em}",
-    "\\emph",
     "—",
     "…",
+    "\\emph",
+    "\\spell",
 ]
 
 # set repo language to compare with
@@ -67,9 +67,9 @@ def download_file(url: str, filepath: str):
         fh.write(cont)
 
 
-# TODO: master -> main in case the others migrate
+# TODO: FR uses master as branch name
 def download_all_chapters():
-    baseurl = "https://raw.githubusercontent.com/<<repo>>/master/chapters/hpmor-chapter-<<chapter-no>>.tex"
+    baseurl = "https://raw.githubusercontent.com/<<repo>>/main/chapters/hpmor-chapter-<<chapter-no>>.tex"
 
     # for lang in translations.keys():
     lang = other_lang
@@ -102,6 +102,18 @@ def get_list_of_my_chapter_files() -> list:
         assert my_match
         fileName = my_match.group(1)
         list_of_chapter_files.append(fileName + ".tex")
+    return list_of_chapter_files
+
+
+def get_list_of_my_chapter_files_v2() -> list:
+    """
+    Return list of chapter files (0..122).
+    """
+    list_of_chapter_files = []
+    for i in range(0, 122 + 1):
+        ch_no = "%03d" % i
+        f = f"hpmor-chapter-{ch_no}.tex"
+        list_of_chapter_files.append(f)
     return list_of_chapter_files
 
 
@@ -162,5 +174,5 @@ def compare_to_lang(my_files: list, lang="en"):
 
 if __name__ == "__main__":
     download_all_chapters()
-    myFiles = get_list_of_my_chapter_files()
+    myFiles = get_list_of_my_chapter_files_v2()
     compare_to_lang(my_files=myFiles, lang=other_lang)
