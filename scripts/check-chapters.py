@@ -13,13 +13,14 @@ print_diff: true : print line of issues
 """
 import difflib
 import json
-import os
 import re
+from multiprocessing import Pool, cpu_count
+from os import chdir
 from pathlib import Path
 
 # ensure we are in hpmor root dir
 # dir_root = os.path.dirname(sys.argv[0]) + "/.."
-os.chdir(Path(__file__).parents[1])
+chdir(Path(__file__).parents[1])
 assert Path("./chapters").is_dir()
 
 
@@ -64,13 +65,13 @@ def get_list_of_chapter_files() -> list[Path]:
     """
     list_of_files: list[Path] = []
     with open("hpmor.tex", encoding="utf-8") as fh:
-        lines = fh.readlines()
-    lines = [elem for elem in lines if elem.startswith(r"\include{chapters/")]
-    for line in lines:
-        include_path = re.search(r"^.*include\{(chapters/.+?)\}.*$", line).group(1)  # type: ignore
-        p = Path(include_path + ".tex")
-        assert p.is_file()
-        list_of_files.append(p)
+        for line in fh.readlines():
+            my_match = re.search(r"^.*include\{(chapters/.+?)\}.*$", line)
+            if my_match:
+                include_path = my_match.group(1)
+                p = Path(include_path + ".tex")
+                assert p.is_file()
+                list_of_files.append(p)
     return list_of_files
 
 
@@ -81,6 +82,7 @@ def process_file(file_in: Path) -> bool:
     returns issues_found = True if we have a finding
     a proposed fix is written to chapters/*-autofix.tex
     """
+    # print(file_in.name)
     issues_found = False
     cont = file_in.read_text(encoding="utf-8")
 
@@ -99,19 +101,19 @@ def process_file(file_in: Path) -> bool:
         cont = re.sub(r"\n\n\n+", r"\n\n", cont)
 
     # now split per line
-    cont_lines = cont.split("\n")
+    cont_lines_orig = cont.split("\n")
     del cont
-    cont_lines_2: list[str] = []
-    for line in cont_lines:
-        lineOrig = line
+    cont_lines_new: list[str] = []
+    for line in cont_lines_orig:
+        line_orig = line
         # keep commented-out lines as they are
         if re.match(r"^\s*%", line):
-            cont_lines_2.append(line)
+            cont_lines_new.append(line)
         else:
             # check not commented-out lines
             line = fix_line(s=line)
-            cont_lines_2.append(line)
-            if issues_found is False and lineOrig != line:
+            cont_lines_new.append(line)
+            if issues_found is False and line_orig != line:
                 issues_found = True
     if issues_found:
         # write proposal to *-autofix.tex
@@ -124,7 +126,7 @@ def process_file(file_in: Path) -> bool:
             issues_found = False
 
         with open(file_out, mode="w", encoding="utf-8", newline="\n") as fh:
-            fh.write("\n".join(cont_lines_2))
+            fh.write("\n".join(cont_lines_new))
 
         if settings["print_diff"]:
             with open(file_in, encoding="utf-8") as file1, open(
@@ -133,7 +135,7 @@ def process_file(file_in: Path) -> bool:
             ) as file2:
                 diff = difflib.ndiff(file1.readlines(), file2.readlines())
             delta = "".join(l for l in diff if l.startswith("+ ") or l.startswith("- "))
-            print(delta)
+            print(file_in.name + "\n" + delta)
 
     return issues_found
 
@@ -549,9 +551,7 @@ if settings["lang"] == "DE":
     assert fix_hyphens("Text —„") == "Text— „"
     assert fix_hyphens("Text „ —Quote") == "Text „—Quote"
     assert fix_hyphens("Text „ — Quote") == "Text „—Quote"
-    assert fix_hyphens("Text—„— Quote") == "Text— „—Quote", fix_hyphens(
-        fix_hyphens("Text—„ —Quote")
-    )
+    assert fix_hyphens("Text—„— Quote") == "Text— „—Quote"
     # end of quote
     assert fix_hyphens("Text -“") == "Text—“ ", "'" + fix_hyphens("Text -“") + "'"
     assert fix_hyphens("Text —“") == "Text—“", "'" + fix_hyphens("Text —“") + "'"
@@ -590,7 +590,6 @@ def fix_spell(s: str) -> str:
         "Luminos",
         "Lumos",
         "Mahasu",
-        "Obliviate",
         "Obliviate",
         "Oogely boogely",
         "Prismatis",
@@ -640,6 +639,7 @@ def fix_spell(s: str) -> str:
     #     s = re.sub(
     #         r"( |—)" + spell + r"( |—|,|\.|!)", r"\1\\spell{" + spell + r"}\2", s
     #     )
+    # Imperius not as spell
     s = s.replace("\\spell{Imperius}", "Imperius")
 
     return s
@@ -661,12 +661,21 @@ if __name__ == "__main__":
 
     list_of_chapter_files = get_list_of_chapter_files()
 
-    any_issue_found = False
-    for file_in in list_of_chapter_files:
-        print(file_in.name)
-        issue_found = process_file(file_in=file_in)
-        if issue_found:
-            any_issue_found = True
+    # V2: using multiprocessing
+    # prepare
+    num_processes = min(cpu_count(), len(list_of_chapter_files))
+    pool = Pool(processes=num_processes)
+    # run
+    results = pool.map(process_file, list_of_chapter_files)
+    any_issue_found = True in results
+
+    # V1: single processing
+    # any_issue_found = False
+    # for file_in in list_of_chapter_files:
+    #     print(file_in.name)
+    #     issue_found = process_file(file_in=file_in)
+    #     if issue_found:
+    #         any_issue_found = True
 
     if settings["raise_error"]:
         assert any_issue_found is False, "Issues found, please fix!"
