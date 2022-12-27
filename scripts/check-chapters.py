@@ -12,21 +12,25 @@ raise_error: true -> script exits with error, used for autobuild of releases
 print_diff: true : print line of issues
 """
 import difflib
-import glob
 import json
 import os
 import re
-import sys
+from pathlib import Path
 
 # ensure we are in hpmor root dir
-dir_root = os.path.dirname(sys.argv[0]) + "/.."
-os.chdir(dir_root)
+# dir_root = os.path.dirname(sys.argv[0]) + "/.."
+os.chdir(Path(__file__).parents[1])
+assert Path("./chapters").is_dir()
 
 
 # pos lookahead: (?=...)
 # neg lookahead: (?!...)
 # pos lookbehind (?<=...)
 # neg lookbehind (?<!...)
+
+# in EN the quotations are “...” and ‘...’ (for quotations in quotations)
+# in DE the quotations are „...“ and ‚...‘ (for quotations in quotations)
+
 
 # TODO:
 # \latersection must be at newline
@@ -46,38 +50,39 @@ inline_fixing = False
 
 # read settings from check-chapters.json
 with open(
-    os.path.dirname(sys.argv[0]) + "/check-chapters.json",
+    Path("scripts/check-chapters.json"),
     encoding="utf-8",
 ) as fh_settings:
     settings = json.load(fh_settings)
 
 
-def get_list_of_chapter_files() -> list:
+def get_list_of_chapter_files() -> list[Path]:
     """
     Read hpmor.tex, extract list of (not-commented out) chapter files.
 
     returns list of filesnames
     """
-    list_of_files = []
+    list_of_files: list[Path] = []
     with open("hpmor.tex", encoding="utf-8") as fh:
         lines = fh.readlines()
     lines = [elem for elem in lines if elem.startswith(r"\include{chapters/")]
     for line in lines:
-        file_name = re.search(r"^.*include\{(chapters/.+?)\}.*$", line).group(1)  # type: ignore
-        list_of_files.append(file_name + ".tex")
+        include_path = re.search(r"^.*include\{(chapters/.+?)\}.*$", line).group(1)  # type: ignore
+        p = Path(include_path + ".tex")
+        assert p.is_file()
+        list_of_files.append(p)
     return list_of_files
 
 
-def process_file(file_in: str) -> bool:
+def process_file(file_in: Path) -> bool:
     """
     Check file for known issues.
 
     returns issues_found = True if we have a finding
-    the proposal is written to chapters/*-autofix.tex
+    a proposed fix is written to chapters/*-autofix.tex
     """
     issues_found = False
-    with open(file_in, encoding="utf-8") as fh:
-        cont = fh.read()
+    cont = file_in.read_text(encoding="utf-8")
 
     # end of line: LF only
     if "\r" in cont:
@@ -94,24 +99,24 @@ def process_file(file_in: str) -> bool:
         cont = re.sub(r"\n\n\n+", r"\n\n", cont)
 
     # now split per line
-    l_cont = cont.split("\n")
+    cont_lines = cont.split("\n")
     del cont
-    l_cont_2 = []
-    for line in l_cont:
+    cont_lines_2: list[str] = []
+    for line in cont_lines:
         lineOrig = line
         # keep commented-out lines as they are
         if re.match(r"^\s*%", line):
-            l_cont_2.append(line)
+            cont_lines_2.append(line)
         else:
             # check not commented-out lines
             line = fix_line(s=line)
-            l_cont_2.append(line)
+            cont_lines_2.append(line)
             if issues_found is False and lineOrig != line:
                 issues_found = True
     if issues_found:
-        # with proposal to *-autofix.tex
+        # write proposal to *-autofix.tex
         print(" issues found!")
-        file_out = file_in.replace(".tex", "-autofix.tex")
+        file_out = file_in.parent / (file_in.stem + "-autofix.tex")
 
         # USE WITH CAUTION!!!
         if inline_fixing:
@@ -119,7 +124,7 @@ def process_file(file_in: str) -> bool:
             issues_found = False
 
         with open(file_out, mode="w", encoding="utf-8", newline="\n") as fh:
-            fh.write("\n".join(l_cont_2))
+            fh.write("\n".join(cont_lines_2))
 
         if settings["print_diff"]:
             with open(file_in, encoding="utf-8") as file1, open(
@@ -134,6 +139,9 @@ def process_file(file_in: str) -> bool:
 
 
 def fix_line(s: str) -> str:
+    """
+    Apply all fix functions on a line.
+    """
     # simple and safe
     s = fix_spaces(s)
     s = fix_latex(s)
@@ -150,7 +158,7 @@ def fix_line(s: str) -> str:
 
     # add spell macro
     if settings["lang"] == "DE":
-        s = add_spell(s)
+        s = fix_spell(s)
 
     # spaces, again
     s = fix_spaces(s)
@@ -158,21 +166,35 @@ def fix_line(s: str) -> str:
 
 
 def fix_spaces(s: str) -> str:
+    # tabs to space
+    s = re.sub(r"\t+", " ", s)
     # trailing spaces
     s = re.sub(r" +$", "", s)
     # remove spaces from empty lines
     s = re.sub(r"^\s+$", "", s)
     # multiple spaces (excluding start of new line)
-    s = re.sub(r"(?<!^)[ \t][ \t]+", " ", s)
+    s = re.sub(r"(?<!^)  +", " ", s)
     return s
+
+
+assert fix_spaces("tabs\tto\t\tspace") == "tabs to space"
+assert fix_spaces("trailing spaces  ") == "trailing spaces"
+assert fix_spaces("  ") == ""
+assert fix_spaces("multiple  spaces") == "multiple spaces"
 
 
 def fix_latex(s: str) -> str:
     # Latex: \begin and \end{...} at new line
-    s = re.sub(r"([^\s+%])\s*\\(begin|end)\{", r"\1\n\\\2{", s)
-    # Latex: \\ at new line
-    s = re.sub(r"\\\\\s*(?=[^$%\[]])", r"\\\\\n", s)
+    s = re.sub(r"([^\s%]+)\s*\\(begin|end)\{", r"\1\n\\\2{", s)
+    # Latex: \\ not followed by text
+    s = re.sub(r"\\\\\s*(?!($|\[|%))", r"\\\\\n", s)
     return s
+
+
+assert fix_latex("begin at new line\\begin{em}") == "begin at new line\n\\begin{em}"
+assert fix_latex("end at new line\\end{em}") == "end at new line\n\\end{em}"
+assert fix_latex("new line after \\\\ asdf") == "new line after \\\\\nasdf"
+assert fix_latex("no new line after \\\\") == "no new line after \\\\"
 
 
 def fix_dots(s: str) -> str:
@@ -182,33 +204,46 @@ def fix_dots(s: str) -> str:
     s = s.replace(" … ", "…")
     # NOT '… ' as in ', no… “I'
     # s = re.sub(r" *… *", r"…", s)
-
-    # … at end of quotation ' …"' -> '…"'
-    s = s.replace(' …"', '…"')
+    # … at start of line
+    s = re.sub(r"^ *… *", r"…", s)
+    # … at end of line
+    s = re.sub(r" *… *$", r"…", s)
     # before comma
     s = s.replace(" …,", "…,")
+
     if settings["lang"] == "EN":
+        # … at end of quotation ' …"' -> '…"'
         s = s.replace(" …”", "…”")
         # "… " but not before “
         s = re.sub(r"… (?!“)", r"…", s)
         # " …" but after punctuation
         s = re.sub(r"(?<!(%|,|\.|!|\?|:)) …", r"…", s)  # … at start of line
     if settings["lang"] == "DE":
+        # … at end of quotation ' …"' -> '…"'
         s = s.replace(" …“", "…“")
         # "… " but not before „
         s = re.sub(r"… (?!„)", r"…", s)
         # " …" but after punctuation
         s = re.sub(r"(?<!(%|,|\.|!|\?|:)) …", r"…", s)
+    #  keep space between . or , and …
+    s = re.sub(r"([,\.!\?])…", r"\1 …", s)
 
-    # … at start of line
-    s = re.sub(r"^ *… *", r"…", s)
-    # … at end of line
-    s = re.sub(r" *… *$", r"…", s)
-    # Word…"Word -> Word…" Word
-    s = re.sub(r'(\w…")(\w)', r"\1 \2", s)
-    # … after . or ,
-    s = re.sub(r"([,\.])…", r"\1 …", s)
     return s
+
+
+assert fix_dots("bad...dots") == "bad…dots"
+assert fix_dots("bad … dots") == "bad…dots"
+assert fix_dots("bad.…dots") == "bad. …dots"
+assert fix_dots("bad. …dots") == "bad. …dots"
+assert fix_dots("bad, …dots") == "bad, …dots"
+assert fix_dots("bad! …dots") == "bad! …dots"
+assert fix_dots("bad? …dots") == "bad? …dots"
+assert fix_dots(" … dots") == "…dots"
+assert fix_dots("some … ") == "some…"
+
+if settings["lang"] == "DE":
+    assert fix_dots("bad… dots") == "bad…dots"
+    assert fix_dots("bad… „dots") == "bad… „dots"
 
 
 def fix_MrMrs(s: str) -> str:
@@ -244,18 +279,18 @@ def fix_numbers(s: str) -> str:
     return s
 
 
+assert fix_numbers("Es ist 12:23 Uhr...") == "Es ist 12:23~Uhr..."
+
+
 def fix_common_typos(s: str) -> str:
     if settings["lang"] == "DE":
         s = s.replace("Adoleszenz", "Pubertät")
         s = s.replace("Avadakedavra", "Avada Kedavra")
         s = s.replace("Diagon Alley", "Winkelgasse")
         s = s.replace("Hermione", "Hermine")
-        s = re.sub(
-            r"Junge\-der\-(überlebt\-hat|überlebte)\b",
-            r"Junge-der-überlebte",
-            s,
-        )
-        s = re.sub(r"Junge, der lebte\b", r"Junge-der-überlebte", s)
+        s = s.replace("Junge-der-überlebt-hatte", "Junge-der-überlebte")
+        s = s.replace("Junge-der-überlebt-hat", "Junge-der-überlebte")
+        s = s.replace("Junge, der lebte", "Junge-der-überlebte")
         s = s.replace("Muggelforscher", "Muggelwissenschaftler")
         s = s.replace("Stupefy", "Stupor")
         s = s.replace("Wizengamot", "Zaubergamot")
@@ -277,11 +312,21 @@ def fix_common_typos(s: str) -> str:
 
 
 assert (fix_common_typos("Test Mungo's King's Cross")) == "Test Mungo’s King’s Cross"
+assert (fix_common_typos("Junge-der-überlebt-hat")) == "Junge-der-überlebte"
+if settings["lang"] == "DE":
+    assert (fix_common_typos("Fritz'sche Gesetz")) == "Fritz’sche Gesetz"
+    assert (fix_common_typos("Fritz'schen Gesetz")) == "Fritz’schen Gesetz"
+    assert (fix_common_typos("Fritz'scher Gesetz")) == "Fritz’scher Gesetz"
+if settings["lang"] == "EN":
+    assert (fix_common_typos("I'm happy")) == "I’m happy"
+    assert (fix_common_typos("can't be")) == "can’t be"
 
 
 def fix_quotations(s: str) -> str:
     # in EN the quotations are “...” and ‘...’ (for quotations in quotations)
     # in DE the quotations are „...“ and ‚...‘ (for quotations in quotations)
+
+    # TODO: add tests
 
     # "..." -> “...”
     if settings["lang"] == "EN":
@@ -453,10 +498,10 @@ def fix_hyphens(s: str) -> str:
 
     # - at start of line
     s = re.sub(r"^[\-—] *", r"—", s)
-    # - at start of line
     # if settings["lang"] == "EN":
     #     s = re.sub(r" [\-—]$", r"—", s) # rrthomas voted againt it
     if settings["lang"] == "DE":
+        # end of line
         s = re.sub(r" [\-—]$", r"—", s)
     # - at end of emph
     s = re.sub(r"(\s*)\-\}", r"—}\1", s)
@@ -464,8 +509,8 @@ def fix_hyphens(s: str) -> str:
     # if settings["lang"] == "EN":
     #     s = re.sub(r"—“", r"— “", s) # rrthomas voted againt it
     if settings["lang"] == "DE":
-        s = re.sub(r"—„", r"— „", s)
-        s = re.sub(r"„— ", r"„—", s)
+        s = re.sub(r"\s*—„", r"— „", s)
+        s = re.sub(r"„\s*—\s*", r"„—", s)
 
     # at end of quote
     if settings["lang"] == "EN":
@@ -488,10 +533,32 @@ def fix_hyphens(s: str) -> str:
 
 
 assert fix_hyphens("2-3-4") == "2–3–4"
+assert fix_hyphens(" —,") == "—,"
+assert fix_hyphens(" —.") == "—."
+assert fix_hyphens(" —!") == "—!"
+assert fix_hyphens(" —?") == "—?"
+# start of line
+assert fix_hyphens("— asdf") == "—asdf"
+assert fix_hyphens("- asdf") == "—asdf"
+assert fix_hyphens("-asdf") == "—asdf"
+if settings["lang"] == "DE":
+    # end of line
+    assert fix_hyphens("Text —") == "Text—"
+    # start of quote
+    assert fix_hyphens("Text—„") == "Text— „"
+    assert fix_hyphens("Text —„") == "Text— „"
+    assert fix_hyphens("Text „ —Quote") == "Text „—Quote"
+    assert fix_hyphens("Text „ — Quote") == "Text „—Quote"
+    assert fix_hyphens("Text—„— Quote") == "Text— „—Quote", fix_hyphens(
+        fix_hyphens("Text—„ —Quote")
+    )
+    # end of quote
+    assert fix_hyphens("Text -“") == "Text—“ ", "'" + fix_hyphens("Text -“") + "'"
+    assert fix_hyphens("Text —“") == "Text—“", "'" + fix_hyphens("Text —“") + "'"
 
 
-def add_spell(s: str) -> str:
-    spells = [
+def fix_spell(s: str) -> str:
+    spells = {
         "Accio",
         "Alohomora",
         # "Avada Kedavra", not here, since sometimes in emph ok.
@@ -512,7 +579,7 @@ def add_spell(s: str) -> str:
         "Gom jabbar",
         "Hyakuju montauk",
         "Impedimenta",
-        "Imperius",
+        # "Imperius", not as spell, as often used in text
         "Incendium",
         "Inflammare",
         "Innervate",
@@ -544,15 +611,21 @@ def add_spell(s: str) -> str:
         "Ventriliquo",
         "Ventus",
         "Wingardium Leviosa",
-    ]
+    }
+    spells_str = "(" + "|".join(spells) + ")"
 
-    for spell in spells:
-        if settings["lang"] == "EN":
-            s = s.replace("‘" + spell + "’", "\\spell{" + spell + "}")
-        if settings["lang"] == "DE":
-            s2 = r"„?\\emph{„?(" + spell + r")(!?)\.?“?}“?"
-            s = re.sub(s2, r"\\spell{\1\2}", s)
-            s = s.replace("‚" + spell + "‘", "\\spell{" + spell + "}")
+    if settings["lang"] == "DE":
+        # \emph{spell}
+        s = re.sub(r"\\emph{„?" + spells_str + r"[!\.“]?}", r"\\spell{\1}", s)
+        # „\emph{spell}“
+        s = re.sub(r"„\\emph{„?" + spells_str + r"[!\.]?“?}", r"\\spell{\1}“", s)
+        # ‚spell‘
+        s = re.sub(r"‚" + spells_str + r"!?‘", r"\\spell{\1}", s)
+        # „spell“
+        s = re.sub(r"„" + spells_str + r"!?“", r"\\spell{\1}", s)
+        # " spell "
+        # 2 false positives
+        # s = re.sub(r"(?<= )" + spells_str + r"(?= )(?!\1)", r"\\spell{\1}", s)
 
     # \spell without !
     s = re.sub(r"(\\spell{[^}]+)!}", r"\1}", s)
@@ -567,30 +640,31 @@ def add_spell(s: str) -> str:
     #     s = re.sub(
     #         r"( |—)" + spell + r"( |—|,|\.|!)", r"\1\\spell{" + spell + r"}\2", s
     #     )
+    s = s.replace("\\spell{Imperius}", "Imperius")
 
     return s
 
 
 if settings["lang"] == "DE":
-    assert add_spell(r"„\emph{Lumos}“") == r"\spell{Lumos}"
-    assert add_spell(r"\emph{„Lumos“}") == r"\spell{Lumos}"
-    assert add_spell(r"\emph{Lumos!}") == r"\spell{Lumos}"
-    assert add_spell(r"„\spell{Contego}“") == r"\spell{Contego}", add_spell(
-        r"„\spell{Contego}“",
-    )
+    assert fix_spell(r"‚Lumos‘") == r"\spell{Lumos}"
+    assert fix_spell(r"„Lumos“") == r"\spell{Lumos}"
+    assert fix_spell(r"„\emph{Lumos}“") == r"\spell{Lumos}"
+    assert fix_spell(r"\emph{„Lumos“}") == r"\spell{Lumos}"
+    assert fix_spell(r"\emph{Lumos!}") == r"\spell{Lumos}"
+    assert fix_spell(r"„\spell{Lumos}“") == r"\spell{Lumos}"
 
 
 if __name__ == "__main__":
     # cleanup first
-    for fileOut in glob.glob("chapters/*-autofix.tex"):
-        os.remove(fileOut)
+    for file_out in Path("chapters").glob("*-autofix.tex"):
+        file_out.unlink()
 
     list_of_chapter_files = get_list_of_chapter_files()
 
     any_issue_found = False
-    for fileIn in list_of_chapter_files:
-        print(fileIn)
-        issue_found = process_file(file_in=fileIn)
+    for file_in in list_of_chapter_files:
+        print(file_in.name)
+        issue_found = process_file(file_in=file_in)
         if issue_found:
             any_issue_found = True
 
