@@ -1,52 +1,55 @@
-name: build eBooks
+name: Build eBooks
 
-# controls when the action will run.
-# workflow_dispatch: manual triggering
-# push: triggers the workflow on push request events but only for the main branch
 on:
   workflow_dispatch:
   push:
     branches: [ main ]
 
-# a workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  job1:
-    runs-on: ubuntu-22.04
+  build:
     # runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
 
-    - name: print start date
+    - name: Print start date
       run: date +%Y-%m-%d_%H:%M
 
-    - name: checkout repository
+    - name: Checkout repository
       uses: actions/checkout@v3
+      with:
+        fetch-depth: 1 # 0 if you want to push to repo
 
-    - name: python setup
+    - name: Python set up
       uses: actions/setup-python@v4
       with:
         python-version: '3.10'
 
-    - name: test ls before
+  #  - name: setup environment to DE lang
+  #    run: |
+  #      cd /usr/share/locales
+  #      sudo ./install-language-pack de_DE.UTF-8
+
+    - name: Test ls before
       run: |
         pwd
         ls -l
 
-    - name: quality check of chapters for known issues
-      run: python3 scripts/check-chapters.py
+    - name: Check chapters for known issues
+      run: python3 -O scripts/check-chapters.py
 
     # - name: install requirements
     #   run: |
     #     sudo apt update > /dev/null
     #     sh scripts/install_requirements_ebook.sh > /dev/null
 
-    - name: install packages using cache
+    - name: Install packages using cache
       uses: awalsh128/cache-apt-pkgs-action@latest
       with:
         packages: texlive-extra-utils pandoc calibre imagemagick ghostscript
         version: 1.0
         # execute_install_scripts: true
 
-    - name: print versions
+    - name: Print versions
       run: |
         cat /etc/os-release
         # xelatex -v
@@ -55,24 +58,20 @@ jobs:
         pandoc --version
         python3 --version
 
-    # - name: Run pre-commit tests
+    # - name: Check pre-commit tests
     #   uses: pre-commit/action@v3.0.0
 
-    - name: download latest PDF
-      run:
-        wget --quiet https://github.com/entorb/hpmor-de/releases/download/WorkInProgress/hpmor.pdf  -O hpmor.pdf
-    #   run: sh scripts/make_pdfs.sh > /dev/null
-
-    - name: make eBooks
+    - name: Make eBooks
       run: |
+        wget --quiet https://github.com/entorb/hpmor-de/releases/download/WorkInProgress/hpmor.pdf  -O hpmor.pdf
         sh scripts/make_ebooks.sh > /dev/null
 
-    - name: test ls after
+    - name: Test ls after
       run: |
         pwd
         ls -l
 
-    - name: publish eBooks to release
+    - name: Publish eBooks to release
       uses: softprops/action-gh-release@v1
       with:
         tag_name: WorkInProgress
@@ -84,5 +83,5 @@ jobs:
           ./hpmor.mobi
           ./hpmor.fb2
 
-    - name: print end date
+    - name: Print end date
       run: date +%Y-%m-%d_%H:%M
