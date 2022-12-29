@@ -18,6 +18,12 @@ from multiprocessing import Pool, cpu_count
 from os import chdir
 from pathlib import Path
 
+
+if __debug__:
+    # skipped if python is started with -O option
+    import pytest
+
+
 # ensure we are in hpmor root dir
 # dir_root = os.path.dirname(sys.argv[0]) + "/.."
 chdir(Path(__file__).parents[1])
@@ -183,6 +189,21 @@ assert fix_spaces("tabs\tto\t\tspace") == "tabs to space"
 assert fix_spaces("trailing spaces  ") == "trailing spaces"
 assert fix_spaces("  ") == ""
 assert fix_spaces("multiple  spaces") == "multiple spaces"
+# rewrite using pytest
+
+if __debug__:
+
+    @pytest.mark.parametrize(
+        "text, expected_output",
+        (
+            ("tabs\tto\t\tspace", "tabs to space"),
+            ("trailing spaces  ", "trailing spaces"),
+            ("  ", ""),
+            ("multiple  spaces", "multiple spaces"),
+        ),
+    )
+    def test_fix_spaces(text: str, expected_output: str) -> None:
+        assert fix_spaces(s=text) == expected_output, fix_spaces(s=text)
 
 
 def fix_latex(s: str) -> str:
@@ -449,9 +470,8 @@ def fix_emph(s: str) -> str:
     # move punctuation out of lowercase 1-word-emph
     # ... \emph{WORD.} -> \emph{WORD}.
     # Note: only for , and .
-    if (
-        settings["lang"] == "EN" and "lettrinepara" not in s
-    ):  # not \lettrinepara{W}{\emph{hat?}}:
+    if settings["lang"] == "EN" and "lettrinepara" not in s:
+        # not \lettrinepara{W}{\emph{hat?}}:
         # s = re.sub(r"(?<!^)\\emph\{([^\}A-Z]+)([,\.])\}(?!”)", r"\\emph{\1}\2", s)
         s = re.sub(r"\\emph\{([^\}A-Z]+)([,\.;!\?])\}(?!”)", r"\\emph{\1}\2", s)
     if settings["lang"] == "DE":
