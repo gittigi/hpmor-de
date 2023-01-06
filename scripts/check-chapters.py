@@ -313,6 +313,7 @@ def fix_common_typos(s: str) -> str:
         s = s.replace("Hermione", "Hermine")
         s = s.replace("Junge-der-überlebt-hatte", "Junge-der-überlebte")
         s = s.replace("Junge-der-überlebt-hat", "Junge-der-überlebte")
+        s = s.replace("Jungen-der-überlebt-hat", "Jungen-der-überlebte")
         s = s.replace("Junge, der lebte", "Junge-der-überlebte")
         s = s.replace("Muggelforscher", "Muggelwissenschaftler")
         s = s.replace("Stupefy", "Stupor")
