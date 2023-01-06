@@ -18,6 +18,16 @@ print("=== 6. HTML modifications ===")
 with open(source_file, encoding="utf-8", newline="\n") as fhIn:
     cont = fhIn.read()
 
+# done via pandoc paramter -V lang=de in 5.sh
+# # set html lang to de
+# cont = re.sub(
+#     r'(<html .*?) lang="")',
+#     r'\1 lang="de"',
+#     cont,
+#     flags=re.IGNORECASE,
+#     count=1,
+# )
+
 # remove strange leftovers from tex -> html conversion
 cont = re.sub(
     r"(</header>).*?(<p>Fanfiction von)",
@@ -32,6 +42,7 @@ cont = re.sub(
     "<p>Fanfiction basierend auf der Harry Potter Reihe von J. K. Rowling</p>",
     cont,
     flags=re.DOTALL | re.IGNORECASE,
+    count=1,
 )
 
 # doc structure (not needed any more, using calibi --level1-toc flag instead)

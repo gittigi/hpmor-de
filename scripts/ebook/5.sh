@@ -16,4 +16,4 @@ target_file="tmp/hpmor-epub-5-html-unmod.html"
 title=$(grep "pdftitle=" layout/hp-header.tex | awk -F '[{}]' '{print $2}')
 author=$(grep "pdfauthor=" layout/hp-header.tex | awk -F '[{}]' '{print $2}')
 
-pandoc --standalone --from=latex+latex_macros $source_file -o $target_file --metadata title="$title" --metadata author="$author"
+pandoc --standalone -V lang=de --from=latex+latex_macros $source_file -o $target_file --metadata title="$title" --metadata author="$author"
