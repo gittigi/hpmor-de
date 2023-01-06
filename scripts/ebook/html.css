@@ -1,5 +1,9 @@
 /* start html.css */
 
+p {
+	text-align: justify
+}
+
 em {
 	font-style: italic;
 }
