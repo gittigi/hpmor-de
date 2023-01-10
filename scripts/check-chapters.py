@@ -81,6 +81,22 @@ def get_list_of_chapter_files() -> list[Path]:
     return list_of_files
 
 
+def multiline_check(s: str) -> str:
+    """Check regarding linebreaks."""
+    # end of line: LF only
+    s = re.sub(r"\r\n?", r"\n", s)
+    # invisible strange spaces
+    s = re.sub(r" +", r" ", s)
+
+    # more than 1 empty line
+    s = re.sub(r"\n\n\n+", r"\n\n", s)
+
+    if settings["lang"] != "EN":
+        # line before \translatorsnote must end with %
+        s = re.sub(r"(?<!%)\n(\\translatorsnote)", r"%\n\1", s)
+    return s
+
+
 def process_file(file_in: Path) -> bool:
     """
     Check file for known issues.
@@ -92,19 +108,11 @@ def process_file(file_in: Path) -> bool:
     issues_found = False
     cont = file_in.read_text(encoding="utf-8")
 
-    # end of line: LF only
-    if "\r" in cont:
+    cont_orig = cont
+    cont = multiline_check(s=cont_orig)
+    if cont != cont_orig:
         issues_found = True
-        cont = re.sub(r"\r\n?", r"\n", cont)
-    # invisible strange spaces
-    if " " in cont:
-        issues_found = True
-        cont = re.sub(r" +", r" ", cont)
-
-    # more than 1 empty line
-    if "\n\n\n" in cont:
-        issues_found = True
-        cont = re.sub(r"\n\n\n+", r"\n\n", cont)
+    del cont_orig
 
     # now split per line
     cont_lines_orig = cont.split("\n")
@@ -211,6 +219,9 @@ def fix_latex(s: str) -> str:
     s = re.sub(r"([^\s%]+)\s*\\(begin|end)\{", r"\1\n\\\2{", s)
     # Latex: \\ not followed by text
     s = re.sub(r"\\\\\s*(?!($|\[|%))", r"\\\\\n", s)
+    if settings["lang"] != "EN":
+        # \translatorsnote in newline
+        s = re.sub(r"(?<!^)(\\translatorsnote)", r"%\n\1", s)
     return s
 
 
