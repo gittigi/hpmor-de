@@ -1,7 +1,8 @@
 /* start html.css */
 
 p {
-	text-align: justify
+	text-align: justify;
+	line-height: 1.75;
 }
 
 em {
