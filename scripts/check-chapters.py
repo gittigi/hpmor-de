@@ -594,6 +594,7 @@ def fix_spell(s: str) -> str:
         "Accio",
         "Alohomora",
         # "Avada Kedavra", not here, since sometimes in emph ok.
+        "Aguamenti",
         "Cluthe",
         "Colloportus",
         "Contego",
