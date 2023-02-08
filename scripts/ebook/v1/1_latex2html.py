@@ -214,7 +214,6 @@ def simplify_tex(s: str) -> str:
 
 
 def tex2html(s: str) -> str:
-
     #
     # Bulk text replacements
     #
