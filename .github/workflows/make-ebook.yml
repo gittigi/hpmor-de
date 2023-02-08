@@ -37,17 +37,17 @@ jobs:
     - name: Check chapters for known issues
       run: python3 -O scripts/check-chapters.py
 
-    - name: Install requirements
-      run: |
-        # sudo apt update > /dev/null
-        sh scripts/install_requirements_ebook.sh > /dev/null
+    # - name: Install requirements
+    #   run: |
+    #     # sudo apt update > /dev/null
+    #     sh scripts/install_requirements_ebook.sh > /dev/null
 
-    # - name: Install packages using cache
-    #   uses: awalsh128/cache-apt-pkgs-action@latest
-    #   with:
-    #     packages: texlive-extra-utils pandoc calibre imagemagick ghostscript
-    #     version: 1.0
-    #     # execute_install_scripts: true
+    - name: Install packages using cache
+      uses: awalsh128/cache-apt-pkgs-action@latest
+      with:
+        packages: texlive-extra-utils pandoc calibre imagemagick ghostscript
+        version: 1.0
+        # execute_install_scripts: true
 
     - name: Print versions
       run: |
