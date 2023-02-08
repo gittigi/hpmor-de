@@ -6,18 +6,15 @@ Check chapter .tex files for known issues and propose fixes.
 reads hpmor.tex for list of uncommented/relevant/e.g. translated) chapter files
 ignores all lines starting with '%'
 improvements are proposed via chapters/*-autofix.tex files
-configuration in check-chapters.json
-lang: EN, DE, FR, ...
-raise_error: true -> script exits with error, used for autobuild of releases
-print_diff: true : print line of issues
+configuration in check_chapters_settings.py
 """
 import difflib
-import json
 import re
 from multiprocessing import Pool, cpu_count
 from os import chdir
 from pathlib import Path
 
+from check_chapters_settings import settings
 
 if __debug__:
     # skipped if python is started with -O option
@@ -43,24 +40,11 @@ assert Path("./chapters").is_dir()
 # \latersection must be at newline
 # add \spell macro
 
-# TO chars manually find and replace
+# chars manually find and replace
 # *, ", ', », «, ”,
 
 # continue sentence in lower case
 # (,“[^„]+„)([A-Z]) -> \1\l\2
-
-# shall we modify the source file?
-# USE WITH CAUTION!!!
-inline_fixing = False
-# inline_fixing = True
-
-
-# read settings from check-chapters.json
-with open(
-    Path("scripts/check-chapters.json"),
-    encoding="utf-8",
-) as fh_settings:
-    settings = json.load(fh_settings)
 
 
 def get_list_of_chapter_files() -> list[Path]:
@@ -135,7 +119,7 @@ def process_file(file_in: Path) -> bool:
         file_out = file_in.parent / (file_in.stem + "-autofix.tex")
 
         # USE WITH CAUTION!!!
-        if inline_fixing:
+        if settings["inline_fixing"]:
             file_out = file_in
             issues_found = False
 
@@ -710,5 +694,5 @@ if __name__ == "__main__":
     #     if issue_found:
     #         any_issue_found = True
 
-    if settings["raise_error"]:
-        assert any_issue_found is False, "Issues found, please fix!"
+    if settings["raise_error"] and any_issue_found:
+        raise Exception("Issues found, please fix!")

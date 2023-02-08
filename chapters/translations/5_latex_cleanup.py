@@ -75,7 +75,7 @@ def cleanup_latex(s):
 
     lines = s.split("\n")
     lines2 = []
-    # reuse code from check-chapters, per line
+    # reuse code from check_chapters, per line
     for s in lines:
         # simple and safe
         s = fix_spaces(s)

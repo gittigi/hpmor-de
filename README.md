@@ -29,7 +29,7 @@ Hier gibt es die [aktuelle Version von PDFs und eBooks](https://github.com/entor
 * [x] Auto Build via GitHub Actions
 * [x] Alle [Kapitel](https://github.com/entorb/hpmor-de/tree/main/chapters) aus 4 verschiedenen [Übersetzungen](https://github.com/entorb/hpmor-de/wiki/Mitmachen#%C3%9Cbersetzungen) zusammengetragen
 * [x] Im Quellcode den englischen Originaltext vor jedem Absatz auskommentiert aufgehoben
-* [x] [Skript zum Qualitätssicherung häufiger bekannter Fehler](https://github.com/entorb/hpmor-de/blob/main/scripts/check-chapters.py) der Build-Pipeline vorgeschaltet
+* [x] [Skript zum Qualitätssicherung häufiger bekannter Fehler](https://github.com/entorb/hpmor-de/blob/main/scripts/check_chapters.py) der Build-Pipeline vorgeschaltet
 * [x] [eBook-Erstellskripte](https://github.com/entorb/hpmor-de/blob/main/ebook/) komplett neu geschrieben (inspiriert vom [FR Repo](https://github.com/yeKcim/hpmor))
 
 ## Links / Navigation

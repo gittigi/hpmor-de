@@ -37,7 +37,7 @@ jobs:
         ls -l
 
     - name: Check chapters for known issues
-      run: python3 -O scripts/check-chapters.py
+      run: python3 -O scripts/check_chapters.py
 
     - name: Install requirements
       run: |

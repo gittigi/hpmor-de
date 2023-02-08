@@ -34,7 +34,7 @@ jobs:
         key: ${{ env.pythonLocation }}-py-cache
 
     - name: Check chapters for known issues
-      run: python3 -O scripts/check-chapters.py
+      run: python3 -O scripts/check_chapters.py
 
     - name: Check pre-commit tests
       uses: pre-commit/action@v3.0.0
