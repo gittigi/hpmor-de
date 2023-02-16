@@ -45,7 +45,7 @@ Hier gibt es die [aktuelle Version von PDFs und eBooks](https://github.com/entor
 * [EN Originaltext auf hpmor.com](https://www.hpmor.com/)
 * [Überarbeitetes EN PDF und eBook](https://github.com/rrthomas/hpmor/releases/tag/WorkInProgress)
 * [Subreddit r/HPMOR](https://www.reddit.com/r/HPMOR/)
-* Liste der internationalen Übersetzungen, siehe [hpmor.com](http://www.hpmor.com/info/) und [Wikipedia](https://en.wikipedia.org/wiki/Harry_Potter_and_the_Methods_of_Rationality#Translations)
+* Liste der internationalen Übersetzungen, siehe [hpmor.com](https://www.hpmor.com/info/) und [Wikipedia](https://en.wikipedia.org/wiki/Harry_Potter_and_the_Methods_of_Rationality#Translations)
 
 ### Audio Versionen
 * [EN Audiobook/Podcast by Eneasz Brodski](https://hpmorpodcast.com/) - [at Apple](https://podcasts.apple.com/de/podcast/podcast-the-methods-of-rationality-podcast/id431784580?i=1000473946812) - [at Google](https://podcasts.google.com/feed/aHR0cHM6Ly9mZWVkcy5mZWVkYnVybmVyLmNvbS9IYXJyeVBvdHRlckFuZFRoZU1ldGhvZHNPZlJhdGlvbmFsaXR5VGhlUG9kY2FzdA/episode/aHR0cHM6Ly9ocG1vcnBvZGNhc3QuY29tLz9wPTYw?sa=X&ved=0CAUQkfYCahcKEwjA44jfuO34AhUAAAAAHQAAAAAQAQ) - [at Spotify](https://open.spotify.com/episode/3up7VkwoJUTNMwaM6j6qvs?si=Gx3LsHH9SY-v5TOYJHrUxw&dl_branch=1) (complete)
@@ -83,7 +83,7 @@ Only proceed **after** reading/listening to the story, as these contain spoilers
 https://github.com/rrthomas/hpmor
 Maintainer: Reuben Thomas <rrt@sc3d.org>
 
-A LaTeX version of [the popular didactic fan-fiction](http://www.hpmor.com)
+A LaTeX version of [the popular didactic fan-fiction](https://www.hpmor.com)
 by Eliezer Yudkowsky, which can make e-books in PDF, ePub and Mobi formats,
 and six PDF volumes that can be printed and bound. There are also dust
 jackets for the printable volumes.
