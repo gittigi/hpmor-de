@@ -34,6 +34,7 @@ assert Path("./chapters").is_dir()
 
 # in EN the quotations are “...” and ‘...’ (for quotations in quotations)
 # in DE the quotations are „...“ and ‚...‘ (for quotations in quotations)
+# Apostroph: ’
 
 
 # TODO:
@@ -452,6 +453,22 @@ def fix_quotations(s: str) -> str:
     # space after closing “
     if settings["lang"] == "DE":
         s = re.sub(r"(“)([\w])", r"\1 \2", s)
+
+    # EN closing quotations
+    if settings["lang"] == "DE":
+        s = re.sub("”", "“", s)
+        # s = re.sub("’", "’", s)
+
+    # # check for uneven quotations
+    # if settings["lang"] == "DE":
+    #     s = re.sub(r"(„[^“]+„)", r"<FIXME: quotations \1>", s)
+    #     s = re.sub(r"(`)", r"<FIXME: quotations: \1>", s)
+
+    #     if "\\\\" not in s:
+    #         if s.count("„") != s.count("“"):
+    #             s = "<FIXME: quotation „/“ mismatch> " + s
+    #         if s.count("‚") != s.count("‘"):
+    #             s = "<FIXME: quotation ‚/‘ mismatch> " + s
 
     return s
 
