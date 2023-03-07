@@ -151,6 +151,7 @@ def fix_line(s: str) -> str:
     s = fix_numbers(s)
     s = fix_common_typos(s)
     s = fix_spaces(s)
+    s = fix_punctuation(s)
 
     # advanced stuff
     s = fix_quotations(s)
@@ -197,6 +198,19 @@ if __debug__:
     )
     def test_fix_spaces(text: str, expected_output: str) -> None:
         assert fix_spaces(s=text) == expected_output, fix_spaces(s=text)
+
+
+def fix_punctuation(s: str) -> str:
+    # 2x same punctuation: ,.!?
+    s = re.sub(r"([,\.!\?:;])\s*\1", r"\1", s)
+    return s
+
+
+assert fix_punctuation("!!") == "!"
+assert fix_punctuation("??") == "?"
+assert fix_punctuation("! !") == "!"
+assert fix_punctuation("..") == "."
+assert fix_punctuation(",,") == ","
 
 
 def fix_latex(s: str) -> str:
